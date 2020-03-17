@@ -27,12 +27,26 @@
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.8",
     "prettier": "^1.19.1"
   },
   "config": {
     "commitizen": {
       "path": "@commitlint/prompt"
     }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,html,css,md}": [
+      "prettier --write",
+      "eslint --fix-dry-run"
+    ]
   },
   "repository": {
     "type": "git",
