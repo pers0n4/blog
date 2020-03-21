@@ -1,7 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useStaticQuery, graphql } from "gatsby";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
+
+import Header from "./header";
 
 const theme = createMuiTheme({
   palette: {
@@ -15,9 +18,22 @@ const theme = createMuiTheme({
 });
 
 const Layout = ({ children }) => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Header title={data.site.siteMetadata.title} />
       <main>{children}</main>
     </ThemeProvider>
   );
