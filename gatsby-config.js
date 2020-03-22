@@ -9,4 +9,5 @@ module.exports = {
     title: `Hack IT`,
     description: `...`,
   },
+  plugins: [`gatsby-plugin-react-helmet`],
 };
