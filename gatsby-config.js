@@ -9,5 +9,15 @@ module.exports = {
     title: `Hack IT`,
     description: `...`,
   },
-  plugins: [`gatsby-plugin-react-helmet`],
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `article`,
+        path: `${__dirname}/content/articles`,
+      },
+    },
+    `gatsby-transformer-remark`,
+  ],
 };
