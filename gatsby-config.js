@@ -19,5 +19,15 @@ module.exports = {
       },
     },
     `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        ssr: false,
+        displayName: true,
+        fileName: true,
+        minify: false,
+        transpileTemplateLiterals: false,
+      },
+    },
   ],
 };
