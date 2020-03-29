@@ -1,9 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
+import styled from "styled-components";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
+import Container from "@material-ui/core/Container";
 
 import Header from "./header";
 
@@ -17,6 +19,10 @@ const theme = createMuiTheme({
     },
   },
 });
+
+const Main = styled(Container)`
+  margin-top: 32px;
+`;
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(
@@ -36,7 +42,9 @@ const Layout = ({ children }) => {
       <CssBaseline />
       <Header title={data.site.siteMetadata.title} />
       <Toolbar />
-      <main>{children}</main>
+      <Main component="main" maxWidth="md">
+        {children}
+      </Main>
     </ThemeProvider>
   );
 };
