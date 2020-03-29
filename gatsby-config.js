@@ -29,5 +29,6 @@ module.exports = {
         transpileTemplateLiterals: false,
       },
     },
+    `gatsby-plugin-catch-links`,
   ],
 };
