@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
+import Toolbar from "@material-ui/core/Toolbar";
 
 import Header from "./header";
 
@@ -26,6 +27,11 @@ const theme = createMuiTheme({
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
+  },
+  content: {
+    flexGrow: 1,
+    height: "100vh",
+    overflow: "auto",
   },
 }));
 
@@ -52,9 +58,12 @@ const Layout = ({ children }) => {
       <CssBaseline />
       <div className={classes.root}>
         <Header title={data.site.siteMetadata.title} />
-        <Main component="main" maxWidth="md">
-          {children}
-        </Main>
+        <div className={classes.content}>
+          <Toolbar />
+          <Main component="main" maxWidth="md">
+            {children}
+          </Main>
+        </div>
       </div>
     </ThemeProvider>
   );
