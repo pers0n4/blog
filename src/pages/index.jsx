@@ -71,8 +71,8 @@ const Index = ({
   },
 }) => {
   const articles = edges
-    .filter(edge => !!edge.node.frontmatter.date)
-    .map(edge => <Article key={edge.node.id} node={edge.node} />);
+    .filter((edge) => !!edge.node.frontmatter.date)
+    .map((edge) => <Article key={edge.node.id} node={edge.node} />);
 
   return (
     <Layout>
