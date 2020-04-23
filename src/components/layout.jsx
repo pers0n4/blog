@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import {
+  createMuiTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
 import Container from "@material-ui/core/Container";
 
 import Header from "./header";
@@ -20,11 +23,18 @@ const theme = createMuiTheme({
   },
 });
 
+const useStyles = makeStyles(() => ({
+  root: {
+    display: "flex",
+  },
+}));
+
 const Main = styled(Container)`
   margin-top: 32px;
 `;
 
 const Layout = ({ children }) => {
+  const classes = useStyles();
   const data = useStaticQuery(
     graphql`
       query {
@@ -40,11 +50,12 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header title={data.site.siteMetadata.title} />
-      <Toolbar />
-      <Main component="main" maxWidth="md">
-        {children}
-      </Main>
+      <div className={classes.root}>
+        <Header title={data.site.siteMetadata.title} />
+        <Main component="main" maxWidth="md">
+          {children}
+        </Main>
+      </div>
     </ThemeProvider>
   );
 };
