@@ -31,5 +31,6 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-theme-material-ui`,
+    `gatsby-plugin-mdx`,
   ],
 };
