@@ -8,7 +8,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/layout";
-import SEO from "../components/seo";
 
 const useStyles = makeStyles({
   card: {
@@ -76,7 +75,6 @@ const Index = ({
 
   return (
     <Layout>
-      <SEO />
       <section>{articles}</section>
     </Layout>
   );
