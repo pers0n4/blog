@@ -17,40 +17,22 @@ const SEO = () => {
   );
 
   const { title, description } = data.site.siteMetadata;
-  const lang = "en";
 
   return (
-    <Helmet
-      htmlAttributes={{ lang }}
-      title={title}
-      meta={[
-        { name: `description`, content: description },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: description,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: description,
-        },
-      ]}
-    />
+    <Helmet>
+      <html lang="en" />
+
+      <title>{title}</title>
+      <meta name="description" content={description} />
+
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="website" />
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+    </Helmet>
   );
 };
 
