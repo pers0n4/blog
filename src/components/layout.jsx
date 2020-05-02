@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { graphql, useStaticQuery } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -39,18 +38,15 @@ const Layout = ({ children }) => {
   );
 
   return (
-    <>
-      <CssBaseline />
-      <div className={classes.root}>
-        <Header title={data.site.siteMetadata.title} />
-        <div className={classes.content}>
-          <Toolbar />
-          <Main component="main" maxWidth="md">
-            {children}
-          </Main>
-        </div>
+    <div className={classes.root}>
+      <Header title={data.site.siteMetadata.title} />
+      <div className={classes.content}>
+        <Toolbar />
+        <Main component="main" maxWidth="md">
+          {children}
+        </Main>
       </div>
-    </>
+    </div>
   );
 };
 
