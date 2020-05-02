@@ -1,8 +1,6 @@
 ---
-path: "/hello-world"
-title: "hello, world!"
-date: "1970-01-01T00:00:00+00:00"
-tags: ["hello", "world"]
+title: hello, world!
+date: 1970-01-01T00:00:00+00:00
 ---
 ## h2
 
@@ -46,12 +44,6 @@ _em_ text
   - ul
     - ul
       - ul
-        - ul
-          - ul
-            - ul
-              - ul
-                - ul
-                  - ul
 
 ---
 
@@ -61,9 +53,6 @@ _em_ text
    1. ol
       1. ol
          1. ol
-            1. ol
-               1. ol
-                  1. ol
 
 ---
 

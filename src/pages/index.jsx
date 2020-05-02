@@ -57,18 +57,14 @@ Article.propTypes = {
       slug: PropTypes.string.isRequired,
     }).isRequired,
     frontmatter: PropTypes.shape({
-      path: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
 
-const Index = ({
-  data: {
-    allMarkdownRemark: { edges },
-  },
-}) => {
+const Index = ({ data }) => {
+  const { edges } = data.allMdx;
   const articles = edges
     .filter((edge) => !!edge.node.frontmatter.date)
     .map((edge) => <Article key={edge.node.id} node={edge.node} />);
@@ -82,8 +78,8 @@ const Index = ({
 
 Index.propTypes = {
   data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array.isRequired,
+    allMdx: PropTypes.shape({
+      edges: PropTypes.node.isRequired,
     }).isRequired,
   }).isRequired,
 };
@@ -91,8 +87,8 @@ Index.propTypes = {
 export default Index;
 
 export const query = graphql`
-  query ArticleList {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+  query {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
           id
@@ -101,9 +97,8 @@ export const query = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            path
             title
+            date(formatString: "MMMM DD, YYYY")
           }
         }
       }

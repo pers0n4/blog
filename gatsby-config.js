@@ -31,6 +31,11 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-theme-material-ui`,
-    `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [".mdx", ".md"],
+      },
+    },
   ],
 };

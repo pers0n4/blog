@@ -1,23 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
+import { MDXProvider } from "@mdx-js/react";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
-const Article = ({ data }) => {
+import Layout from "../components/layout";
+
+const Article = ({ data: { mdx } }) => {
   return (
-    <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <Layout>
+      <MDXProvider>
+        <article>
+          <h1>{mdx.frontmatter.title}</h1>
+          <p>{mdx.frontmatter.date}</p>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </article>
+      </MDXProvider>
+    </Layout>
   );
 };
 
 Article.propTypes = {
   data: PropTypes.shape({
-    markdownRemark: PropTypes.shape({
+    mdx: PropTypes.shape({
       id: PropTypes.string.isRequired,
-      html: PropTypes.string.isRequired,
-      excerpt: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
       frontmatter: PropTypes.shape({
         title: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
   }).isRequired,
@@ -26,13 +36,13 @@ Article.propTypes = {
 export default Article;
 
 export const query = graphql`
-  query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query($id: String) {
+    mdx(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 160)
-      html
+      body
       frontmatter {
         title
+        date
       }
     }
   }
