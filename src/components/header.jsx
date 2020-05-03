@@ -102,7 +102,7 @@ const Header = ({ title }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h6" component="span" className={classes.title}>
             {title}
           </Typography>
         </Toolbar>
