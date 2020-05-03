@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
 
 const Main = styled(Container)`
   margin-top: 32px;
+  padding: 0;
 `;
 
 const Layout = ({ children }) => {
