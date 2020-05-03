@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
 
-import ListItems from "./headerListItems";
+import ListItems from "./header-list-items";
 
 const drawerWidth = 240;
 
