@@ -71,8 +71,9 @@ console.log("hello, world");
 - [x] task
 - [ ] task
 
-- footnote 1[^1]
-- footnote 1[^footnote]
+footnote 1[^1]
+
+footnote 1[^footnote]
 
 [^1]: footnote
 [^footnote]: footnote
