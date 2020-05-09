@@ -72,9 +72,12 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,html,css,md,mdx}": [
-      "prettier --check",
-      "eslint --fix-dry-run"
+    "src/**/*.{js,jsx,ts,tsx,json,html,md,mdx}": [
+      "eslint --fix-dry-run",
+      "prettier --check"
+    ],
+    "src/**/*.{css}": [
+      "prettier --check"
     ]
   },
   "repository": {
