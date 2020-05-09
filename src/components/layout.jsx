@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import MuiContainer from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import Header from "./header";
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Main = styled(Container)`
+const Container = styled(MuiContainer)`
   margin-top: 32px;
   padding: 0;
 `;
@@ -44,9 +44,9 @@ const Layout = ({ children }) => {
       <Header title={data.site.siteMetadata.title} />
       <div className={classes.content}>
         <Toolbar />
-        <Main component="main" maxWidth="md">
+        <Container component="main" maxWidth="md">
           {children}
-        </Main>
+        </Container>
       </div>
     </div>
   );
