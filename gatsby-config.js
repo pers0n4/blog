@@ -35,6 +35,11 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-prismjs`,
+          },
+        ],
       },
     },
     `gatsby-plugin-theme-ui`,
