@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
 const Container = styled(MuiContainer)`
   ${({ theme: t }) => `
   margin-top: 32px;
+  margin-bottom: 10vh;
   ${t.breakpoints.down("xs")} {
     margin-top: 0;
     padding: 0;

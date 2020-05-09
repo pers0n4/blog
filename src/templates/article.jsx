@@ -18,20 +18,37 @@ import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/layout";
 
+const style = {
+  marginTop: "0.5em",
+};
+
 /* eslint-disable react/jsx-props-no-spreading, react/prop-types */
 const shortcodes = {
   p: (props) => <Typography {...props} variant="body1" gutterBottom />,
-  h2: (props) => <Typography {...props} variant="h2" gutterBottom />,
-  h3: (props) => <Typography {...props} variant="h3" gutterBottom />,
-  h4: (props) => <Typography {...props} variant="h4" gutterBottom />,
-  h5: (props) => <Typography {...props} variant="h5" gutterBottom />,
-  h6: (props) => <Typography {...props} variant="h6" gutterBottom />,
+  h2: (props) => (
+    <Typography {...props} variant="h2" gutterBottom style={style} />
+  ),
+  h3: (props) => (
+    <Typography {...props} variant="h3" gutterBottom style={style} />
+  ),
+  h4: (props) => (
+    <Typography {...props} variant="h4" gutterBottom style={style} />
+  ),
+  h5: (props) => (
+    <Typography {...props} variant="h5" gutterBottom style={style} />
+  ),
+  h6: (props) => (
+    <Typography {...props} variant="h6" gutterBottom style={style} />
+  ),
   // blockquote: (props) => ,
   // ul: (props) => ,
   // ol: (props) => ,
   li: (props) => <Typography {...props} variant="body1" component="li" />,
   table: (props) => (
-    <TableContainer component={Paper}>
+    <TableContainer
+      component={Paper}
+      style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}
+    >
       <Table {...props} />
     </TableContainer>
   ),
@@ -51,7 +68,9 @@ const shortcodes = {
   // em: (props) => ,
   // strong: (props) => ,
   // del: (props) => ,
-  hr: (props) => <Divider {...props} />,
+  hr: (props) => (
+    <Divider {...props} style={{ marginTop: "1rem", marginBottom: "1rem" }} />
+  ),
   a: (props) => <Link {...props} />,
   // img: (props) => ,
 };
@@ -70,7 +89,9 @@ const Article = ({ data: { mdx } }) => {
       <MDXProvider components={shortcodes}>
         <Paper component="article" className={classes.root}>
           <Typography variant="h1">{mdx.frontmatter.title}</Typography>
-          <Typography variant="subtitle1">{mdx.frontmatter.date}</Typography>
+          <Typography variant="subtitle1" component="p">
+            {mdx.frontmatter.date}
+          </Typography>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </Paper>
       </MDXProvider>

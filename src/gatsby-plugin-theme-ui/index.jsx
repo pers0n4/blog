@@ -15,11 +15,15 @@ export default {
     // h5: {},
     // h6: {},
     blockquote: {
+      marginTop: "0.5rem",
+      marginBottom: "0.5rem",
       marginLeft: "0",
       paddingLeft: "1.5rem",
       borderLeft: `0.25rem solid ${theme.palette.divider}`,
     },
     ul: {
+      marginTop: "0.5rem",
+      marginBottom: "0.5rem",
       marginLeft: "1.5rem",
       paddingLeft: "0",
       "&.contains-task-list": {
@@ -28,6 +32,8 @@ export default {
       },
     },
     ol: {
+      marginTop: "0.5rem",
+      marginBottom: "0.5rem",
       marginLeft: "1.5rem",
       paddingLeft: "0",
     },
