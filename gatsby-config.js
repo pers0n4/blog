@@ -10,7 +10,6 @@ module.exports = {
     description: `...`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -29,8 +28,6 @@ module.exports = {
         transpileTemplateLiterals: false,
       },
     },
-    `gatsby-plugin-catch-links`,
-    `gatsby-theme-material-ui`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -52,6 +49,9 @@ module.exports = {
         ],
       },
     },
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-react-helmet`,
+    `gatsby-theme-material-ui`,
     `gatsby-plugin-theme-ui`,
   ],
 };
