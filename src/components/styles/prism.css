@@ -43,3 +43,14 @@
 .gatsby-highlight pre[class*="language-"].line-numbers {
   padding-left: 2.8em;
 }
+
+p code::before,
+p code::after {
+  content: " ";
+  letter-spacing: -0.2em;
+}
+
+:not(pre) > code[class*="language-"] {
+  white-space: pre;
+}
+
