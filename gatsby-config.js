@@ -38,6 +38,15 @@ module.exports = {
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-prismjs`,
+            options: {
+              showLineNumbers: false,
+              noInlineHighlight: false,
+              prompt: {
+                user: "root",
+                host: "localhost",
+                global: false,
+              },
+            },
           },
         ],
       },
