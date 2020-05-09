@@ -39,9 +39,7 @@ export default {
     // th: {},
     // td: {},
     // pre: {},
-    code: {
-      fontFamily: "monospace",
-    },
+    // code: {},
     // em: {},
     // strong: {},
     // del: {},
