@@ -59,7 +59,12 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "stylelint": "^13.3.3",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.0.0",
+    "stylelint-prettier": "^1.1.2"
   },
   "config": {
     "commitizen": {
@@ -77,8 +82,9 @@
       "eslint --fix-dry-run",
       "prettier --check"
     ],
-    "src/**/*.{css}": [
-      "prettier --check"
+    "src/**/*.css": [
+      "stylelint --fix",
+      "prettier --write"
     ]
   },
   "repository": {
