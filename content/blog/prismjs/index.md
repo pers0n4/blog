@@ -29,12 +29,10 @@ plugins: [
   {
     resolve: `gatsby-transformer-remark`,
     options: {
-      plugins: [
-        `gatsby-remark-prismjs`,
-      ]
-    }
-  }
-]
+      plugins: [`gatsby-remark-prismjs`],
+    },
+  },
+];
 ```
 
 You can also start numbering at any index you wish (here, numbering
@@ -62,12 +60,10 @@ plugins: [
   {
     resolve: `gatsby-transformer-remark`,
     options: {
-      plugins: [
-        `gatsby-remark-prismjs`,
-      ]
-    }
-  }
-]
+      plugins: [`gatsby-remark-prismjs`],
+    },
+  },
+];
 ```
 
 ## Line highlighting
@@ -197,12 +193,10 @@ plugins: [
   {
     resolve: `gatsby-transformer-remark`,
     options: {
-      plugins: [
-        `gatsby-remark-prismjs`,
-      ]
-    }
-  }
-]
+      plugins: [`gatsby-remark-prismjs`],
+    },
+  },
+];
 ```
 
 ## Shell prompt
@@ -223,3 +217,15 @@ unless explicitly overridden by the `promptUser` and `promptHost` options in the
 ````text
 ```bash{promptUser: alice}{promptHost: dev.localhost}
 ````
+
+## Code title
+
+````text
+```js:title=example.js {numberLines: true}
+console.log("hello world");
+```
+````
+
+```js:title=example.js {numberLines: true}
+console.log("hello world");
+```
