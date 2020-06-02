@@ -64,7 +64,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   tags.forEach((tag) => {
     createPage({
       path: `/tags/${tag.fieldValue}/`,
-      component: require.resolve(`./src/templates/tags.jsx`),
+      component: require.resolve(`./src/templates/tag.jsx`),
       context: {
         tag: tag.fieldValue,
       },

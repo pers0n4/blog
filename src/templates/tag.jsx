@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link, graphql } from "gatsby";
 
-const Tags = ({ pageContext, data }) => {
+const Tag = ({ pageContext, data }) => {
   const { tag } = pageContext;
   const { edges, totalCount } = data.allMdx;
   const tagHeader = `${totalCount} post${
@@ -32,14 +32,14 @@ const Tags = ({ pageContext, data }) => {
   );
 };
 
-Tags.propTypes = {
+Tag.propTypes = {
   pageContext: PropTypes.shape({
     tag: PropTypes.string.isRequired,
   }).isRequired,
   data: PropTypes.node.isRequired,
 };
 
-export default Tags;
+export default Tag;
 
 export const query = graphql`
   query($tag: String) {
