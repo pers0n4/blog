@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { navigate } from "gatsby";
+import moment from "moment-timezone";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -24,7 +25,7 @@ const ArticleCard = ({
     id,
     excerpt,
     fields: { slug },
-    frontmatter: { date, title },
+    frontmatter: { title, date },
   },
 }) => {
   const classes = useStyles();
@@ -33,14 +34,14 @@ const ArticleCard = ({
     <Card key={id} className={classes.card} component="article">
       <CardActionArea onClick={() => navigate(slug)}>
         <CardContent>
-          <Typography className={classes.date} color="textSecondary">
-            {date}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography variant="h4" component="h2" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body2" component="p">
+          <Typography variant="body1" gutterBottom>
             {excerpt}
+          </Typography>
+          <Typography className={classes.date} color="textSecondary">
+            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -57,6 +58,7 @@ ArticleCard.propTypes = {
     }).isRequired,
     frontmatter: PropTypes.shape({
       title: PropTypes.string.isRequired,
+      tags: PropTypes.array.isRequired,
       date: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
