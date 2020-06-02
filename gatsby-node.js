@@ -14,9 +14,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               slug
             }
             frontmatter {
+              category
               tags
             }
           }
+        }
+      }
+      categories: allMdx {
+        group(field: frontmatter___category) {
+          fieldValue
         }
       }
       tagsGroup: allMdx {
@@ -39,6 +45,17 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       context: {
         id: node.id,
         slug: node.fields.slug,
+      },
+    });
+  });
+
+  const categories = result.data.categories.group;
+  categories.forEach((category) => {
+    createPage({
+      path: `/categories/${category.fieldValue}/`,
+      component: require.resolve(`./src/templates/category.jsx`),
+      context: {
+        category: category.fieldValue,
       },
     });
   });
