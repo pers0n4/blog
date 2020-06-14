@@ -51,16 +51,16 @@ const ArticleCard = ({
 
 ArticleCard.propTypes = {
   node: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    excerpt: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    excerpt: PropTypes.string,
     fields: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }).isRequired,
+      slug: PropTypes.string,
+    }),
     frontmatter: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      tags: PropTypes.array.isRequired,
-      date: PropTypes.string.isRequired,
-    }).isRequired,
+      title: PropTypes.string,
+      tags: PropTypes.array,
+      date: PropTypes.string,
+    }),
   }).isRequired,
 };
 

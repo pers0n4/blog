@@ -21,8 +21,8 @@ const Index = ({ data }) => {
 Index.propTypes = {
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
-      edges: PropTypes.node.isRequired,
-    }).isRequired,
+      edges: PropTypes.array,
+    }),
   }).isRequired,
 };
 
