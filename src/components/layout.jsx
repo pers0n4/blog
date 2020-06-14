@@ -47,17 +47,17 @@ const Layout = ({ children }) => {
   );
 
   return (
-    <div className={classes.root}>
-      <Header title={data.site.siteMetadata.title} />
-      <div className={classes.content}>
-        <Toolbar />
-        <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <Header title={data.site.siteMetadata.title} />
+        <div className={classes.content}>
+          <Toolbar />
           <Container component="main" maxWidth="md">
             {children}
           </Container>
-        </ThemeProvider>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 };
 
