@@ -18,14 +18,30 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HomeIcon from "@material-ui/icons/Home";
+import CategoryIcon from "@material-ui/icons/Category";
+import LabelIcon from "@material-ui/icons/Label";
 
 const HeaderItems = (
-  <ListItem button component={GatsbyLink} to="/">
-    <ListItemIcon>
-      <HomeIcon />
-    </ListItemIcon>
-    <ListItemText primary="Home" />
-  </ListItem>
+  <>
+    <ListItem button component={GatsbyLink} to="/">
+      <ListItemIcon>
+        <HomeIcon />
+      </ListItemIcon>
+      <ListItemText primary="Home" />
+    </ListItem>
+    <ListItem button component={GatsbyLink} to="/categories/">
+      <ListItemIcon>
+        <CategoryIcon />
+      </ListItemIcon>
+      <ListItemText primary="Categories" />
+    </ListItem>
+    <ListItem button component={GatsbyLink} to="/tags/">
+      <ListItemIcon>
+        <LabelIcon />
+      </ListItemIcon>
+      <ListItemText primary="Tags" />
+    </ListItem>
+  </>
 );
 
 const drawerWidth = 240;
