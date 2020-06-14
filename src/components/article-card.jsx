@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { navigate } from "gatsby";
+import { GatsbyLink } from "gatsby-theme-material-ui";
 import moment from "moment-timezone";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,7 +32,7 @@ const ArticleCard = ({
 
   return (
     <Card key={id} className={classes.card} component="article">
-      <CardActionArea onClick={() => navigate(slug)}>
+      <CardActionArea component={GatsbyLink} to={slug}>
         <CardContent>
           <Typography variant="h4" component="h2" gutterBottom>
             {title}
