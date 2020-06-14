@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql, useStaticQuery } from "gatsby";
+import { makeStyles } from "@material-ui/core/styles";
 import styled, { ThemeProvider } from "styled-components";
 
-import { makeStyles } from "@material-ui/core/styles";
 import MuiContainer from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 

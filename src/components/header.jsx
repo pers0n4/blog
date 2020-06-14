@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
 import { GatsbyLink } from "gatsby-theme-material-ui";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
