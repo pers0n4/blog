@@ -10,18 +10,47 @@ const theme = createMuiTheme({
     },
   },
   typography: {
+    // htmlFontSize: 16,
+    // fontSize: 14,
     h1: {
-      fontSize: "3rem",
+      // fontWeight: 300,
+      // fontSize: "6rem",
+      fontSize: "4rem",
+      // lineHeight: 1.167,
+      // letterSpacing: "-0.01562em",
     },
     h2: {
-      fontSize: "2.5rem",
+      // fontWeight: 300,
+      // fontSize: "3.75rem",
+      fontSize: "3rem",
+      // lineHeight: 1.2,
+      // letterSpacing: "-0.00833em",
     },
     h3: {
-      fontSize: "2.25rem",
+      // fontWeight: 400,
+      // fontSize: "3rem",
+      fontSize: "2.5rem",
+      // lineHeight: 1.167,
+      // letterSpacing: "0em",
     },
-    h4: {
-      fontSize: "2rem",
-    },
+    // h4: {
+    //   fontWeight: 400,
+    //   fontSize: "2.125rem",
+    //   lineHeight: 1.235,
+    //   letterSpacing: "0.00735em",
+    // },
+    // h5: {
+    //   fontWeight: 400,
+    //   fontSize: "1.5rem",
+    //   lineHeight: 1.334,
+    //   letterSpacing: "0em",
+    // },
+    // h6: {
+    //   fontWeight: 500,
+    //   fontSize: "1.25rem",
+    //   lineHeight: 1.6,
+    //   letterSpacing: "0.0075em",
+    // },
   },
 });
 
