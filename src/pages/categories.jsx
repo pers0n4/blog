@@ -18,32 +18,34 @@ const Categories = ({
   data: {
     allMdx: { group },
   },
-}) => (
-  <Layout>
-    <Card>
-      <CardContent>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Categories
-        </Typography>
-        <List>
-          {group.map((category) => (
-            <ListItem
-              button
-              component={GatsbyLink}
-              to={`/categories/${category.fieldValue}`}
-              key={category.fieldValue}
-            >
-              <ListItemText primary={category.fieldValue} />
-              <ListItemSecondaryAction>
-                <Chip label={category.totalCount} />
-              </ListItemSecondaryAction>
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
-    </Card>
-  </Layout>
-);
+}) => {
+  const categories = group.map((category) => (
+    <ListItem
+      button
+      component={GatsbyLink}
+      to={`/categories/${category.fieldValue}`}
+      key={category.fieldValue}
+    >
+      <ListItemText primary={category.fieldValue} />
+      <ListItemSecondaryAction>
+        <Chip label={category.totalCount} />
+      </ListItemSecondaryAction>
+    </ListItem>
+  ));
+
+  return (
+    <Layout>
+      <Card>
+        <CardContent>
+          <Typography variant="h2" component="h1" gutterBottom>
+            Categories
+          </Typography>
+          <List>{categories}</List>
+        </CardContent>
+      </Card>
+    </Layout>
+  );
+};
 
 Categories.propTypes = {
   data: PropTypes.node.isRequired,
