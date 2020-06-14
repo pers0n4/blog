@@ -1,4 +1,5 @@
 const { createFilePath } = require(`gatsby-source-filesystem`);
+const _ = require("lodash");
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
@@ -52,7 +53,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const categories = result.data.categories.group;
   categories.forEach((category) => {
     createPage({
-      path: `/categories/${category.fieldValue}/`,
+      path: `/categories/${_.kebabCase(category.fieldValue)}/`,
       component: require.resolve(`./src/templates/category.jsx`),
       context: {
         category: category.fieldValue,
@@ -63,7 +64,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const tags = result.data.tagsGroup.group;
   tags.forEach((tag) => {
     createPage({
-      path: `/tags/${tag.fieldValue}/`,
+      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
       component: require.resolve(`./src/templates/tag.jsx`),
       context: {
         tag: tag.fieldValue,

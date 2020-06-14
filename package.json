@@ -32,6 +32,7 @@
     "gatsby-theme-material-ui": "^1.0.10",
     "gatsby-theme-material-ui-top-layout": "^1.0.2",
     "gatsby-transformer-remark": "^2.8.15",
+    "lodash": "^4.17.15",
     "moment-timezone": "^0.5.31",
     "prism-themes": "^1.4.0",
     "prismjs": "^1.20.0",
