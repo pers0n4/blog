@@ -1,42 +1,51 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
+import { Link } from "gatsby-theme-material-ui";
+import { makeStyles } from "@material-ui/core/styles";
+
+import Typography from "@material-ui/core/Typography";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+
+import Layout from "../components/layout";
+import ArticleCard from "../components/article-card";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const Category = ({ pageContext, data }) => {
+  const classes = useStyles();
   const { category } = pageContext;
-  const { edges, totalCount } = data.allMdx;
-  const categoryHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } in "${category}"`;
+  const { edges } = data.allMdx;
+  const articles = edges
+    .filter((edge) => !!edge.node.frontmatter.date)
+    .map((edge) => <ArticleCard key={edge.node.id} node={edge.node} />);
 
   return (
-    <div>
-      <h1>{categoryHeader}</h1>
-      <ul>
-        {edges.map(({ node }) => {
-          const { slug } = node.fields;
-          const { title } = node.frontmatter;
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      {/*
-              This links to a page that does not yet exist.
-              You'll come back to it!
-            */}
-      <Link to="/categories">All categories</Link>
-    </div>
+    <Layout>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link href="/categories/">Categories</Link>
+        <Typography variant="body1" component="h1">
+          {category}
+        </Typography>
+      </Breadcrumbs>
+      <section className={classes.root}>{articles}</section>
+    </Layout>
   );
 };
 
 Category.propTypes = {
   pageContext: PropTypes.shape({
-    category: PropTypes.string.isRequired,
+    category: PropTypes.string,
   }).isRequired,
-  data: PropTypes.node.isRequired,
+  data: PropTypes.shape({
+    allMdx: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }).isRequired,
 };
 
 export default Category;
@@ -48,14 +57,16 @@ export const query = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { category: { eq: $category } } }
     ) {
-      totalCount
       edges {
         node {
+          id
+          excerpt
           fields {
             slug
           }
           frontmatter {
             title
+            date
           }
         }
       }
