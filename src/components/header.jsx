@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { navigate } from "gatsby";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
+import { GatsbyLink } from "gatsby-theme-material-ui";
 
 import Typography from "@material-ui/core/Typography";
 import AppBar from "@material-ui/core/AppBar";
@@ -20,7 +20,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HomeIcon from "@material-ui/icons/Home";
 
 const HeaderItems = (
-  <ListItem button onClick={() => navigate("/")}>
+  <ListItem button component={GatsbyLink} to="/">
     <ListItemIcon>
       <HomeIcon />
     </ListItemIcon>
