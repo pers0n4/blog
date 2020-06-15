@@ -77,7 +77,7 @@ const shortcodes = {
 /* eslint-enable */
 
 const useStyles = makeStyles({
-  root: {
+  article: {
     padding: "1rem",
   },
 });
@@ -87,7 +87,7 @@ const Article = ({ data: { mdx } }) => {
   return (
     <Layout>
       <MDXProvider components={shortcodes}>
-        <Paper component="article" className={classes.root}>
+        <Paper component="article" className={classes.article}>
           <Typography variant="h1">{mdx.frontmatter.title}</Typography>
           <Typography variant="subtitle1" component="p">
             {mdx.frontmatter.date}
@@ -102,13 +102,13 @@ const Article = ({ data: { mdx } }) => {
 Article.propTypes = {
   data: PropTypes.shape({
     mdx: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
+      id: PropTypes.string,
+      body: PropTypes.string,
       frontmatter: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
+        title: PropTypes.string,
+        date: PropTypes.string,
+      }),
+    }),
   }).isRequired,
 };
 
