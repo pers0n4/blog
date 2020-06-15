@@ -11,7 +11,7 @@ import Layout from "../components/layout";
 import ArticleCard from "../components/article-card";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  articles: {
     marginTop: theme.spacing(2),
   },
 }));
@@ -32,7 +32,7 @@ const Category = ({ pageContext, data }) => {
           {category}
         </Typography>
       </Breadcrumbs>
-      <section className={classes.root}>{articles}</section>
+      <section className={classes.articles}>{articles}</section>
     </Layout>
   );
 };
