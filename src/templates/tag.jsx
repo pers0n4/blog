@@ -1,42 +1,51 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, graphql } from "gatsby";
+import { graphql } from "gatsby";
+import { Link } from "gatsby-theme-material-ui";
+import { makeStyles } from "@material-ui/core/styles";
+
+import Typography from "@material-ui/core/Typography";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+
+import Layout from "../components/layout";
+import ArticleCard from "../components/article-card";
+
+const useStyles = makeStyles((theme) => ({
+  articles: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const Tag = ({ pageContext, data }) => {
+  const classes = useStyles();
   const { tag } = pageContext;
-  const { edges, totalCount } = data.allMdx;
-  const tagHeader = `${totalCount} post${
-    totalCount === 1 ? "" : "s"
-  } tagged with "${tag}"`;
+  const { edges } = data.allMdx;
+  const articles = edges
+    .filter((edge) => !!edge.node.frontmatter.date)
+    .map((edge) => <ArticleCard key={edge.node.id} node={edge.node} />);
 
   return (
-    <div>
-      <h1>{tagHeader}</h1>
-      <ul>
-        {edges.map(({ node }) => {
-          const { slug } = node.fields;
-          const { title } = node.frontmatter;
-          return (
-            <li key={slug}>
-              <Link to={slug}>{title}</Link>
-            </li>
-          );
-        })}
-      </ul>
-      {/*
-              This links to a page that does not yet exist.
-              You'll come back to it!
-            */}
-      <Link to="/tags">All tags</Link>
-    </div>
+    <Layout>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link href="/tags/">Tags</Link>
+        <Typography variant="body1" component="h1">
+          {tag}
+        </Typography>
+      </Breadcrumbs>
+      <section className={classes.articles}>{articles}</section>
+    </Layout>
   );
 };
 
 Tag.propTypes = {
   pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
+    tag: PropTypes.string,
   }).isRequired,
-  data: PropTypes.node.isRequired,
+  data: PropTypes.shape({
+    allMdx: PropTypes.shape({
+      edges: PropTypes.array,
+    }),
+  }).isRequired,
 };
 
 export default Tag;
@@ -48,14 +57,16 @@ export const query = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
-      totalCount
       edges {
         node {
+          id
+          excerpt
           fields {
             slug
           }
           frontmatter {
             title
+            date
           }
         }
       }
