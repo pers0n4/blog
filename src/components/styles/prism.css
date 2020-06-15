@@ -1,3 +1,13 @@
+:not(pre) > code::before,
+:not(pre) > code::after {
+  content: " ";
+  letter-spacing: -0.2em;
+}
+
+:not(pre) > code[class*="language-"] {
+  white-space: pre;
+}
+
 .gatsby-highlight-code-line {
   background: #212121;
   display: block;
@@ -44,15 +54,7 @@
   padding-left: 2.8em;
 }
 
-:not(pre) > code::before,
-:not(pre) > code::after {
-  content: " ";
-  letter-spacing: -0.2em;
-}
-
-:not(pre) > code[class*="language-"] {
-  white-space: pre;
-}
+/* https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/ */
 
 .gatsby-code-title {
   background-color: #212121;
@@ -65,22 +67,83 @@
   padding: 0.5em 1em;
 }
 
-/* .gatsby-highlight pre[class*="language-"]::before {
+/* https://prismjs.com/#supported-languages */
+
+.gatsby-highlight pre[class*="language-"]::before {
+  border-radius: 0 0 4px 4px;
   color: #232129;
   font-size: 0.75rem;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   letter-spacing: 0.075em;
   line-height: 1;
+  padding: 0.25rem 0.5rem;
   position: absolute;
-  left: 1.5rem;
+  right: 0;
   text-align: right;
   text-transform: uppercase;
-  top: 0px;
-  border-radius: 0px 0px 4px 4px;
-  padding: 0.25rem 0.5rem;
+  top: -14px;
 }
 
-.gatsby-highlight pre[class="language-javascript"]::before {
+.gatsby-highlight pre[class*="language-text"]::before {
+  content: "text";
+  background: #fff;
+}
+
+.gatsby-highlight pre[class*="language-html"]::before {
+  content: "html";
+  background: #f16524;
+}
+
+.gatsby-highlight pre[class*="language-css"]::before {
+  content: "css";
+  background: #2464f2;
+}
+
+.gatsby-highlight pre[class*="language-javascript"]::before {
   content: "js";
-  background: rgb(247, 223, 30);
-} */
+  background: #f7e018;
+}
+
+.gatsby-highlight pre[class*="language-js"]::before {
+  content: "js";
+  background: #f7e018;
+}
+
+.gatsby-highlight pre[class*="language-jsx"]::before {
+  content: "jsx";
+  background: #61dafb;
+}
+
+.gatsby-highlight pre[class*="language-python"]::before {
+  content: "py";
+  background: #3679b0;
+}
+
+.gatsby-highlight pre[class*="language-py"]::before {
+  content: "py";
+  background: #3679b0;
+}
+
+.gatsby-highlight pre[class*="language-sh"]::before {
+  content: "sh";
+}
+
+.gatsby-highlight pre[class*="language-shell"]::before {
+  content: "shell";
+}
+
+.gatsby-highlight pre[class*="language-bash"]::before {
+  content: "bash";
+}
+
+.gatsby-highlight pre[class*="language-markdown"]::before {
+  content: "md";
+}
+
+.gatsby-highlight pre[class*="language-mdx"]::before {
+  content: "mdx";
+  background: #f9ac00;
+}
+
+.gatsby-highlight pre[class*="language-json"]::before {
+  content: "json";
+}
