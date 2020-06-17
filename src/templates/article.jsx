@@ -15,6 +15,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
+import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 
 import Layout from "../components/layout";
@@ -74,6 +75,23 @@ const shortcodes = {
   ),
   a: (props) => <Link {...props} />,
   // img: (props) => ,
+  input: (props) => {
+    const { type, disabled, checked } = props;
+    if (type === "checkbox") {
+      return (
+        <Checkbox
+          disabled={disabled}
+          checked={checked}
+          inputProps={{
+            "aria-label": `${disabled ? "disabled " : ""}${
+              checked ? "checked " : ""
+            }checkbox`,
+          }}
+        />
+      );
+    }
+    return <input {...props} />;
+  },
 };
 /* eslint-enable */
 
