@@ -34,14 +34,14 @@ const ArticleCard = ({
     <Card key={id} className={classes.card} component="article">
       <CardActionArea component={GatsbyLink} to={slug}>
         <CardContent>
-          <Typography variant="h4" component="h2" gutterBottom>
+          <Typography className={classes.date} color="textSecondary">
+            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
+          </Typography>
+          <Typography variant="h2" component="h2" gutterBottom>
             {title}
           </Typography>
           <Typography variant="body1" gutterBottom>
             {excerpt}
-          </Typography>
-          <Typography className={classes.date} color="textSecondary">
-            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -58,8 +58,8 @@ ArticleCard.propTypes = {
     }),
     frontmatter: PropTypes.shape({
       title: PropTypes.string,
-      tags: PropTypes.array,
       date: PropTypes.string,
+      tags: PropTypes.array,
     }),
   }).isRequired,
 };

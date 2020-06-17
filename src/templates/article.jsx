@@ -5,6 +5,7 @@ import { Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import moment from "moment-timezone";
 
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
@@ -88,10 +89,15 @@ const Article = ({ data: { mdx } }) => {
     <Layout>
       <MDXProvider components={shortcodes}>
         <Paper component="article" className={classes.article}>
-          <Typography variant="h1">{mdx.frontmatter.title}</Typography>
-          <Typography variant="subtitle1" component="p">
-            {mdx.frontmatter.date}
+          <Typography variant="subtitle2" component="p" color="textSecondary">
+            {moment
+              .tz(mdx.frontmatter.date, "Asia/Seoul")
+              .format("YYYY-MM-DD HH:mm z")}
           </Typography>
+          <Typography variant="h1" gutterBottom>
+            {mdx.frontmatter.title}
+          </Typography>
+          <Divider />
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </Paper>
       </MDXProvider>
