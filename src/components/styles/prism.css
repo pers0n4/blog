@@ -26,7 +26,7 @@
   border-radius: 0.3em;
   margin: 0.5em 0;
   overflow: auto;
-  padding: 1em;
+  padding: 1.5rem 1em 1em;
 }
 
 /**
@@ -62,9 +62,14 @@
   border-top-right-radius: 0.3em;
   color: #fafafa;
   font-family: monospace;
-  margin-bottom: -0.7em;
+  margin-bottom: -0.5em;
   margin-top: 0.5em;
   padding: 0.5em 1em;
+}
+
+.gatsby-code-title + .gatsby-highlight {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 /* https://prismjs.com/#supported-languages */
@@ -73,54 +78,54 @@
   border-radius: 0 0 4px 4px;
   color: #232129;
   font-size: 0.75rem;
+  left: 0;
   letter-spacing: 0.075em;
   line-height: 1;
   padding: 0.25rem 0.5rem;
   position: absolute;
-  right: 0;
   text-align: right;
   text-transform: uppercase;
-  top: -14px;
+  top: -1.5rem;
 }
 
 .gatsby-highlight pre[class*="language-text"]::before {
-  content: "text";
   background: #fff;
+  content: "text";
 }
 
 .gatsby-highlight pre[class*="language-html"]::before {
-  content: "html";
   background: #f16524;
+  content: "html";
 }
 
 .gatsby-highlight pre[class*="language-css"]::before {
-  content: "css";
   background: #2464f2;
+  content: "css";
 }
 
 .gatsby-highlight pre[class*="language-javascript"]::before {
-  content: "js";
   background: #f7e018;
+  content: "js";
 }
 
 .gatsby-highlight pre[class*="language-js"]::before {
-  content: "js";
   background: #f7e018;
+  content: "js";
 }
 
 .gatsby-highlight pre[class*="language-jsx"]::before {
-  content: "jsx";
   background: #61dafb;
+  content: "jsx";
 }
 
 .gatsby-highlight pre[class*="language-python"]::before {
-  content: "py";
   background: #3679b0;
+  content: "py";
 }
 
 .gatsby-highlight pre[class*="language-py"]::before {
-  content: "py";
   background: #3679b0;
+  content: "py";
 }
 
 .gatsby-highlight pre[class*="language-sh"]::before {
@@ -140,8 +145,8 @@
 }
 
 .gatsby-highlight pre[class*="language-mdx"]::before {
-  content: "mdx";
   background: #f9ac00;
+  content: "mdx";
 }
 
 .gatsby-highlight pre[class*="language-json"]::before {
