@@ -34,13 +34,15 @@ export const query = graphql`
       edges {
         node {
           id
-          excerpt
+          excerpt(pruneLength: 320)
           fields {
             slug
           }
           frontmatter {
             title
             date
+            category
+            tags
           }
         }
       }

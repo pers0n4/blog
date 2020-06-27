@@ -8,8 +8,12 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
+import LabelIcon from "@material-ui/icons/Label";
+import Chip from "@material-ui/core/Chip";
+import CardActions from "@material-ui/core/CardActions";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   card: {
     "& + &": {
       marginTop: "1.5rem",
@@ -18,25 +22,57 @@ const useStyles = makeStyles({
   date: {
     fontSize: "0.875rem",
   },
-});
+  tags: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+}));
 
 const ArticleCard = ({
   node: {
     id,
     excerpt,
     fields: { slug },
-    frontmatter: { title, date },
+    frontmatter: { title, date, category, tags },
   },
 }) => {
   const classes = useStyles();
+
+  const articleTags =
+    tags &&
+    tags.map((tag) => (
+      <Chip
+        size="small"
+        label={tag}
+        clickable
+        component={GatsbyLink}
+        to={`/tags/${tag}/`}
+        key={tag}
+      />
+    ));
 
   return (
     <Card key={id} className={classes.card} component="article">
       <CardActionArea component={GatsbyLink} to={slug}>
         <CardContent>
-          <Typography className={classes.date} color="textSecondary">
-            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
-          </Typography>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Typography variant="subtitle2" component="p" color="textSecondary">
+              {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+            </Typography>
+            {category && (
+              <Typography
+                variant="subtitle2"
+                component="p"
+                color="textSecondary"
+              >
+                {category}
+              </Typography>
+            )}
+          </Breadcrumbs>
           <Typography variant="h2" component="h2" gutterBottom>
             {title}
           </Typography>
@@ -45,6 +81,14 @@ const ArticleCard = ({
           </Typography>
         </CardContent>
       </CardActionArea>
+      {articleTags && (
+        <CardActions disableSpacing="true">
+          <div className={classes.tags}>
+            <LabelIcon color="action" />
+            {articleTags}
+          </div>
+        </CardActions>
+      )}
     </Card>
   );
 };
@@ -59,6 +103,7 @@ ArticleCard.propTypes = {
     frontmatter: PropTypes.shape({
       title: PropTypes.string,
       date: PropTypes.string,
+      category: PropTypes.string,
       tags: PropTypes.array,
     }),
   }).isRequired,
