@@ -112,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0.5),
     },
   },
+  comments: {
+    marginTop: "1.5rem",
+    padding: "1rem",
+  },
 }));
 
 const Article = ({ data: { mdx } }) => {
@@ -168,6 +172,16 @@ const Article = ({ data: { mdx } }) => {
             )}
           </Paper>
         </MDXProvider>
+        <Paper className={classes.comments}>
+          <script
+            src="https://utteranc.es/client.js"
+            repo="pers0n4/pers0n4.github.io"
+            issue-term="pathname"
+            theme="github-light"
+            crossOrigin="anonymous"
+            async
+          />
+        </Paper>
       </Layout>
     </>
   );
