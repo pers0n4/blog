@@ -20,6 +20,7 @@ import Divider from "@material-ui/core/Divider";
 import LabelIcon from "@material-ui/icons/Label";
 import Chip from "@material-ui/core/Chip";
 
+import SEO from "../components/seo";
 import Layout from "../components/layout";
 
 const style = {
@@ -130,26 +131,29 @@ const Article = ({ data: { mdx } }) => {
     ));
 
   return (
-    <Layout>
-      <MDXProvider components={shortcodes}>
-        <Paper component="article" className={classes.article}>
-          <Typography variant="subtitle2" component="p" color="textSecondary">
-            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
-          </Typography>
-          <Typography variant="h1" gutterBottom>
-            {title}
-          </Typography>
-          <Divider />
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-          {articleTags && (
-            <div className={classes.tags}>
-              <LabelIcon color="action" />
-              {articleTags}
-            </div>
-          )}
-        </Paper>
-      </MDXProvider>
-    </Layout>
+    <>
+      <SEO title={title} description={mdx.excerpt} type="article" />
+      <Layout>
+        <MDXProvider components={shortcodes}>
+          <Paper component="article" className={classes.article}>
+            <Typography variant="subtitle2" component="p" color="textSecondary">
+              {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
+            </Typography>
+            <Typography variant="h1" gutterBottom>
+              {title}
+            </Typography>
+            <Divider />
+            <MDXRenderer>{mdx.body}</MDXRenderer>
+            {articleTags && (
+              <div className={classes.tags}>
+                <LabelIcon color="action" />
+                {articleTags}
+              </div>
+            )}
+          </Paper>
+        </MDXProvider>
+      </Layout>
+    </>
   );
 };
 
@@ -158,6 +162,7 @@ Article.propTypes = {
     mdx: PropTypes.shape({
       id: PropTypes.string,
       body: PropTypes.string,
+      excerpt: PropTypes.string,
       frontmatter: PropTypes.shape({
         title: PropTypes.string,
         date: PropTypes.string,
@@ -174,6 +179,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      excerpt
       frontmatter {
         title
         date
