@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
-import { Link } from "gatsby-theme-material-ui";
+import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
@@ -17,6 +17,8 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
+import LabelIcon from "@material-ui/icons/Label";
+import Chip from "@material-ui/core/Chip";
 
 import Layout from "../components/layout";
 
@@ -95,28 +97,56 @@ const shortcodes = {
 };
 /* eslint-enable */
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   article: {
     padding: "1rem",
   },
-});
+  tags: {
+    display: "flex",
+    flexWrap: "wrap",
+    alignItems: "center",
+    marginTop: "1rem",
+    "& > *": {
+      margin: theme.spacing(0.5),
+    },
+  },
+}));
 
 const Article = ({ data: { mdx } }) => {
   const classes = useStyles();
+  const { title, date, tags } = mdx.frontmatter;
+
+  const articleTags =
+    tags &&
+    tags.map((tag) => (
+      <Chip
+        size="small"
+        label={tag}
+        clickable
+        component={GatsbyLink}
+        to={`/tags/${tag}/`}
+        key={tag}
+      />
+    ));
+
   return (
     <Layout>
       <MDXProvider components={shortcodes}>
         <Paper component="article" className={classes.article}>
           <Typography variant="subtitle2" component="p" color="textSecondary">
-            {moment
-              .tz(mdx.frontmatter.date, "Asia/Seoul")
-              .format("YYYY-MM-DD HH:mm z")}
+            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
           </Typography>
           <Typography variant="h1" gutterBottom>
-            {mdx.frontmatter.title}
+            {title}
           </Typography>
           <Divider />
           <MDXRenderer>{mdx.body}</MDXRenderer>
+          {articleTags && (
+            <div className={classes.tags}>
+              <LabelIcon color="action" />
+              {articleTags}
+            </div>
+          )}
         </Paper>
       </MDXProvider>
     </Layout>
@@ -131,6 +161,7 @@ Article.propTypes = {
       frontmatter: PropTypes.shape({
         title: PropTypes.string,
         date: PropTypes.string,
+        tags: PropTypes.array,
       }),
     }),
   }).isRequired,
@@ -146,6 +177,7 @@ export const query = graphql`
       frontmatter {
         title
         date
+        tags
       }
     }
   }
