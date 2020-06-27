@@ -23,7 +23,7 @@ const Categories = ({
     <ListItem
       button
       component={GatsbyLink}
-      to={`/categories/${category.fieldValue}`}
+      to={`/categories/${category.fieldValue}/`}
       key={category.fieldValue}
     >
       <ListItemText primary={category.fieldValue} />
