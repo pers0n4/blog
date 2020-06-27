@@ -4,8 +4,8 @@ import { graphql } from "gatsby";
 import { Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Typography from "@material-ui/core/Typography";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/layout";
 import ArticleCard from "../components/article-card";

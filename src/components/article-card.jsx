@@ -4,14 +4,14 @@ import { GatsbyLink } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 import moment from "moment-timezone";
 
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import LabelIcon from "@material-ui/icons/Label";
-import Chip from "@material-ui/core/Chip";
-import CardActions from "@material-ui/core/CardActions";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Chip from "@material-ui/core/Chip";
+import LabelIcon from "@material-ui/icons/Label";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   card: {
