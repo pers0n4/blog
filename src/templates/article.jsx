@@ -9,6 +9,7 @@ import moment from "moment-timezone";
 
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
@@ -115,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Article = ({ data: { mdx } }) => {
   const classes = useStyles();
-  const { title, date, tags } = mdx.frontmatter;
+  const { title, date, category, tags } = mdx.frontmatter;
 
   const articleTags =
     tags &&
@@ -136,9 +137,24 @@ const Article = ({ data: { mdx } }) => {
       <Layout>
         <MDXProvider components={shortcodes}>
           <Paper component="article" className={classes.article}>
-            <Typography variant="subtitle2" component="p" color="textSecondary">
-              {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD HH:mm z")}
-            </Typography>
+            <Breadcrumbs aria-label="breadcrumb">
+              <Typography
+                variant="subtitle2"
+                component="p"
+                color="textSecondary"
+              >
+                {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+              </Typography>
+              {category && (
+                <Typography
+                  variant="subtitle2"
+                  component="p"
+                  color="textSecondary"
+                >
+                  <Link href={`/categories/${category}/`}>{category}</Link>
+                </Typography>
+              )}
+            </Breadcrumbs>
             <Typography variant="h1" gutterBottom>
               {title}
             </Typography>
@@ -166,6 +182,7 @@ Article.propTypes = {
       frontmatter: PropTypes.shape({
         title: PropTypes.string,
         date: PropTypes.string,
+        category: PropTypes.string,
         tags: PropTypes.array,
       }),
     }),
@@ -183,6 +200,7 @@ export const query = graphql`
       frontmatter {
         title
         date
+        category
         tags
       }
     }
