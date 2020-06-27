@@ -103,6 +103,10 @@ const useStyles = makeStyles((theme) => ({
   article: {
     padding: "1rem",
   },
+  divider: {
+    marginTop: "1rem",
+    marginBottom: "1rem",
+  },
   tags: {
     display: "flex",
     flexWrap: "wrap",
@@ -159,10 +163,8 @@ const Article = ({ data: { mdx } }) => {
                 </Typography>
               )}
             </Breadcrumbs>
-            <Typography variant="h1" gutterBottom>
-              {title}
-            </Typography>
-            <Divider />
+            <Typography variant="h1">{title}</Typography>
+            <Divider className={classes.divider} />
             <MDXRenderer>{mdx.body}</MDXRenderer>
             {articleTags && (
               <div className={classes.tags}>
