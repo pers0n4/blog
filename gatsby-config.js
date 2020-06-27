@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           `gatsby-remark-code-titles`,
           {
@@ -40,8 +40,8 @@ module.exports = {
               showLineNumbers: false,
               noInlineHighlight: false,
               prompt: {
-                user: "root",
-                host: "localhost",
+                user: `root`,
+                host: `localhost`,
                 global: false,
               },
             },
@@ -51,7 +51,25 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-theme-material-ui`,
+    {
+      resolve: `gatsby-theme-material-ui`,
+      options: {
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Roboto`,
+                variants: [`300`, `400`, `500`],
+              },
+              {
+                family: `Noto Sans KR`,
+                variants: [`300`, `400`, `500`],
+              },
+            ],
+          },
+        },
+      },
+    },
     `gatsby-plugin-theme-ui`,
   ],
 };
