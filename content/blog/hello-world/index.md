@@ -4,6 +4,7 @@ date: 1970-01-01T00:00:00+00:00
 category: getting-started
 tags: [hello, world]
 ---
+
 ## h2
 
 ### h3
@@ -35,7 +36,9 @@ _em_ text
 ![alt](/favicon.ico "title")
 
 > blockquotes
+>
 > > blockquotes
+> >
 > > > blockquotes
 
 ---
@@ -64,10 +67,10 @@ _em_ text
 console.log("hello, world");
 ```
 
-| th  | th  | th  |
-| --- |:---:| ---:|
-| td  | td  | td  |
-| td  | td  | td  |
+| th  | th  |  th |
+| --- | :-: | --: |
+| td  | td  |  td |
+| td  | td  |  td |
 
 - [ ] task
 - [x] task
