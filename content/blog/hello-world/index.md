@@ -35,6 +35,8 @@ _em_ text
 
 ![alt](/favicon.ico "title")
 
+![alt](./favicon.ico "title")
+
 > blockquotes
 >
 > > blockquotes

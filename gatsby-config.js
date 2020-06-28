@@ -17,22 +17,15 @@ module.exports = {
         path: `${__dirname}/content/blog`,
       },
     },
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     `gatsby-transformer-remark`,
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        ssr: false,
-        displayName: true,
-        fileName: true,
-        minify: false,
-        transpileTemplateLiterals: false,
-      },
-    },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
+          `gatsby-remark-images`,
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,
@@ -51,6 +44,16 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        ssr: false,
+        displayName: true,
+        fileName: true,
+        minify: false,
+        transpileTemplateLiterals: false,
+      },
+    },
     {
       resolve: `gatsby-theme-material-ui`,
       options: {
