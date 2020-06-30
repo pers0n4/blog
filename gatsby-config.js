@@ -25,7 +25,13 @@ module.exports = {
       options: {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
-          `gatsby-remark-images`,
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 960,
+              quality: 80,
+            },
+          },
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,
