@@ -27,6 +27,8 @@ _em_ text
 
 ~~delete~~
 
+~sub~text^sup^
+
 [link](/)
 
 [ref-link][link]

@@ -53,6 +53,24 @@ const theme = createMuiTheme({
     //   letterSpacing: "0.0075em",
     // },
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        "sub, sup": {
+          fontSize: "75%",
+          lineHeight: 0,
+          position: "relative",
+          verticalAlign: "baseline",
+        },
+        sub: {
+          bottom: "-0.25em",
+        },
+        sup: {
+          top: "-0.5em",
+        },
+      },
+    },
+  },
 });
 
 export default theme;

@@ -30,6 +30,7 @@
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-images": "^3.3.14",
     "gatsby-remark-prismjs": "^3.5.6",
+    "gatsby-remark-sub-sup": "^1.0.0",
     "gatsby-source-filesystem": "^2.3.14",
     "gatsby-theme-material-ui": "^1.0.10",
     "gatsby-theme-material-ui-top-layout": "^1.0.2",
