@@ -82,7 +82,7 @@ const ArticleCard = ({
         </CardContent>
       </CardActionArea>
       {articleTags && (
-        <CardActions disableSpacing="true">
+        <CardActions disableSpacing>
           <div className={classes.tags}>
             <LabelIcon color="action" />
             {articleTags}
@@ -95,17 +95,17 @@ const ArticleCard = ({
 
 ArticleCard.propTypes = {
   node: PropTypes.shape({
-    id: PropTypes.string,
-    excerpt: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    excerpt: PropTypes.string.isRequired,
     fields: PropTypes.shape({
-      slug: PropTypes.string,
-    }),
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
     frontmatter: PropTypes.shape({
-      title: PropTypes.string,
-      date: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
       category: PropTypes.string,
-      tags: PropTypes.array,
-    }),
+      tags: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
   }).isRequired,
 };
 

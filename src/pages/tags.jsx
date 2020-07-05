@@ -57,7 +57,16 @@ const Tags = ({
 };
 
 Tags.propTypes = {
-  data: PropTypes.node.isRequired,
+  data: PropTypes.shape({
+    allMdx: PropTypes.shape({
+      group: PropTypes.arrayOf(
+        PropTypes.shape({
+          fieldValue: PropTypes.string.isRequired,
+          totalCount: PropTypes.number.isRequired,
+        }).isRequired
+      ).isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default Tags;

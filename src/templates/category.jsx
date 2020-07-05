@@ -39,12 +39,28 @@ const Category = ({ pageContext, data }) => {
 
 Category.propTypes = {
   pageContext: PropTypes.shape({
-    category: PropTypes.string,
+    category: PropTypes.string.isRequired,
   }).isRequired,
   data: PropTypes.shape({
     allMdx: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            id: PropTypes.string.isRequired,
+            excerpt: PropTypes.string.isRequired,
+            fields: PropTypes.shape({
+              slug: PropTypes.string.isRequired,
+            }).isRequired,
+            frontmatter: PropTypes.shape({
+              title: PropTypes.string.isRequired,
+              date: PropTypes.string.isRequired,
+              category: PropTypes.string,
+              tags: PropTypes.arrayOf(PropTypes.string),
+            }).isRequired,
+          }).isRequired,
+        }).isRequired
+      ).isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

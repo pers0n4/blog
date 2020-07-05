@@ -192,16 +192,16 @@ const Article = ({ data: { mdx } }) => {
 Article.propTypes = {
   data: PropTypes.shape({
     mdx: PropTypes.shape({
-      id: PropTypes.string,
-      body: PropTypes.string,
-      excerpt: PropTypes.string,
+      id: PropTypes.string.isRequired,
+      body: PropTypes.string.isRequired,
+      excerpt: PropTypes.string.isRequired,
       frontmatter: PropTypes.shape({
-        title: PropTypes.string,
-        date: PropTypes.string,
+        title: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
         category: PropTypes.string,
-        tags: PropTypes.array,
-      }),
-    }),
+        tags: PropTypes.arrayOf(PropTypes.string),
+      }).isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
