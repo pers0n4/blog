@@ -69,9 +69,9 @@ export default Category;
 export const query = graphql`
   query($category: String) {
     allMdx(
+      filter: { frontmatter: { category: { eq: $category } } }
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { category: { eq: $category } } }
     ) {
       edges {
         node {

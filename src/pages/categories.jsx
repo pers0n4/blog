@@ -62,7 +62,7 @@ Categories.propTypes = {
 
 export default Categories;
 
-export const pageQuery = graphql`
+export const query = graphql`
   query {
     allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
       group(field: frontmatter___category) {

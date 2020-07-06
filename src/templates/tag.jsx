@@ -69,9 +69,9 @@ export default Tag;
 export const query = graphql`
   query($tag: String) {
     allMdx(
+      filter: { frontmatter: { tags: { in: [$tag] } } }
       limit: 1000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
     ) {
       edges {
         node {

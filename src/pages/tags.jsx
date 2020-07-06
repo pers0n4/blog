@@ -71,7 +71,7 @@ Tags.propTypes = {
 
 export default Tags;
 
-export const pageQuery = graphql`
+export const query = graphql`
   query {
     allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
       group(field: frontmatter___tags) {
