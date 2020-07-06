@@ -30,7 +30,14 @@ const style = {
 
 /* eslint-disable react/jsx-props-no-spreading, react/prop-types */
 const shortcodes = {
-  p: (props) => <Typography {...props} variant="body1" gutterBottom />,
+  p: (props) => (
+    <Typography
+      {...props}
+      variant="body1"
+      gutterBottom
+      style={{ lineHeight: 1.75 }}
+    />
+  ),
   h2: (props) => (
     <Typography {...props} variant="h2" gutterBottom style={style} />
   ),
@@ -216,7 +223,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
-      excerpt
+      excerpt(pruneLength: 320, truncate: true)
       frontmatter {
         title
         date
