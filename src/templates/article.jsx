@@ -223,7 +223,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       body
-      excerpt(pruneLength: 320, truncate: true)
+      excerpt(pruneLength: 280, truncate: true)
       frontmatter {
         title
         date
