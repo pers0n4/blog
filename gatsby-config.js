@@ -47,6 +47,7 @@ module.exports = {
             },
           },
           `gatsby-remark-sub-sup`,
+          `gatsby-remark-abbr`,
         ],
       },
     },
