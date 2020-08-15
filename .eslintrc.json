@@ -19,6 +19,9 @@
     "prettier/@typescript-eslint",
     "prettier/react"
   ],
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }]
+  },
   "env": {
     "browser": true,
     "es6": true,
