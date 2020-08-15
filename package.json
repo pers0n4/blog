@@ -1,9 +1,18 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "blog",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
+  "description": "Blog",
   "license": "MIT",
+  "author": {
+    "name": "Dong-Young Kim",
+    "email": "31337.persona@gmail.com",
+    "url": "https://pers0n4.io"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pers0n4/blog.git"
+  },
   "scripts": {
     "start": "gatsby develop",
     "develop": "gatsby develop",
@@ -79,12 +88,6 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,html,md,mdx}": [
       "eslint --fix-dry-run",
@@ -95,11 +98,10 @@
       "prettier --write"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
