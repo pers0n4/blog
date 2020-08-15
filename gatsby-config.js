@@ -51,18 +51,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-styled-components`,
-      options: {
-        ssr: false,
-        displayName: true,
-        fileName: true,
-        minify: false,
-        transpileTemplateLiterals: false,
-      },
-    },
     {
       resolve: `gatsby-theme-material-ui`,
       options: {
@@ -83,5 +71,26 @@ module.exports = {
       },
     },
     `gatsby-plugin-theme-ui`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        ssr: false,
+        displayName: true,
+        fileName: true,
+        minify: false,
+        transpileTemplateLiterals: false,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-175502696-1",
+        head: true,
+        anonymize: true,
+        respectDNT: true,
+      },
+    },
   ],
 };
