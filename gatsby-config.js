@@ -7,7 +7,7 @@
 module.exports = {
   siteMetadata: {
     title: `Hack IT`,
-    description: `B와 D 사이의 C를 담고 있는 기술 블로그입니다.`,
+    description: `B와 D 사이의 C를 담는 기술 블로그`,
   },
   plugins: [
     {
