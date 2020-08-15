@@ -23,6 +23,7 @@ import Typography from "@material-ui/core/Typography";
 
 import SEO from "../components/seo";
 import Layout from "../components/layout";
+import Comments from "../components/comments";
 
 const style = {
   marginTop: "0.5em",
@@ -182,21 +183,7 @@ const Article = ({ data: { mdx } }) => {
           </Paper>
         </MDXProvider>
         <Paper className={classes.comments}>
-          <section
-            ref={(element) => {
-              if (!element) {
-                return;
-              }
-              const script = document.createElement("script");
-              script.src = "https://utteranc.es/client.js";
-              script.async = true;
-              script.crossOrigin = "anonymous";
-              script.setAttribute("repo", "pers0n4/blog");
-              script.setAttribute("issue-term", "pathname");
-              script.setAttribute("theme", "github-light");
-              element.appendChild(script);
-            }}
-          />
+          <Comments repo="pers0n4/blog" issue="pathname" theme="github-light" />
         </Paper>
       </Layout>
     </>
