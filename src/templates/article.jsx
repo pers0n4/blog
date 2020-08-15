@@ -182,18 +182,21 @@ const Article = ({ data: { mdx } }) => {
           </Paper>
         </MDXProvider>
         <Paper className={classes.comments}>
-          {process.env.NODE_ENV === "production" ? (
-            <script
-              src="https://utteranc.es/client.js"
-              repo="pers0n4/blog"
-              issue-term="pathname"
-              theme="github-light"
-              crossOrigin="anonymous"
-              async
-            />
-          ) : (
-            "Comments not showing in development mode"
-          )}
+          <section
+            ref={(element) => {
+              if (!element) {
+                return;
+              }
+              const script = document.createElement("script");
+              script.src = "https://utteranc.es/client.js";
+              script.async = true;
+              script.crossOrigin = "anonymous";
+              script.setAttribute("repo", "pers0n4/blog");
+              script.setAttribute("issue-term", "pathname");
+              script.setAttribute("theme", "github-light");
+              element.appendChild(script);
+            }}
+          />
         </Paper>
       </Layout>
     </>
