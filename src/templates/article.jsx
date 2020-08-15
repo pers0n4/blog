@@ -185,7 +185,7 @@ const Article = ({ data: { mdx } }) => {
           {process.env.NODE_ENV === "production" ? (
             <script
               src="https://utteranc.es/client.js"
-              repo="pers0n4/pers0n4.github.io"
+              repo="pers0n4/blog"
               issue-term="pathname"
               theme="github-light"
               crossOrigin="anonymous"
