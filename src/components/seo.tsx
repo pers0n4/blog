@@ -3,7 +3,13 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 
-const SEO = ({ title, description, type }) => {
+interface Props {
+  title?: string;
+  description?: string;
+  type?: string;
+}
+
+const SEO: React.FC<Props> = ({ title, description, type }: Props) => {
   const {
     site: { siteMetadata: meta },
   } = useStaticQuery(
@@ -50,8 +56,8 @@ SEO.propTypes = {
 };
 
 SEO.defaultProps = {
-  title: null,
-  description: null,
+  title: "",
+  description: "",
   type: "website",
 };
 
