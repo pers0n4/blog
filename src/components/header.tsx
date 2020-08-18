@@ -101,7 +101,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ title }) => {
+interface Props {
+  title: string;
+}
+
+const Header: React.FC<Props> = ({ title }: Props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
