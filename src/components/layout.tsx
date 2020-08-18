@@ -19,7 +19,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Layout = ({ children }) => {
+interface Props {
+  children: React.ReactElement;
+}
+
+const Layout: React.FC<Props> = ({ children }: Props) => {
   const classes = useStyles();
   const data = useStaticQuery(
     graphql`
@@ -51,7 +55,7 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Layout;
