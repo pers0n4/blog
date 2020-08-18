@@ -2,12 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql, useStaticQuery } from "gatsby";
 import { makeStyles } from "@material-ui/core/styles";
-import styled, { ThemeProvider } from "styled-components";
 
-import MuiContainer from "@material-ui/core/Container";
+import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import theme from "../gatsby-theme-material-ui-top-layout/theme";
 import Header from "./header";
 
 const useStyles = makeStyles(() => ({
@@ -20,11 +18,6 @@ const useStyles = makeStyles(() => ({
     overflow: "auto",
   },
 }));
-
-const Container = styled(MuiContainer)`
-  margin-top: 32px;
-  margin-bottom: 10vh;
-`;
 
 const Layout = ({ children }) => {
   const classes = useStyles();
@@ -41,17 +34,19 @@ const Layout = ({ children }) => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <Header title={data.site.siteMetadata.title} />
-        <div className={classes.content}>
-          <Toolbar />
-          <Container component="main" maxWidth="md">
-            {children}
-          </Container>
-        </div>
+    <div className={classes.root}>
+      <Header title={data.site.siteMetadata.title} />
+      <div className={classes.content}>
+        <Toolbar />
+        <Container
+          component="main"
+          maxWidth="md"
+          style={{ marginTop: "32px", marginBottom: "10vh" }}
+        >
+          {children}
+        </Container>
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 
