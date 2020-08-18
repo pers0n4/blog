@@ -32,14 +32,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ArticleCard = ({
+interface Props {
+  node: {
+    id: string;
+    excerpt: string;
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      title: string;
+      date: string;
+      category?: string | null;
+      tags?: string[] | null;
+    };
+  };
+}
+
+const ArticleCard: React.FC<Props> = ({
   node: {
     id,
     excerpt,
     fields: { slug },
     frontmatter: { title, date, category, tags },
   },
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   const articleTags =
@@ -104,7 +120,7 @@ ArticleCard.propTypes = {
       title: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
       category: PropTypes.string,
-      tags: PropTypes.arrayOf(PropTypes.string),
+      tags: PropTypes.arrayOf(PropTypes.string.isRequired),
     }).isRequired,
   }).isRequired,
 };
