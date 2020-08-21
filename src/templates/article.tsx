@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
@@ -130,7 +129,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Article = ({ data: { mdx } }) => {
+interface Props {
+  data: {
+    mdx: {
+      id: string;
+      body: string;
+      excerpt: string;
+      frontmatter: {
+        title: string;
+        date: string;
+        category?: string;
+        tags?: string[];
+      };
+    };
+  };
+}
+
+const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
 
@@ -188,22 +203,6 @@ const Article = ({ data: { mdx } }) => {
       </Layout>
     </>
   );
-};
-
-Article.propTypes = {
-  data: PropTypes.shape({
-    mdx: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      body: PropTypes.string.isRequired,
-      excerpt: PropTypes.string.isRequired,
-      frontmatter: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        category: PropTypes.string,
-        tags: PropTypes.arrayOf(PropTypes.string),
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default Article;
