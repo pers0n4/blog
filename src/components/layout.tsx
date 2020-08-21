@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 interface Props {
-  children: React.ReactElement;
+  children: JSX.Element | JSX.Element[];
 }
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
