@@ -1,6 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import { Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -16,7 +15,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Tag = ({ pageContext, data }) => {
+type Edge = {
+  node: {
+    id: string;
+    excerpt: string;
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      title: string;
+      date: string;
+      category?: string;
+      tags?: string[];
+    };
+  };
+};
+
+interface Props extends PageProps {
+  data: {
+    allMdx: {
+      edges: Edge[];
+    };
+  };
+  pageContext: {
+    tag: string;
+  };
+}
+
+const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
   const classes = useStyles();
   const { tag } = pageContext;
   const { edges } = data.allMdx;
@@ -35,33 +61,6 @@ const Tag = ({ pageContext, data }) => {
       <section className={classes.articles}>{articles}</section>
     </Layout>
   );
-};
-
-Tag.propTypes = {
-  pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
-  }).isRequired,
-  data: PropTypes.shape({
-    allMdx: PropTypes.shape({
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            excerpt: PropTypes.string.isRequired,
-            fields: PropTypes.shape({
-              slug: PropTypes.string.isRequired,
-            }).isRequired,
-            frontmatter: PropTypes.shape({
-              title: PropTypes.string.isRequired,
-              date: PropTypes.string.isRequired,
-              category: PropTypes.string,
-              tags: PropTypes.arrayOf(PropTypes.string),
-            }).isRequired,
-          }).isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default Tag;
