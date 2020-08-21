@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 
@@ -14,11 +13,24 @@ import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/layout";
 
-const Categories = ({
+type GroupItem = {
+  fieldValue: string;
+  totalCount: number;
+};
+
+interface Props {
+  data: {
+    allMdx: {
+      group: Array<GroupItem>;
+    };
+  };
+}
+
+const Categories: React.FC<Props> = ({
   data: {
     allMdx: { group },
   },
-}) => {
+}: Props) => {
   const categories = group.map((category) => (
     <ListItem
       button
@@ -45,19 +57,6 @@ const Categories = ({
       </Card>
     </Layout>
   );
-};
-
-Categories.propTypes = {
-  data: PropTypes.shape({
-    allMdx: PropTypes.shape({
-      group: PropTypes.arrayOf(
-        PropTypes.shape({
-          fieldValue: PropTypes.string.isRequired,
-          totalCount: PropTypes.number.isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default Categories;
