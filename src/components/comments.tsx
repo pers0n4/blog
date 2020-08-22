@@ -1,4 +1,5 @@
-import React, { createRef, useLayoutEffect } from "react";
+import * as React from "react";
+import { createRef, useLayoutEffect } from "react";
 
 interface Props {
   repo: string;

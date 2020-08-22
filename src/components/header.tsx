@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";

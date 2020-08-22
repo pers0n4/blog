@@ -1,10 +1,10 @@
-import React from "react";
+import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import moment from "moment-timezone";
+import * as moment from "moment-timezone";
 
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Chip from "@material-ui/core/Chip";

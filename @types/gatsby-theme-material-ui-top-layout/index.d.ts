@@ -2,7 +2,7 @@
 
 // declare module "gatsby-theme-material-ui-top-layout/src/components/top-layout";
 declare module "gatsby-theme-material-ui-top-layout/src/components/top-layout" {
-  import React from "react";
+  import * as React from "react";
   import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
   interface Props {

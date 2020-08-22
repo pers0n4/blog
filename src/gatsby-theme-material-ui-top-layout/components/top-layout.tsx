@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Theme } from "@material-ui/core";
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
 

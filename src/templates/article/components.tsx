@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Link } from "gatsby-theme-material-ui";
 import { MDXProviderComponents } from "@mdx-js/react";
 

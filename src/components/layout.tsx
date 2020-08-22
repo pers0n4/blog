@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { makeStyles } from "@material-ui/core/styles";
 
