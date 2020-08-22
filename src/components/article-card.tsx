@@ -1,6 +1,6 @@
 import * as React from "react";
-import { GatsbyLink } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
+import { GatsbyLink } from "gatsby-theme-material-ui";
 import * as moment from "moment-timezone";
 
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";

@@ -7,6 +7,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 
 import Header from "./header";
 
+interface Props {
+  children: JSX.Element | JSX.Element[];
+}
+
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -17,10 +21,6 @@ const useStyles = makeStyles(() => ({
     overflow: "auto",
   },
 }));
-
-interface Props {
-  children: JSX.Element | JSX.Element[];
-}
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
   const classes = useStyles();

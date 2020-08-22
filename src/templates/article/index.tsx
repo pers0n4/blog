@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
+import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import * as moment from "moment-timezone";
@@ -17,6 +17,22 @@ import SEO from "../../components/seo";
 import Layout from "../../components/layout";
 import Comments from "../../components/comments";
 import components from "./components";
+
+interface Props {
+  data: {
+    mdx: {
+      id: string;
+      body: string;
+      excerpt: string;
+      frontmatter: {
+        title: string;
+        date: string;
+        category?: string;
+        tags?: string[];
+      };
+    };
+  };
+}
 
 const useStyles = makeStyles((theme) => ({
   article: {
@@ -40,22 +56,6 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
   },
 }));
-
-interface Props {
-  data: {
-    mdx: {
-      id: string;
-      body: string;
-      excerpt: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        category?: string;
-        tags?: string[];
-      };
-    };
-  };
-}
 
 const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
   const classes = useStyles();

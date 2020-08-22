@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Helmet } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
+import { Helmet } from "react-helmet";
 
 interface Props {
   title?: string;

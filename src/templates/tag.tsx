@@ -1,19 +1,13 @@
 import * as React from "react";
 import { graphql, PageProps } from "gatsby";
-import { Link } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "gatsby-theme-material-ui";
 
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/layout";
 import ArticleCard from "../components/article-card";
-
-const useStyles = makeStyles((theme) => ({
-  articles: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 type Edge = {
   node: {
@@ -41,6 +35,12 @@ interface Props extends PageProps {
     tag: string;
   };
 }
+
+const useStyles = makeStyles((theme) => ({
+  articles: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
   const classes = useStyles();
