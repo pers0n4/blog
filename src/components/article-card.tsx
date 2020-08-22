@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { GatsbyLink } from "gatsby-theme-material-ui";
+import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import moment from "moment-timezone";
+import { GatsbyLink } from "gatsby-theme-material-ui";
+import * as moment from "moment-timezone";
 
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Card from "@material-ui/core/Card";
@@ -12,6 +11,22 @@ import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
 import Typography from "@material-ui/core/Typography";
+
+interface Props {
+  node: {
+    id: string;
+    excerpt: string;
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      title: string;
+      date: string;
+      category?: string | null;
+      tags?: string[] | null;
+    };
+  };
+}
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -32,14 +47,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ArticleCard = ({
+const ArticleCard: React.FC<Props> = ({
   node: {
     id,
     excerpt,
     fields: { slug },
     frontmatter: { title, date, category, tags },
   },
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   const articleTags =
@@ -91,22 +106,6 @@ const ArticleCard = ({
       )}
     </Card>
   );
-};
-
-ArticleCard.propTypes = {
-  node: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    excerpt: PropTypes.string.isRequired,
-    fields: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }).isRequired,
-    frontmatter: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      category: PropTypes.string,
-      tags: PropTypes.arrayOf(PropTypes.string),
-    }).isRequired,
-  }).isRequired,
 };
 
 export default ArticleCard;

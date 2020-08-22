@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import { graphql } from "gatsby";
-import { GatsbyLink } from "gatsby-theme-material-ui";
 import { makeStyles } from "@material-ui/core/styles";
+import { GatsbyLink } from "gatsby-theme-material-ui";
 
-import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
+import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/layout";
 
@@ -24,11 +23,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Tags = ({
+type GroupItem = {
+  fieldValue: string;
+  totalCount: number;
+};
+
+interface Props {
+  data: {
+    allMdx: {
+      group: Array<GroupItem>;
+    };
+  };
+}
+
+const Tags: React.FC<Props> = ({
   data: {
     allMdx: { group },
   },
-}) => {
+}: Props) => {
   const classes = useStyles();
 
   const tags = group.map((tag) => (
@@ -54,19 +66,6 @@ const Tags = ({
       </Card>
     </Layout>
   );
-};
-
-Tags.propTypes = {
-  data: PropTypes.shape({
-    allMdx: PropTypes.shape({
-      group: PropTypes.arrayOf(
-        PropTypes.shape({
-          fieldValue: PropTypes.string.isRequired,
-          totalCount: PropTypes.number.isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default Tags;

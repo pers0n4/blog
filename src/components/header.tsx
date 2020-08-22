@@ -1,7 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { GatsbyLink } from "gatsby-theme-material-ui";
+import * as React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { GatsbyLink } from "gatsby-theme-material-ui";
 import clsx from "clsx";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -19,6 +18,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+
+interface Props {
+  title: string;
+}
 
 const HeaderItems = (
   <>
@@ -101,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ title }) => {
+const Header: React.FC<Props> = ({ title }: Props) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -154,10 +157,6 @@ const Header = ({ title }) => {
       </Drawer>
     </>
   );
-};
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
 };
 
 export default Header;

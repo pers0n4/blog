@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const _ = require("lodash");
+// require("ts-node").register({ files: true }); // eslint-disable-line import/no-extraneous-dependencies
+/* eslint-enable */
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
@@ -42,7 +45,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   articles.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: require.resolve(`./src/templates/article.jsx`),
+      component: require.resolve(`./src/templates/article/index.tsx`),
       context: {
         id: node.id,
         slug: node.fields.slug,
@@ -54,7 +57,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   categories.forEach((category) => {
     createPage({
       path: `/categories/${_.kebabCase(category.fieldValue)}/`,
-      component: require.resolve(`./src/templates/category.jsx`),
+      component: require.resolve(`./src/templates/category.tsx`),
       context: {
         category: category.fieldValue,
       },
@@ -65,7 +68,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   tags.forEach((tag) => {
     createPage({
       path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
-      component: require.resolve(`./src/templates/tag.jsx`),
+      component: require.resolve(`./src/templates/tag.tsx`),
       context: {
         tag: tag.fieldValue,
       },

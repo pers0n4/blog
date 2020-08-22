@@ -1,22 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import { Theme } from "@material-ui/core";
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
 
 import SEO from "../../components/seo";
 
-const TopLayout = ({ children, theme }) => {
+interface Props {
+  children: React.ReactElement;
+  theme: Theme;
+}
+
+const TopLayout: React.FC<Props> = ({ children, theme }: Props) => {
   return (
     <>
       <SEO />
       <ThemeTopLayout theme={theme}>{children}</ThemeTopLayout>
     </>
   );
-};
-
-TopLayout.propTypes = {
-  children: PropTypes.node.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  theme: PropTypes.object.isRequired,
 };
 
 export default TopLayout;

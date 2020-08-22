@@ -1,11 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../components/layout";
 import ArticleCard from "../components/article-card";
 
-const Index = ({ data }) => {
+interface Edge {
+  node: {
+    id: string;
+    excerpt: string;
+    fields: {
+      slug: string;
+    };
+    frontmatter: {
+      title: string;
+      date: string;
+      category?: string;
+      tags?: Array<string>;
+    };
+  };
+}
+
+interface Props {
+  data: {
+    allMdx: {
+      edges: Array<Edge>;
+    };
+  };
+}
+
+const Index: React.FC<Props> = ({ data }: Props) => {
   const { edges } = data.allMdx;
   const articles = edges
     .filter((edge) => !!edge.node.frontmatter.date)
@@ -16,30 +39,6 @@ const Index = ({ data }) => {
       <section>{articles}</section>
     </Layout>
   );
-};
-
-Index.propTypes = {
-  data: PropTypes.shape({
-    allMdx: PropTypes.shape({
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            excerpt: PropTypes.string.isRequired,
-            fields: PropTypes.shape({
-              slug: PropTypes.string.isRequired,
-            }).isRequired,
-            frontmatter: PropTypes.shape({
-              title: PropTypes.string.isRequired,
-              date: PropTypes.string.isRequired,
-              category: PropTypes.string,
-              tags: PropTypes.arrayOf(PropTypes.string),
-            }).isRequired,
-          }).isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default Index;

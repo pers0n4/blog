@@ -1,8 +1,14 @@
-import React, { createRef, useLayoutEffect } from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import { createRef, useLayoutEffect } from "react";
 
-const Comments = ({ repo, issue, theme }) => {
-  const container = createRef();
+interface Props {
+  repo: string;
+  issue: string;
+  theme: string;
+}
+
+const Comments: React.FC<Props> = ({ repo, issue, theme }: Props) => {
+  const container = createRef<HTMLElement>();
 
   useLayoutEffect(() => {
     const utterances = document.createElement("script");
@@ -14,16 +20,10 @@ const Comments = ({ repo, issue, theme }) => {
     utterances.setAttribute("issue-term", issue);
     utterances.setAttribute("theme", theme);
 
-    container.current.appendChild(utterances);
+    container?.current?.appendChild(utterances);
   }, [repo, issue, theme, container]);
 
   return <section ref={container} />;
-};
-
-Comments.propTypes = {
-  repo: PropTypes.string.isRequired,
-  issue: PropTypes.string.isRequired,
-  theme: PropTypes.string.isRequired,
 };
 
 export default React.memo(Comments);
