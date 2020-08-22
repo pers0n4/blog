@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { graphql, useStaticQuery } from "gatsby";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -52,10 +51,6 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
       </div>
     </div>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.element.isRequired,
 };
 
 export default Layout;

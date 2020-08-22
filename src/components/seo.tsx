@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 
@@ -29,13 +28,10 @@ const SEO: React.FC<Props> = ({ title, description, type }: Props) => {
   const pageDescription = description || meta.description;
 
   return (
-    <Helmet
-      titleTemplate={`%s :: ${meta.title}`}
-      defaultTitle={meta.title}
-      title={title}
-    >
-      <html lang="en" />
+    <Helmet titleTemplate={`%s :: ${meta.title}`} defaultTitle={meta.title}>
+      <html lang="ko" />
 
+      <title>{title}</title>
       <meta name="description" content={pageDescription} />
 
       <meta property="og:title" content={pageTitle} />
@@ -47,12 +43,6 @@ const SEO: React.FC<Props> = ({ title, description, type }: Props) => {
       <meta name="twitter:description" content={pageDescription} />
     </Helmet>
   );
-};
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  type: PropTypes.string,
 };
 
 SEO.defaultProps = {
