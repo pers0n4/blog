@@ -10,15 +10,11 @@ module.exports = {
     description: `B와 D 사이의 C를 담는 기술 블로그`,
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `blog`,
-        path: `${__dirname}/content/blog`,
-      },
-    },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+    `gatsby-remark-images`,
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -51,6 +47,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/content/blog`,
+      },
+    },
+    {
       resolve: `gatsby-theme-material-ui`,
       options: {
         webFontsConfig: {
@@ -70,7 +73,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-theme-ui`,
-    `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -81,14 +83,5 @@ module.exports = {
         respectDNT: true,
       },
     },
-    `gatsby-plugin-typescript`,
-    // {
-    //   resolve: `gatsby-plugin-typescript`,
-    //   options: {
-    //     isTSX: true,
-    //     jsxPragma: `jsx`,
-    //     allExtensions: true,
-    //   },
-    // },
   ],
 };
