@@ -61,11 +61,11 @@ module.exports = {
             google: [
               {
                 family: `Roboto`,
-                variants: [`300`, `400`, `500`],
+                variants: [`300`, `400`, `500`, `700`],
               },
               {
                 family: `Noto Sans KR`,
-                variants: [`300`, `400`, `500`],
+                variants: [`300`, `400`, `500`, `700`],
               },
             ],
           },
