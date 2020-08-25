@@ -1,7 +1,8 @@
 import * as React from "react";
-import { Link } from "gatsby-theme-material-ui";
+import { Link as MuiLink } from "gatsby-theme-material-ui";
 import { MDXProviderComponents } from "@mdx-js/react";
 
+import { withStyles } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 import Paper from "@material-ui/core/Paper";
@@ -64,6 +65,12 @@ const dividerStyle: React.CSSProperties = {
   marginTop: "1rem",
   marginBottom: "1rem",
 };
+
+const Link = withStyles({
+  root: {
+    fontWeight: 700,
+  },
+})(MuiLink);
 
 // ANCHOR components
 
