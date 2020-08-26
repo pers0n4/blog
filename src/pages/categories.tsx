@@ -11,7 +11,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 
 type GroupItem = {
   fieldValue: string;

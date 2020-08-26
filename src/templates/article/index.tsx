@@ -1,11 +1,11 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { makeStyles } from "@material-ui/core/styles";
 import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import * as moment from "moment-timezone";
 
+import { makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Chip from "@material-ui/core/Chip";
 import Divider from "@material-ui/core/Divider";
@@ -13,9 +13,9 @@ import LabelIcon from "@material-ui/icons/Label";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
-import SEO from "../../components/seo";
-import Layout from "../../components/layout";
-import Comments from "../../components/comments";
+import SEO from "../../components/SEO";
+import Layout from "../../components/Layout";
+import Comments from "../../components/Comments";
 import components from "./components";
 
 interface Props {

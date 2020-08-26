@@ -1,13 +1,13 @@
 import * as React from "react";
 import { graphql, PageProps } from "gatsby";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "gatsby-theme-material-ui";
 
+import { makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
-import Layout from "../components/layout";
-import ArticleCard from "../components/article-card";
+import Layout from "../components/Layout";
+import ArticleCard from "../components/ArticleCard";
 
 type Edge = {
   node: {

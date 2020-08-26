@@ -4,7 +4,7 @@ import { Global } from "@emotion/core";
 import { Theme } from "@material-ui/core";
 
 import styles from "../../styles";
-import SEO from "../../components/seo";
+import SEO from "../../components/SEO";
 
 interface Props {
   children: React.ReactElement;

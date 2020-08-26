@@ -1,15 +1,15 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { makeStyles } from "@material-ui/core/styles";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 
+import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
 
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 
 const useStyles = makeStyles((theme) => ({
   chips: {

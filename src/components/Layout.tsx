@@ -1,11 +1,11 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { makeStyles } from "@material-ui/core/styles";
 
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import Header from "./header";
+import Header from "./Header";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
