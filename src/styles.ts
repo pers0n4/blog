@@ -1,8 +1,8 @@
-import { Interpolation } from "@emotion/core";
+import { CSSObject } from "@emotion/core";
 
 import theme from "./gatsby-theme-material-ui-top-layout/theme";
 
-const styles: Interpolation = {
+const styles: CSSObject = {
   "ol, ul": {
     marginTop: "0.5rem",
     marginBottom: "0.5rem",
