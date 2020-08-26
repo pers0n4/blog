@@ -53,6 +53,7 @@ module.exports = {
         path: `${__dirname}/content/blog`,
       },
     },
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-theme-material-ui`,
       options: {
