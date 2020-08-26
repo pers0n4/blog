@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby-theme-material-ui";
 import { MDXProviderComponents } from "@mdx-js/react";
-import { css } from "@emotion/core";
+import { css, CSSObject } from "@emotion/core";
 
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
@@ -39,7 +39,6 @@ interface LinkProps extends ChildrenProps {
 
 interface PreProps extends ChildrenProps {
   className?: string;
-  style?: React.CSSProperties;
 }
 
 interface CheckboxProps {
@@ -48,54 +47,49 @@ interface CheckboxProps {
 
 // ANCHOR styles
 
-const textStyle: React.CSSProperties = {
-  lineHeight: 1.75,
-};
-
-const headerStyle: React.CSSProperties = {
-  marginTop: "0.5em",
-};
-
-const itemStyle: React.CSSProperties = {
-  marginTop: "0.5rem",
-  marginBottom: "0.5rem",
-};
-
-const dividerStyle: React.CSSProperties = {
-  marginTop: "1rem",
-  marginBottom: "1rem",
+const styles: CSSObject = {
+  text: {
+    lineHeight: 1.8,
+  },
+  header: {
+    marginTop: "0.5em",
+  },
+  item: {
+    marginTop: "1rem",
+    marginBottom: "1rem",
+  },
 };
 
 // ANCHOR components
 
 const components: MDXProviderComponents = {
-  p: ({ children }: ChildrenProps): JSX.Element => (
-    <Typography variant="body1" gutterBottom style={textStyle}>
+  p: ({ children }: ChildrenProps): React.ReactElement => (
+    <Typography variant="body1" gutterBottom css={styles.text}>
       {children}
     </Typography>
   ),
-  h2: ({ children }: ChildrenProps): JSX.Element => (
-    <Typography variant="h2" gutterBottom style={headerStyle}>
+  h2: ({ children }: ChildrenProps): React.ReactElement => (
+    <Typography variant="h2" gutterBottom css={styles.header}>
       {children}
     </Typography>
   ),
-  h3: ({ children }: ChildrenProps): JSX.Element => (
-    <Typography variant="h3" gutterBottom style={headerStyle}>
+  h3: ({ children }: ChildrenProps): React.ReactElement => (
+    <Typography variant="h3" gutterBottom css={styles.header}>
       {children}
     </Typography>
   ),
-  h4: ({ children }: ChildrenProps): JSX.Element => (
-    <Typography variant="h4" gutterBottom style={headerStyle}>
+  h4: ({ children }: ChildrenProps): React.ReactElement => (
+    <Typography variant="h4" gutterBottom css={styles.header}>
       {children}
     </Typography>
   ),
-  h5: ({ children }: ChildrenProps): JSX.Element => (
-    <Typography variant="h5" gutterBottom style={headerStyle}>
+  h5: ({ children }: ChildrenProps): React.ReactElement => (
+    <Typography variant="h5" gutterBottom css={styles.header}>
       {children}
     </Typography>
   ),
-  h6: ({ children }: ChildrenProps): JSX.Element => (
-    <Typography variant="h6" gutterBottom style={headerStyle}>
+  h6: ({ children }: ChildrenProps): React.ReactElement => (
+    <Typography variant="h6" gutterBottom css={styles.header}>
       {children}
     </Typography>
   ),
@@ -103,23 +97,25 @@ const components: MDXProviderComponents = {
     children,
     id,
     className,
-  }: ListItemProps & { defaultProps: Partial<ListItemProps> }): JSX.Element => (
+  }: ListItemProps & {
+    defaultProps: Partial<ListItemProps>;
+  }): React.ReactElement => (
     <Typography variant="body1" component="li" id={id} className={className}>
       {children}
     </Typography>
   ),
-  table: ({ children }: ChildrenProps): JSX.Element => (
-    <TableContainer component={Paper} style={itemStyle}>
+  table: ({ children }: ChildrenProps): React.ReactElement => (
+    <TableContainer component={Paper} css={styles.item}>
       <Table>{children}</Table>
     </TableContainer>
   ),
-  thead: ({ children }: ChildrenProps): JSX.Element => (
+  thead: ({ children }: ChildrenProps): React.ReactElement => (
     <TableHead>{children}</TableHead>
   ),
-  tbody: ({ children }: ChildrenProps): JSX.Element => (
+  tbody: ({ children }: ChildrenProps): React.ReactElement => (
     <TableBody>{children}</TableBody>
   ),
-  tr: ({ children }: ChildrenProps): JSX.Element => (
+  tr: ({ children }: ChildrenProps): React.ReactElement => (
     <TableRow>{children}</TableRow>
   ),
   th: ({
@@ -127,29 +123,32 @@ const components: MDXProviderComponents = {
     align,
   }: TableCellProps & {
     defaultProps: Partial<TableCellProps>;
-  }): JSX.Element => <TableCell align={align || "left"}>{children}</TableCell>,
+  }): React.ReactElement => (
+    <TableCell align={align || "left"}>{children}</TableCell>
+  ),
   td: ({
     children,
     align,
   }: TableCellProps & {
     defaultProps: Partial<TableCellProps>;
-  }): JSX.Element => <TableCell align={align || "left"}>{children}</TableCell>,
+  }): React.ReactElement => (
+    <TableCell align={align || "left"}>{children}</TableCell>
+  ),
   pre: ({
     children,
     className,
-    style,
-  }: PreProps & { defaultProps: Partial<PreProps> }): JSX.Element => (
+  }: PreProps & { defaultProps: Partial<PreProps> }): React.ReactElement => (
     <Typography
       variant="body1"
       component="pre"
       gutterBottom
       className={className}
-      style={style}
+      css={styles.item}
     >
       {children}
     </Typography>
   ),
-  hr: (): JSX.Element => <Divider style={dividerStyle} />,
+  hr: (): React.ReactElement => <Divider css={styles.item} />,
   a: ({
     children,
     href,
@@ -157,7 +156,7 @@ const components: MDXProviderComponents = {
     rel,
     target,
     style,
-  }: LinkProps & { defaultProps: Partial<LinkProps> }): JSX.Element => (
+  }: LinkProps & { defaultProps: Partial<LinkProps> }): React.ReactElement => (
     <Link
       to={href}
       className={className}
@@ -169,7 +168,7 @@ const components: MDXProviderComponents = {
       {children}
     </Link>
   ),
-  input: ({ checked }: CheckboxProps): JSX.Element => {
+  input: ({ checked }: CheckboxProps): React.ReactElement => {
     return <Checkbox disabled checked={checked} />;
   },
 };
