@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyLink } from "gatsby-theme-material-ui";
+import { kebabCase } from "lodash";
 
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -35,7 +36,7 @@ const Categories: React.FC<Props> = ({
     <ListItem
       button
       component={GatsbyLink}
-      to={`/categories/${category.fieldValue}/`}
+      to={`/categories/${kebabCase(category.fieldValue)}/`}
       key={category.fieldValue}
     >
       <ListItemText primary={category.fieldValue} />

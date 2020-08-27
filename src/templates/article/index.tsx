@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import { kebabCase } from "lodash";
 import * as moment from "moment-timezone";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -69,7 +70,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
         label={tag}
         clickable
         component={GatsbyLink}
-        to={`/tags/${tag}/`}
+        to={`/tags/${kebabCase(tag)}/`}
         key={tag}
       />
     ));
@@ -94,7 +95,9 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
                   component="p"
                   color="textSecondary"
                 >
-                  <Link href={`/categories/${category}/`}>{category}</Link>
+                  <Link href={`/categories/${kebabCase(category)}/`}>
+                    {category}
+                  </Link>
                 </Typography>
               )}
             </Breadcrumbs>

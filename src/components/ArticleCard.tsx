@@ -1,5 +1,6 @@
 import * as React from "react";
 import { GatsbyLink } from "gatsby-theme-material-ui";
+import { kebabCase } from "lodash";
 import * as moment from "moment-timezone";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -65,7 +66,7 @@ const ArticleCard: React.FC<Props> = ({
         label={tag}
         clickable
         component={GatsbyLink}
-        to={`/tags/${tag}/`}
+        to={`/tags/${kebabCase(tag)}/`}
         key={tag}
       />
     ));
