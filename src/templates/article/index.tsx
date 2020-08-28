@@ -1,23 +1,10 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import { GatsbyLink, Link } from "gatsby-theme-material-ui";
-import { MDXProvider } from "@mdx-js/react";
-import { MDXRenderer } from "gatsby-plugin-mdx";
-import { kebabCase } from "lodash";
-import * as moment from "moment-timezone";
-
-import { makeStyles } from "@material-ui/core/styles";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Chip from "@material-ui/core/Chip";
-import Divider from "@material-ui/core/Divider";
-import LabelIcon from "@material-ui/icons/Label";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 
 import SEO from "../../components/SEO";
 import Layout from "../../components/Layout";
+import Article from "../../components/Article";
 import Comments from "../../components/Comments";
-import components from "./components";
 
 interface Props {
   data: {
@@ -34,87 +21,22 @@ interface Props {
     };
   };
 }
-
-const useStyles = makeStyles((theme) => ({
-  article: {
-    padding: "1rem",
-  },
-  divider: {
-    marginTop: "1rem",
-    marginBottom: "1rem",
-  },
-  tags: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    marginTop: "1rem",
-    "& > *": {
-      margin: theme.spacing(0.5),
-    },
-  },
-}));
-
-const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
-  const classes = useStyles();
-  const { title, date, category, tags } = mdx.frontmatter;
-
-  const articleTags =
-    tags &&
-    tags.map((tag) => (
-      <Chip
-        size="small"
-        label={tag}
-        clickable
-        component={GatsbyLink}
-        to={`/tags/${kebabCase(tag)}/`}
-        key={tag}
-      />
-    ));
+const ArticlePage: React.FC<Props> = ({ data }: Props) => {
+  const { title } = data.mdx.frontmatter;
+  const description = data.mdx.excerpt;
 
   return (
     <>
-      <SEO title={title} description={mdx.excerpt} type="article" />
+      <SEO title={title} description={description} type="article" />
       <Layout>
-        <MDXProvider components={components}>
-          <Paper component="article" className={classes.article}>
-            <Breadcrumbs aria-label="breadcrumb">
-              <Typography
-                variant="subtitle2"
-                component="p"
-                color="textSecondary"
-              >
-                {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
-              </Typography>
-              {category && (
-                <Typography
-                  variant="subtitle2"
-                  component="p"
-                  color="textSecondary"
-                >
-                  <Link href={`/categories/${kebabCase(category)}/`}>
-                    {category}
-                  </Link>
-                </Typography>
-              )}
-            </Breadcrumbs>
-            <Typography variant="h1">{title}</Typography>
-            <Divider className={classes.divider} />
-            <MDXRenderer>{mdx.body}</MDXRenderer>
-            {articleTags && (
-              <div className={classes.tags}>
-                <LabelIcon color="action" />
-                {articleTags}
-              </div>
-            )}
-          </Paper>
-        </MDXProvider>
+        <Article data={data} />
         <Comments repo="pers0n4/blog" issue="pathname" theme="github-light" />
       </Layout>
     </>
   );
 };
 
-export default Article;
+export default ArticlePage;
 
 export const query = graphql`
   query($id: String) {
