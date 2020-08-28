@@ -45,7 +45,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   articles.forEach(({ node }) => {
     createPage({
       path: node.fields.slug,
-      component: require.resolve(`./src/templates/article/index.tsx`),
+      component: require.resolve(`./src/templates/article.tsx`),
       context: {
         id: node.id,
         slug: node.fields.slug,
