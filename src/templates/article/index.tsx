@@ -52,10 +52,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0.5),
     },
   },
-  comments: {
-    marginTop: "1.5rem",
-    padding: "1rem",
-  },
 }));
 
 const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
@@ -112,9 +108,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
             )}
           </Paper>
         </MDXProvider>
-        <Paper className={classes.comments}>
-          <Comments repo="pers0n4/blog" issue="pathname" theme="github-light" />
-        </Paper>
+        <Comments repo="pers0n4/blog" issue="pathname" theme="github-light" />
       </Layout>
     </>
   );
