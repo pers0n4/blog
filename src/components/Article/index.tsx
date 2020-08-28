@@ -32,7 +32,7 @@ interface Props {
 }
 
 const useStyles = makeStyles((theme) => ({
-  article: {
+  root: {
     padding: "1rem",
   },
   divider: {
@@ -54,43 +54,47 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
 
-  const articleTags =
-    tags &&
-    tags.map((tag) => (
-      <Chip
-        size="small"
-        label={tag}
-        clickable
-        component={GatsbyLink}
-        to={`/tags/${kebabCase(tag)}/`}
-        key={tag}
-      />
-    ));
+  const Footer = tags ? (
+    <footer className={classes.tags}>
+      <LabelIcon color="action" />
+      {tags.map((tag) => (
+        <Chip
+          size="small"
+          label={tag}
+          clickable
+          component={GatsbyLink}
+          to={`/tags/${kebabCase(tag)}/`}
+          key={tag}
+        />
+      ))}
+    </footer>
+  ) : null;
+
+  const Header = (
+    <header>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Typography variant="subtitle2" component="p" color="textSecondary">
+          {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+        </Typography>
+        {category && (
+          <Typography variant="subtitle2" component="p" color="textSecondary">
+            <Link href={`/categories/${kebabCase(category)}/`}>{category}</Link>
+          </Typography>
+        )}
+      </Breadcrumbs>
+      <Typography variant="h1">{title}</Typography>
+      <Divider className={classes.divider} />
+    </header>
+  );
 
   return (
     <MDXProvider components={components}>
-      <Paper component="article" className={classes.article}>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Typography variant="subtitle2" component="p" color="textSecondary">
-            {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
-          </Typography>
-          {category && (
-            <Typography variant="subtitle2" component="p" color="textSecondary">
-              <Link href={`/categories/${kebabCase(category)}/`}>
-                {category}
-              </Link>
-            </Typography>
-          )}
-        </Breadcrumbs>
-        <Typography variant="h1">{title}</Typography>
-        <Divider className={classes.divider} />
-        <MDXRenderer>{mdx.body}</MDXRenderer>
-        {articleTags && (
-          <div className={classes.tags}>
-            <LabelIcon color="action" />
-            {articleTags}
-          </div>
-        )}
+      <Paper component="article" className={classes.root}>
+        {Header}
+        <div>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </div>
+        {Footer}
       </Paper>
     </MDXProvider>
   );
