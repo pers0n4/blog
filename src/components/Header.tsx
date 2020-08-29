@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: `calc(32px + ${theme.typography.pxToRem(24)})`,
     [theme.breakpoints.down("sm")]: {
       width: 0,
     },
