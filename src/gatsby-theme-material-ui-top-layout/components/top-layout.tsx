@@ -1,6 +1,7 @@
 import * as React from "react";
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
 import { Global } from "@emotion/core";
+import { ThemeProvider } from "emotion-theming";
 import { Theme } from "@material-ui/core";
 
 import styles from "../../styles";
@@ -15,8 +16,12 @@ const TopLayout: React.FC<Props> = ({ children, theme }: Props) => {
   return (
     <>
       <SEO />
-      <Global styles={styles} />
-      <ThemeTopLayout theme={theme}>{children}</ThemeTopLayout>
+      <ThemeTopLayout theme={theme}>
+        <ThemeProvider theme={theme}>
+          <Global styles={styles} />
+          {children}
+        </ThemeProvider>
+      </ThemeTopLayout>
     </>
   );
 };
