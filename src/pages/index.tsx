@@ -1,8 +1,8 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 
-import Layout from "../components/layout";
-import ArticleCard from "../components/article-card";
+import Layout from "../components/Layout";
+import ArticleCard from "../components/ArticleCard";
 
 interface Edge {
   node: {

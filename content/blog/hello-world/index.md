@@ -65,7 +65,7 @@ _em_ text
 
 ---
 
-`code`
+`text> inline code` `js> const number = 0;`
 
 ```javascript
 console.log("hello, world");

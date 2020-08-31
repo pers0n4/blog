@@ -10,26 +10,22 @@ module.exports = {
     description: `B와 D 사이의 C를 담는 기술 블로그`,
   },
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `blog`,
-        path: `${__dirname}/content/blog`,
-      },
-    },
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-transformer-remark`,
+    `gatsby-remark-images`,
+    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [`.mdx`, `.md`],
+        extensions: [`.md`, `.mdx`],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 960,
-              wrapperStyle: `margin-top: 1rem; margin-bottom: 1rem`,
+              showCaptions: true,
+              wrapperStyle: `margin: 1rem auto;`,
               quality: 80,
             },
           },
@@ -37,6 +33,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
+              inlineCodeMarker: `>`,
               showLineNumbers: false,
               noInlineHighlight: false,
               prompt: {
@@ -52,6 +49,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/content/blog`,
+      },
+    },
+    `gatsby-plugin-emotion`,
+    {
       resolve: `gatsby-theme-material-ui`,
       options: {
         webFontsConfig: {
@@ -59,37 +64,30 @@ module.exports = {
             google: [
               {
                 family: `Roboto`,
-                variants: [`300`, `400`, `500`],
+                variants: [`300`, `400`, `500`, `700`],
               },
               {
                 family: `Noto Sans KR`,
-                variants: [`300`, `400`, `500`],
+                variants: [`300`, `400`, `500`, `700`],
+              },
+              {
+                family: `Fira Code`,
+                variants: [`400`],
               },
             ],
           },
         },
       },
     },
-    `gatsby-plugin-theme-ui`,
-    `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-175502696-1",
+        trackingId: `UA-175502696-1`,
         head: true,
         anonymize: true,
         respectDNT: true,
       },
     },
-    `gatsby-plugin-typescript`,
-    // {
-    //   resolve: `gatsby-plugin-typescript`,
-    //   options: {
-    //     isTSX: true,
-    //     jsxPragma: `jsx`,
-    //     allExtensions: true,
-    //   },
-    // },
   ],
 };

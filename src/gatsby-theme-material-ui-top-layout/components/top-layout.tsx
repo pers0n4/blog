@@ -1,8 +1,12 @@
 import * as React from "react";
-import { Theme } from "@material-ui/core";
 import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
+import { Global } from "@emotion/core";
+import { ThemeProvider } from "emotion-theming";
+import { Theme } from "@material-ui/core";
 
-import SEO from "../../components/seo";
+import styles from "../../styles";
+import prism from "../../styles/prism";
+import SEO from "../../components/SEO";
 
 interface Props {
   children: React.ReactElement;
@@ -13,7 +17,13 @@ const TopLayout: React.FC<Props> = ({ children, theme }: Props) => {
   return (
     <>
       <SEO />
-      <ThemeTopLayout theme={theme}>{children}</ThemeTopLayout>
+      <ThemeTopLayout theme={theme}>
+        <ThemeProvider theme={theme}>
+          <Global styles={styles} />
+          <Global styles={prism} />
+          {children}
+        </ThemeProvider>
+      </ThemeTopLayout>
     </>
   );
 };

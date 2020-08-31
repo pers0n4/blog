@@ -1,8 +1,8 @@
 import * as React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import clsx from "clsx";
 
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CategoryIcon from "@material-ui/icons/Category";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: `calc(32px + ${theme.typography.pxToRem(24)})`,
     [theme.breakpoints.down("sm")]: {
       width: 0,
     },
