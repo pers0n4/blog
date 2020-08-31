@@ -38,6 +38,11 @@ const styles = (theme: Theme): SerializedStyles => css`
     list-style-type: none;
     margin-left: 0;
   }
+
+  .gatsby-resp-image-figcaption {
+    color: ${theme.palette.text.hint};
+    text-align: center;
+  }
 `;
 
 export default styles;
