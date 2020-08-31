@@ -11,11 +11,12 @@ const styles = (theme: Theme): SerializedStyles => css`
   }
 
   blockquote {
+    border-left: 0.25rem solid ${theme.palette.divider};
     margin-top: 1rem;
     margin-bottom: 1rem;
     margin-left: 0;
     padding-left: 1.5rem;
-    border-left: 0.25rem solid ${theme.palette.divider};
+    color: ${theme.palette.text.secondary};
   }
 
   sub,
