@@ -68,6 +68,10 @@ module.exports = {
                 family: `Noto Sans KR`,
                 variants: [`300`, `400`, `500`, `700`],
               },
+              {
+                family: `Fira Code`,
+                variants: [`400`],
+              },
             ],
           },
         },
