@@ -1,5 +1,5 @@
 import { css, SerializedStyles } from "@emotion/core";
-import { colors, Theme } from "@material-ui/core";
+import { Theme } from "@material-ui/core";
 
 const config = {
   margin: {
@@ -60,9 +60,9 @@ const gatsbyHighlight = (theme: Theme): SerializedStyles => css`
   }
 `;
 
-const lineHighlight = css`
+const lineHighlight = (theme: Theme): SerializedStyles => css`
   .gatsby-highlight-code-line {
-    background-color: ${colors.grey[900]};
+    background-color: ${theme.palette.grey[900]};
     display: block;
     margin-left: -${config.padding.x};
     margin-right: -${config.padding.x};
@@ -145,27 +145,27 @@ const languageHighlight = (theme: Theme): SerializedStyles => css`
     pre[class~="language-text"]::before,
     pre[class~="language-txt"]::before {
       content: "text";
-      background-color: ${colors.grey[50]};
-      color: ${theme.palette.getContrastText(colors.grey[50])};
+      background-color: ${theme.palette.grey[50]};
+      color: ${theme.palette.getContrastText(theme.palette.grey[50])};
     }
 
     pre[class~="language-json"]::before {
       content: "json";
-      background-color: ${colors.grey[900]};
-      color: ${theme.palette.getContrastText(colors.grey[900])};
+      background-color: ${theme.palette.grey[900]};
+      color: ${theme.palette.getContrastText(theme.palette.grey[900])};
     }
 
     pre[class~="language-shell"]::before,
     pre[class~="language-sh"]::before {
       content: "shell";
-      background-color: ${colors.grey[900]};
-      color: ${theme.palette.getContrastText(colors.grey[900])};
+      background-color: ${theme.palette.grey[900]};
+      color: ${theme.palette.getContrastText(theme.palette.grey[900])};
     }
 
     pre[class~="language-bash"]::before {
       content: "bash";
-      background-color: ${colors.grey[900]};
-      color: ${theme.palette.getContrastText(colors.grey[900])};
+      background-color: ${theme.palette.grey[900]};
+      color: ${theme.palette.getContrastText(theme.palette.grey[900])};
     }
 
     /* https://daringfireball.net/projects/markdown/ */
@@ -238,7 +238,7 @@ const languageHighlight = (theme: Theme): SerializedStyles => css`
 
 const prismStyles = (theme: Theme): SerializedStyles[] => [
   gatsbyHighlight(theme),
-  lineHighlight,
+  lineHighlight(theme),
   lineNumbers,
   codeTitle(theme),
   languageHighlight(theme),
