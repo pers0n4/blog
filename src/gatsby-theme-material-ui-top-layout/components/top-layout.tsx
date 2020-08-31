@@ -5,6 +5,7 @@ import { ThemeProvider } from "emotion-theming";
 import { Theme } from "@material-ui/core";
 
 import styles from "../../styles";
+import prism from "../../styles/prism";
 import SEO from "../../components/SEO";
 
 interface Props {
@@ -19,6 +20,7 @@ const TopLayout: React.FC<Props> = ({ children, theme }: Props) => {
       <ThemeTopLayout theme={theme}>
         <ThemeProvider theme={theme}>
           <Global styles={styles} />
+          <Global styles={prism} />
           {children}
         </ThemeProvider>
       </ThemeTopLayout>
