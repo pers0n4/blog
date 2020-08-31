@@ -21,10 +21,10 @@ const styles = (theme: Theme): SerializedStyles => css`
 
   sub,
   sup {
-    font-size: 0.75rem;
-    line-height: 0;
     position: relative;
     vertical-align: baseline;
+    font-size: 0.75rem;
+    line-height: 0;
   }
 
   sub {
@@ -36,8 +36,8 @@ const styles = (theme: Theme): SerializedStyles => css`
   }
 
   .contains-task-list {
-    list-style-type: none;
     margin-left: 0;
+    list-style-type: none;
   }
 
   .gatsby-resp-image-figcaption {
