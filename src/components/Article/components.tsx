@@ -125,7 +125,13 @@ const components: MDXProviderComponents = {
   }: ListItemProps & {
     defaultProps: Partial<ListItemProps>;
   }): React.ReactElement => (
-    <Typography variant="body1" component="li" id={id} className={className}>
+    <Typography
+      variant="body1"
+      component="li"
+      id={id}
+      className={className}
+      css={styles.text}
+    >
       {children}
     </Typography>
   ),
@@ -171,7 +177,6 @@ const components: MDXProviderComponents = {
       component="pre"
       gutterBottom
       className={className}
-      css={styles.item}
     >
       {children}
     </Typography>
