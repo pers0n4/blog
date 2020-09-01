@@ -65,6 +65,8 @@ module.exports = {
           `gatsby-remark-sub-sup`,
           `gatsby-remark-abbr`,
         ],
+        // eslint-disable-next-line global-require
+        remarkPlugins: [require("remark-unwrap-images")],
       },
     },
     {
