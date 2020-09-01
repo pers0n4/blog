@@ -33,9 +33,28 @@ module.exports = {
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              inlineCodeMarker: `>`,
+              inlineCodeMarker: `> `,
+              aliases: {
+                n: `none`,
+                txt: `text`,
+              },
               showLineNumbers: false,
               noInlineHighlight: false,
+              languageExtensions: [
+                {
+                  language: `text`,
+                  definition: {
+                    text_types: /(text)/,
+                  },
+                },
+                {
+                  language: `mdx`,
+                  extend: `markdown`,
+                  definition: {
+                    text_types: /(mdx)/,
+                  },
+                },
+              ],
               prompt: {
                 user: `root`,
                 host: `localhost`,
@@ -46,6 +65,8 @@ module.exports = {
           `gatsby-remark-sub-sup`,
           `gatsby-remark-abbr`,
         ],
+        // eslint-disable-next-line global-require
+        remarkPlugins: [require("remark-unwrap-images")],
       },
     },
     {

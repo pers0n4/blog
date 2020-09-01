@@ -16,9 +16,10 @@ import Typography from "@material-ui/core/Typography";
 
 // ANCHOR interfaces
 
+/* eslint-disable react/require-default-props */
 interface BaseProps {
   children: React.ReactNode;
-  className: string;
+  className?: string;
 }
 
 interface ListItemProps extends BaseProps {
@@ -26,7 +27,7 @@ interface ListItemProps extends BaseProps {
 }
 
 interface TableCellProps extends BaseProps {
-  align?: "inherit" | "left" | "center" | "right" | "justify";
+  align?: "left" | "center" | "right";
 }
 
 interface LinkProps extends BaseProps {
@@ -35,6 +36,7 @@ interface LinkProps extends BaseProps {
   target?: string;
   style?: React.CSSProperties;
 }
+/* eslint-enable */
 
 interface CheckboxProps {
   checked: boolean;
@@ -58,7 +60,7 @@ const styles: CSSObject = {
 // ANCHOR components
 
 const components: MDXProviderComponents = {
-  p: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  p: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="body1"
       gutterBottom
@@ -68,7 +70,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  h2: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  h2: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="h2"
       gutterBottom
@@ -78,7 +80,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  h3: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  h3: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="h3"
       gutterBottom
@@ -88,7 +90,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  h4: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  h4: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="h4"
       gutterBottom
@@ -98,7 +100,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  h5: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  h5: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="h5"
       gutterBottom
@@ -108,7 +110,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  h6: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  h6: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="h6"
       gutterBottom
@@ -118,13 +120,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  li: ({
-    children,
-    className = "",
-    id,
-  }: ListItemProps & {
-    defaultProps: Partial<ListItemProps>;
-  }): React.ReactElement => (
+  li: ({ children, className, id }: ListItemProps): React.ReactElement => (
     <Typography
       variant="body1"
       component="li"
@@ -135,43 +131,31 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  table: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  table: ({ children, className }: BaseProps): React.ReactElement => (
     <TableContainer component={Paper} className={className} css={styles.item}>
       <Table>{children}</Table>
     </TableContainer>
   ),
-  thead: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  thead: ({ children, className }: BaseProps): React.ReactElement => (
     <TableHead className={className}>{children}</TableHead>
   ),
-  tbody: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  tbody: ({ children, className }: BaseProps): React.ReactElement => (
     <TableBody className={className}>{children}</TableBody>
   ),
-  tr: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  tr: ({ children, className }: BaseProps): React.ReactElement => (
     <TableRow className={className}>{children}</TableRow>
   ),
-  th: ({
-    children,
-    className = "",
-    align,
-  }: TableCellProps & {
-    defaultProps: Partial<TableCellProps>;
-  }): React.ReactElement => (
+  th: ({ children, className, align }: TableCellProps): React.ReactElement => (
     <TableCell align={align || "left"} className={className}>
       {children}
     </TableCell>
   ),
-  td: ({
-    children,
-    className = "",
-    align,
-  }: TableCellProps & {
-    defaultProps: Partial<TableCellProps>;
-  }): React.ReactElement => (
+  td: ({ children, className, align }: TableCellProps): React.ReactElement => (
     <TableCell align={align || "left"} className={className}>
       {children}
     </TableCell>
   ),
-  pre: ({ children, className = "" }: BaseProps): React.ReactElement => (
+  pre: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="body1"
       component="pre"
@@ -184,12 +168,12 @@ const components: MDXProviderComponents = {
   hr: (): React.ReactElement => <Divider css={styles.item} />,
   a: ({
     children,
-    className = "",
+    className,
     href,
     rel,
     target,
     style,
-  }: LinkProps & { defaultProps: Partial<LinkProps> }): React.ReactElement => (
+  }: LinkProps): React.ReactElement => (
     <Link
       to={href}
       className={className}

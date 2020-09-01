@@ -7,6 +7,10 @@ date: 1970-01-02T01:00:00+09:00
 hello, world!
 ```
 
+```txt
+hello, world!
+```
+
 ```json
 {
   "name": "blog"
