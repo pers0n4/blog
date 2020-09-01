@@ -71,10 +71,10 @@ _em_ text
 console.log("hello, world");
 ```
 
-| th  | th  |  th |
-| --- | :-: | --: |
-| td  | td  |  td |
-| td  | td  |  td |
+| th  | th  | th  |  th |
+| --- | :-- | :-: | --: |
+| td  | td  | td  |  td |
+| td  | td  | td  |  td |
 
 - [ ] task
 - [x] task
