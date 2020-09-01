@@ -8,7 +8,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Header from "./Header";
 
 interface Props {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactElement | React.ReactElement[];
 }
 
 const useStyles = makeStyles(() => ({
