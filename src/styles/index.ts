@@ -45,6 +45,12 @@ const styles = (theme: Theme): SerializedStyles => css`
     text-align: center;
   }
 
+  .footnote-ref,
+  .footnote-backref {
+    padding-left: 0.1em;
+    font-family: Roboto, "Noto Sans KR", sans-serif;
+  }
+
   @font-face {
     font-family: "Noto Color Emoji";
     src: local("Noto Color Emoji"),
@@ -55,6 +61,12 @@ const styles = (theme: Theme): SerializedStyles => css`
     font-family: "Noto Emoji";
     src: local("Noto Emoji"),
       url("/fonts/NotoEmoji-Regular.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Twemoji Mozilla";
+    src: local("Twemoji Mozilla"),
+      url("/fonts/TwemojiMozilla.ttf") format("truetype");
   }
 `;
 
