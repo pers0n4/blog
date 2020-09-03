@@ -50,7 +50,7 @@ const Tags: React.FC<Props> = ({
       label={tag.fieldValue}
       clickable
       component={GatsbyLink}
-      to={`/tags/${kebabCase(tag.fieldValue)}/`}
+      to={`/tags/${kebabCase(tag.fieldValue)}`}
       key={tag.fieldValue}
     />
   ));

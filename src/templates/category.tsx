@@ -53,7 +53,7 @@ const Category: React.FC<Props> = ({ pageContext, data }: Props) => {
   return (
     <Layout>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link href="/categories/">Categories</Link>
+        <Link href="/categories">Categories</Link>
         <Typography variant="body1" component="h1">
           {category}
         </Typography>

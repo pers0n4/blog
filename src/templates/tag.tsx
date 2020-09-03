@@ -53,7 +53,7 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
   return (
     <Layout>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link href="/tags/">Tags</Link>
+        <Link href="/tags">Tags</Link>
         <Typography variant="body1" component="h1">
           {tag}
         </Typography>

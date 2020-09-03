@@ -63,7 +63,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
           label={tag}
           clickable
           component={GatsbyLink}
-          to={`/tags/${kebabCase(tag)}/`}
+          to={`/tags/${kebabCase(tag)}`}
           key={tag}
         />
       ))}
@@ -78,7 +78,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
         </Typography>
         {category && (
           <Typography variant="subtitle2" component="p" color="textSecondary">
-            <Link href={`/categories/${kebabCase(category)}/`}>{category}</Link>
+            <Link href={`/categories/${kebabCase(category)}`}>{category}</Link>
           </Typography>
         )}
       </Breadcrumbs>

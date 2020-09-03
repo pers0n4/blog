@@ -66,7 +66,7 @@ const ArticleCard: React.FC<Props> = ({
         label={tag}
         clickable
         component={GatsbyLink}
-        to={`/tags/${kebabCase(tag)}/`}
+        to={`/tags/${kebabCase(tag)}`}
         key={tag}
       />
     ));

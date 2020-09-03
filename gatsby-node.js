@@ -4,6 +4,8 @@ const _ = require("lodash");
 // require("ts-node").register({ files: true }); // eslint-disable-line import/no-extraneous-dependencies
 /* eslint-enable */
 
+const normalizePath = (path) => path.replace(/\/$/, ``);
+
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(`
     query {
@@ -44,7 +46,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const articles = result.data.articles.edges;
   articles.forEach(({ node }) => {
     createPage({
-      path: node.fields.slug,
+      path: normalizePath(node.fields.slug),
       component: require.resolve(`./src/templates/article.tsx`),
       context: {
         id: node.id,
@@ -56,7 +58,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const categories = result.data.categories.group;
   categories.forEach((category) => {
     createPage({
-      path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+      path: `/categories/${_.kebabCase(category.fieldValue)}`,
       component: require.resolve(`./src/templates/category.tsx`),
       context: {
         category: category.fieldValue,
@@ -67,7 +69,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const tags = result.data.tagsGroup.group;
   tags.forEach((tag) => {
     createPage({
-      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      path: `/tags/${_.kebabCase(tag.fieldValue)}`,
       component: require.resolve(`./src/templates/tag.tsx`),
       context: {
         tag: tag.fieldValue,
@@ -80,11 +82,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode });
+    const path = normalizePath(createFilePath({ node, getNode }));
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: path,
     });
   }
 };
