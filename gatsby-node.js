@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const _ = require("lodash");
-// require("ts-node").register({ files: true }); // eslint-disable-line import/no-extraneous-dependencies
 /* eslint-enable */
 
 const normalizePath = (path) => path.replace(/\/$/, ``);
 
-exports.createPages = async ({ graphql, actions: { createPage } }) => {
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
   const result = await graphql(`
     query {
-      articles: allMdx(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
         edges {
           node {
             id
@@ -25,14 +23,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             }
           }
         }
-      }
-      categories: allMdx {
-        group(field: frontmatter___category) {
+        categories: group(field: frontmatter___category) {
           fieldValue
         }
-      }
-      tagsGroup: allMdx {
-        group(field: frontmatter___tags) {
+        tags: group(field: frontmatter___tags) {
           fieldValue
         }
       }
@@ -43,20 +37,19 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     throw result.errors;
   }
 
-  const articles = result.data.articles.edges;
-  articles.forEach(({ node }) => {
+  _.each(result.data.allMdx.edges, ({ node }) => {
+    const slug = normalizePath(node.fields.slug);
     createPage({
-      path: normalizePath(node.fields.slug),
+      path: slug,
       component: require.resolve(`./src/templates/article.tsx`),
       context: {
         id: node.id,
-        slug: node.fields.slug,
+        slug,
       },
     });
   });
 
-  const categories = result.data.categories.group;
-  categories.forEach((category) => {
+  _.each(result.data.allMdx.categories, (category) => {
     createPage({
       path: `/categories/${_.kebabCase(category.fieldValue)}`,
       component: require.resolve(`./src/templates/category.tsx`),
@@ -66,8 +59,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     });
   });
 
-  const tags = result.data.tagsGroup.group;
-  tags.forEach((tag) => {
+  _.each(result.data.allMdx.tags, (tag) => {
     createPage({
       path: `/tags/${_.kebabCase(tag.fieldValue)}`,
       component: require.resolve(`./src/templates/tag.tsx`),
@@ -84,8 +76,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === `Mdx`) {
     const path = normalizePath(createFilePath({ node, getNode }));
     createNodeField({
-      name: `slug`,
       node,
+      name: `slug`,
       value: path,
     });
   }

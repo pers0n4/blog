@@ -11,11 +11,10 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
-    `gatsby-remark-images`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-remove-trailing-slashes`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -66,8 +65,9 @@ module.exports = {
           `gatsby-remark-sub-sup`,
           `gatsby-remark-abbr`,
         ],
-        // eslint-disable-next-line global-require
+        /* eslint-disable global-require */
         remarkPlugins: [require("remark-unwrap-images")],
+        /* eslint-enable */
       },
     },
     {
