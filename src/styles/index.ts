@@ -44,6 +44,18 @@ const styles = (theme: Theme): SerializedStyles => css`
     color: ${theme.palette.text.hint};
     text-align: center;
   }
+
+  @font-face {
+    font-family: "Noto Color Emoji";
+    src: local("Noto Color Emoji"),
+      url("/fonts/NotoColorEmoji.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: "Noto Emoji";
+    src: local("Noto Emoji"),
+      url("/fonts/NotoEmoji-Regular.ttf") format("truetype");
+  }
 `;
 
 export default styles;
