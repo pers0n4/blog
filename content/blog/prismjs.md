@@ -75,10 +75,10 @@ this README for more info.
 To highlight lines, you can use one of the following directives as comments in your
 code:
 
-- `highlight-line` highlights the current line;
-- `highlight-next-line` highlights the next line;
-- `highlight-start` highlights the lines until the matching `hightlight-end`;
-- `highlight-range{1, 4-6}` will highlight the next line, and the fourth, fifth and sixth lines.
+- `n> highlight-line` highlights the current line;
+- `n> highlight-next-line` highlights the next line;
+- `n> highlight-start` highlights the lines until the matching `n> hightlight-end`;
+- `n> highlight-range{1, 4-6}` will highlight the next line, and the fourth, fifth and sixth lines.
 
 ````text
 ```jsx
