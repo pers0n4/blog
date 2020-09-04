@@ -41,6 +41,7 @@ const styles = (theme: Theme): SerializedStyles => css`
   }
 
   .gatsby-resp-image-figcaption {
+    margin-top: 0.2rem;
     color: ${theme.palette.text.hint};
     text-align: center;
   }
