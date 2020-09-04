@@ -62,6 +62,7 @@ module.exports = {
               },
             },
           },
+          `gatsby-remark-a11y-emoji`,
           `gatsby-remark-sub-sup`,
           `gatsby-remark-abbr`,
         ],

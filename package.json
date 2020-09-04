@@ -41,6 +41,7 @@
     "gatsby-plugin-remove-trailing-slashes": "^2.3.11",
     "gatsby-plugin-sharp": "^2.6.31",
     "gatsby-plugin-typescript": "^2.4.18",
+    "gatsby-remark-a11y-emoji": "^1.1.0",
     "gatsby-remark-abbr": "^2.0.0",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-images": "^3.3.28",
