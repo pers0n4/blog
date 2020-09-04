@@ -108,6 +108,18 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Hack IT`,
+        short_name: `Hack IT`,
+        start_url: `/`,
+        theme_color: `#5f4b8b`,
+        background_color: `#fff`,
+        display: `standalone`,
+        icon: `./static/favicon.ico`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-sitemap`,
       options: {
         exclude: [`**/.draft`, `**/draft`],
