@@ -7,6 +7,7 @@
 module.exports = {
   siteMetadata: {
     title: `Hack IT`,
+    siteUrl: `https://pers0n4.io`,
     description: `B와 D 사이의 C를 담는 기술 블로그`,
   },
   plugins: [
@@ -106,6 +107,12 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`**/.draft`, `**/draft`],
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
