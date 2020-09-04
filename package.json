@@ -39,6 +39,7 @@
     "gatsby-plugin-mdx": "^1.2.32",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-remove-trailing-slashes": "^2.3.11",
+    "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sharp": "^2.6.31",
     "gatsby-plugin-sitemap": "^2.4.12",
     "gatsby-plugin-typescript": "^2.4.18",
