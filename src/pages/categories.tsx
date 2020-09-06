@@ -13,25 +13,13 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/Layout";
+import { GroupProps } from "../graphql";
 
-type GroupItem = {
-  fieldValue: string;
-  totalCount: number;
-};
-
-interface Props {
-  data: {
-    allMdx: {
-      group: Array<GroupItem>;
-    };
-  };
-}
-
-const Categories: React.FC<Props> = ({
+const Categories: React.FC<GroupProps> = ({
   data: {
     allMdx: { group },
   },
-}: Props) => {
+}: GroupProps) => {
   const categories = group.map((category) => (
     <ListItem
       button
@@ -63,12 +51,9 @@ const Categories: React.FC<Props> = ({
 export default Categories;
 
 export const query = graphql`
-  query {
+  query($field: MdxFieldsEnum = frontmatter___category) {
     allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
-      group(field: frontmatter___category) {
-        fieldValue
-        totalCount
-      }
+      ...Group
     }
   }
 `;
