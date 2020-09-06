@@ -34,7 +34,7 @@ export interface ArticleListProps {
 export const query = graphql`
   fragment ArticleBase on Mdx {
     id
-    excerpt(pruneLength: 200, truncate: true)
+    excerpt(pruneLength: 150, truncate: true)
     frontmatter {
       title
       date
