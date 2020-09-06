@@ -3,9 +3,9 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
-import { ArticleProps } from "../graphql";
+import { ArticleListProps } from "../graphql";
 
-const Index: React.FC<ArticleProps> = ({ data }: ArticleProps) => {
+const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {
   const { edges } = data.allMdx;
   const articles = edges
     .filter((edge) => !!edge.node.frontmatter.date)
@@ -28,7 +28,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          ...Article
+          ...ArticleList
         }
       }
     }

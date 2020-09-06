@@ -5,23 +5,9 @@ import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import Article from "../components/Article";
 import Comments from "../components/Comments";
+import { ArticleProps } from "../graphql";
 
-interface Props {
-  data: {
-    mdx: {
-      id: string;
-      body: string;
-      excerpt: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        category?: string;
-        tags?: string[];
-      };
-    };
-  };
-}
-const ArticlePage: React.FC<Props> = ({ data }: Props) => {
+const ArticlePage: React.FC<ArticleProps> = ({ data }: ArticleProps) => {
   const { title } = data.mdx.frontmatter;
   const description = data.mdx.excerpt;
 
@@ -41,15 +27,7 @@ export default ArticlePage;
 export const query = graphql`
   query($id: String) {
     mdx(id: { eq: $id }) {
-      id
-      body
-      excerpt(pruneLength: 280, truncate: true)
-      frontmatter {
-        title
-        date
-        category
-        tags
-      }
+      ...Article
     }
   }
 `;

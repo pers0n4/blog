@@ -8,9 +8,9 @@ import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
-import { ArticleProps } from "../graphql";
+import { ArticleListProps } from "../graphql";
 
-interface Props extends ArticleProps {
+interface Props extends ArticleListProps {
   pageContext: {
     tag: string;
   };
@@ -54,7 +54,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          ...Article
+          ...ArticleList
         }
       }
     }

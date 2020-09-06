@@ -1,41 +1,57 @@
 import { graphql } from "gatsby";
 
-interface Node {
-  node: {
-    id: string;
-    excerpt: string;
-    fields: {
-      slug: string;
-    };
-    frontmatter: {
-      title: string;
-      date: string;
-      category?: string;
-      tags?: Array<string>;
-    };
+export interface MDXNode {
+  id: string;
+  body?: string;
+  excerpt: string;
+  fields?: {
+    slug: string;
+  };
+  frontmatter: {
+    title: string;
+    date: string;
+    category?: string;
+    tags?: string[];
   };
 }
 
 export interface ArticleProps {
   data: {
+    mdx: MDXNode;
+  };
+}
+
+export interface ArticleListProps {
+  data: {
     allMdx: {
-      edges: Node[];
+      edges: {
+        node: MDXNode;
+      }[];
     };
   };
 }
 
 export const query = graphql`
-  fragment Article on Mdx {
+  fragment ArticleBase on Mdx {
     id
     excerpt(pruneLength: 200, truncate: true)
-    fields {
-      slug
-    }
     frontmatter {
       title
       date
       category
       tags
+    }
+  }
+
+  fragment Article on Mdx {
+    ...ArticleBase
+    body
+  }
+
+  fragment ArticleList on Mdx {
+    ...ArticleBase
+    fields {
+      slug
     }
   }
 `;
