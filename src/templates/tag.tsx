@@ -1,5 +1,5 @@
 import * as React from "react";
-import { graphql, PageProps } from "gatsby";
+import { graphql } from "gatsby";
 import { Link } from "gatsby-theme-material-ui";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,29 +8,9 @@ import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
+import { ArticleListProps } from "../graphql";
 
-type Edge = {
-  node: {
-    id: string;
-    excerpt: string;
-    fields: {
-      slug: string;
-    };
-    frontmatter: {
-      title: string;
-      date: string;
-      category?: string;
-      tags?: string[];
-    };
-  };
-};
-
-interface Props extends PageProps {
-  data: {
-    allMdx: {
-      edges: Edge[];
-    };
-  };
+interface Props extends ArticleListProps {
   pageContext: {
     tag: string;
   };
@@ -53,7 +33,7 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
   return (
     <Layout>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link href="/tags/">Tags</Link>
+        <Link href="/tags">Tags</Link>
         <Typography variant="body1" component="h1">
           {tag}
         </Typography>
@@ -74,17 +54,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          id
-          excerpt(pruneLength: 280, truncate: true)
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date
-            category
-            tags
-          }
+          ...ArticleList
         }
       }
     }

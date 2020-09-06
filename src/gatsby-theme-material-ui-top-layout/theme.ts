@@ -12,7 +12,13 @@ const theme = createMuiTheme({
   },
   typography: {
     // htmlFontSize: 16,
-    fontFamily: ["Roboto", "Noto Sans KR", "sans-serif"].join(", "),
+    fontFamily: [
+      "Roboto",
+      "Noto Sans KR",
+      "Noto Color Emoji",
+      "Noto Emoji",
+      "sans-serif",
+    ].join(", "),
     // fontSize: 14,
     h1: {
       fontSize: "4rem",

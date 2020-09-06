@@ -14,22 +14,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
 import components from "./components";
-
-interface Props {
-  data: {
-    mdx: {
-      id: string;
-      body: string;
-      excerpt: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        category?: string;
-        tags?: string[];
-      };
-    };
-  };
-}
+import { ArticleProps } from "../../graphql";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
+const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
 
@@ -63,7 +48,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
           label={tag}
           clickable
           component={GatsbyLink}
-          to={`/tags/${kebabCase(tag)}/`}
+          to={`/tags/${kebabCase(tag)}`}
           key={tag}
         />
       ))}
@@ -78,7 +63,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
         </Typography>
         {category && (
           <Typography variant="subtitle2" component="p" color="textSecondary">
-            <Link href={`/categories/${kebabCase(category)}/`}>{category}</Link>
+            <Link href={`/categories/${kebabCase(category)}`}>{category}</Link>
           </Typography>
         )}
       </Breadcrumbs>
@@ -92,7 +77,7 @@ const Article: React.FC<Props> = ({ data: { mdx } }: Props) => {
       <Paper component="article" className={classes.root}>
         {Header}
         <div>
-          <MDXRenderer>{mdx.body}</MDXRenderer>
+          <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
         </div>
         {Footer}
       </Paper>

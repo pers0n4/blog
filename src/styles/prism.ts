@@ -12,12 +12,6 @@ const config = {
 };
 
 const override = (theme: Theme): SerializedStyles => css`
-  /* :not(pre) > code::before,
-  :not(pre) > code::after {
-    content: " ";
-    letter-spacing: -0.2em;
-  } */
-
   :not(pre) > code[class*="language-"] {
     border-radius: ${theme.shape.borderRadius}px;
     padding: 0.1em 0.2em;
@@ -27,6 +21,7 @@ const override = (theme: Theme): SerializedStyles => css`
   code[class*="language-"],
   pre[class*="language-"] {
     font-family: "Fira Code", monospace;
+    font-size: 0.875rem;
   }
 `;
 

@@ -11,6 +11,7 @@ import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/Layout";
+import { GroupProps } from "../graphql";
 
 const useStyles = makeStyles((theme) => ({
   chips: {
@@ -24,24 +25,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type GroupItem = {
-  fieldValue: string;
-  totalCount: number;
-};
-
-interface Props {
-  data: {
-    allMdx: {
-      group: Array<GroupItem>;
-    };
-  };
-}
-
-const Tags: React.FC<Props> = ({
+const Tags: React.FC<GroupProps> = ({
   data: {
     allMdx: { group },
   },
-}: Props) => {
+}: GroupProps) => {
   const classes = useStyles();
 
   const tags = group.map((tag) => (
@@ -50,7 +38,7 @@ const Tags: React.FC<Props> = ({
       label={tag.fieldValue}
       clickable
       component={GatsbyLink}
-      to={`/tags/${kebabCase(tag.fieldValue)}/`}
+      to={`/tags/${kebabCase(tag.fieldValue)}`}
       key={tag.fieldValue}
     />
   ));
@@ -72,12 +60,9 @@ const Tags: React.FC<Props> = ({
 export default Tags;
 
 export const query = graphql`
-  query {
+  query($field: MdxFieldsEnum = frontmatter___tags) {
     allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
-      group(field: frontmatter___tags) {
-        fieldValue
-        totalCount
-      }
+      ...Group
     }
   }
 `;

@@ -13,20 +13,10 @@ import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
 import Typography from "@material-ui/core/Typography";
 
+import { MDXNode } from "../graphql";
+
 interface Props {
-  node: {
-    id: string;
-    excerpt: string;
-    fields: {
-      slug: string;
-    };
-    frontmatter: {
-      title: string;
-      date: string;
-      category?: string | null;
-      tags?: string[] | null;
-    };
-  };
+  node: MDXNode;
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -48,14 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ArticleCard: React.FC<Props> = ({
-  node: {
-    id,
-    excerpt,
-    fields: { slug },
-    frontmatter: { title, date, category, tags },
-  },
-}: Props) => {
+const ArticleCard: React.FC<Props> = (props: Props) => {
+  const {
+    node: { id, excerpt, fields, frontmatter },
+  } = props;
+  const slug = fields?.slug;
+  const { title, date, category, tags } = frontmatter;
+
   const classes = useStyles();
 
   const articleTags =
@@ -66,7 +55,7 @@ const ArticleCard: React.FC<Props> = ({
         label={tag}
         clickable
         component={GatsbyLink}
-        to={`/tags/${kebabCase(tag)}/`}
+        to={`/tags/${kebabCase(tag)}`}
         key={tag}
       />
     ));
@@ -89,10 +78,10 @@ const ArticleCard: React.FC<Props> = ({
               </Typography>
             )}
           </Breadcrumbs>
-          <Typography variant="h2" component="h2" gutterBottom>
+          <Typography variant="h3" component="h2" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body2" gutterBottom>
             {excerpt}
           </Typography>
         </CardContent>

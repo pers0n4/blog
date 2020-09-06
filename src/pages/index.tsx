@@ -3,32 +3,9 @@ import { graphql } from "gatsby";
 
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
+import { ArticleListProps } from "../graphql";
 
-interface Edge {
-  node: {
-    id: string;
-    excerpt: string;
-    fields: {
-      slug: string;
-    };
-    frontmatter: {
-      title: string;
-      date: string;
-      category?: string;
-      tags?: Array<string>;
-    };
-  };
-}
-
-interface Props {
-  data: {
-    allMdx: {
-      edges: Array<Edge>;
-    };
-  };
-}
-
-const Index: React.FC<Props> = ({ data }: Props) => {
+const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {
   const { edges } = data.allMdx;
   const articles = edges
     .filter((edge) => !!edge.node.frontmatter.date)
@@ -51,17 +28,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          id
-          excerpt(pruneLength: 280, truncate: true)
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            date
-            category
-            tags
-          }
+          ...ArticleList
         }
       }
     }

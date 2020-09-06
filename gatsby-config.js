@@ -7,14 +7,15 @@
 module.exports = {
   siteMetadata: {
     title: `Hack IT`,
+    siteUrl: `https://pers0n4.io`,
     description: `B와 D 사이의 C를 담는 기술 블로그`,
   },
   plugins: [
     `gatsby-plugin-typescript`,
+    `gatsby-plugin-catch-links`,
+    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-    `gatsby-remark-images`,
-    `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -62,11 +63,16 @@ module.exports = {
               },
             },
           },
-          `gatsby-remark-sub-sup`,
+          `gatsby-remark-a11y-emoji`,
           `gatsby-remark-abbr`,
+          `gatsby-remark-sub-sup`,
         ],
-        // eslint-disable-next-line global-require
-        remarkPlugins: [require("remark-unwrap-images")],
+        /* eslint-disable global-require */
+        remarkPlugins: [
+          require("remark-emoji"),
+          require("remark-unwrap-images"),
+        ],
+        /* eslint-enable */
       },
     },
     {
@@ -101,6 +107,25 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Hack IT`,
+        short_name: `Hack IT`,
+        start_url: `/`,
+        theme_color: `#5f4b8b`,
+        background_color: `#fff`,
+        display: `standalone`,
+        icon: `./static/favicon.ico`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        exclude: [`**/.draft`, `**/draft`],
+      },
+    },
+    `gatsby-plugin-robots-txt`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
