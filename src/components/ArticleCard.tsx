@@ -78,10 +78,10 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
               </Typography>
             )}
           </Breadcrumbs>
-          <Typography variant="h2" component="h2" gutterBottom>
+          <Typography variant="h3" component="h2" gutterBottom>
             {title}
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body2" gutterBottom>
             {excerpt}
           </Typography>
         </CardContent>
