@@ -24,11 +24,11 @@ const SEO: React.FC<Props> = ({ title, description, type }: Props) => {
     `
   );
 
-  const pageTitle = title ? `${title} :: ${meta.title}` : meta.title;
+  const pageTitle = title || meta.title;
   const pageDescription = description || meta.description;
 
   return (
-    <Helmet titleTemplate={`%s :: ${meta.title}`} defaultTitle={meta.title}>
+    <Helmet titleTemplate={`%s | ${meta.title}`} defaultTitle={meta.title}>
       <html lang="ko" />
 
       <title>{title}</title>
