@@ -10,6 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
 
+import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import { GroupProps } from "../graphql";
 
@@ -44,16 +45,19 @@ const Tags: React.FC<GroupProps> = ({
   ));
 
   return (
-    <Layout>
-      <Card>
-        <CardContent>
-          <Typography variant="h2" component="h1" gutterBottom>
-            Tags
-          </Typography>
-          <div className={classes.chips}>{tags}</div>
-        </CardContent>
-      </Card>
-    </Layout>
+    <>
+      <SEO title="Tags" />
+      <Layout>
+        <Card>
+          <CardContent>
+            <Typography variant="h2" component="h1" gutterBottom>
+              Tags
+            </Typography>
+            <div className={classes.chips}>{tags}</div>
+          </CardContent>
+        </Card>
+      </Layout>
+    </>
   );
 };
 

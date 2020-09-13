@@ -12,6 +12,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 
+import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import { GroupProps } from "../graphql";
 
@@ -35,16 +36,19 @@ const Categories: React.FC<GroupProps> = ({
   ));
 
   return (
-    <Layout>
-      <Card>
-        <CardContent>
-          <Typography variant="h2" component="h1" gutterBottom>
-            Categories
-          </Typography>
-          <List>{categories}</List>
-        </CardContent>
-      </Card>
-    </Layout>
+    <>
+      <SEO title="Categories" />
+      <Layout>
+        <Card>
+          <CardContent>
+            <Typography variant="h2" component="h1" gutterBottom>
+              Categories
+            </Typography>
+            <List>{categories}</List>
+          </CardContent>
+        </Card>
+      </Layout>
+    </>
   );
 };
 
