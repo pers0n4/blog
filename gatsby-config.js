@@ -127,6 +127,13 @@ module.exports = {
     },
     `gatsby-plugin-robots-txt`,
     {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://pers0n4.io`,
+        stripQueryString: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: `UA-175502696-1`,
