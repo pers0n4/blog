@@ -41,6 +41,55 @@ const SEO: React.FC<Props> = ({ title, description, type }: Props) => {
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
+
+      <link
+        rel="icon"
+        href="/icons/icon@48.png"
+        type="image/png"
+        sizes="48x48"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@72.png"
+        type="image/png"
+        sizes="72x72"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@96.png"
+        type="image/png"
+        sizes="96x96"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@144.png"
+        sizes="144x144"
+        type="image/png"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@192.png"
+        type="image/png"
+        sizes="192x192"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@256.png"
+        type="image/png"
+        sizes="256x256"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@384.png"
+        type="image/png"
+        sizes="384x384"
+      />
+      <link
+        rel="icon"
+        href="/icons/icon@512.png"
+        type="image/png"
+        sizes="512x512"
+      />
     </Helmet>
   );
 };
