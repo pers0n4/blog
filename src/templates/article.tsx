@@ -10,6 +10,7 @@ import { ArticleProps } from "../graphql";
 const ArticlePage: React.FC<ArticleProps> = ({ data }: ArticleProps) => {
   const { title, date, tags } = data.mdx.frontmatter;
   const description = data.mdx.excerpt;
+  const { slug } = data.mdx.fields;
 
   return (
     <>

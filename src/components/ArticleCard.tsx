@@ -42,7 +42,7 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
   const {
     node: { id, excerpt, fields, frontmatter },
   } = props;
-  const slug = fields?.slug;
+  const { slug } = fields;
   const { title, date, category, tags } = frontmatter;
 
   const classes = useStyles();
