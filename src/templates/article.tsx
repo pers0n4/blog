@@ -8,12 +8,17 @@ import Comments from "../components/Comments";
 import { ArticleProps } from "../graphql";
 
 const ArticlePage: React.FC<ArticleProps> = ({ data }: ArticleProps) => {
-  const { title } = data.mdx.frontmatter;
+  const { title, date, tags } = data.mdx.frontmatter;
   const description = data.mdx.excerpt;
 
   return (
     <>
-      <SEO title={title} description={description} type="article" />
+      <SEO title={title} description={description} type="article">
+        <meta property="article:published_time" content={date} />
+        {tags?.map((tag) => (
+          <meta property="article:tag" content={tag} />
+        ))}
+      </SEO>
       <Layout>
         <Article data={data} />
         <Comments repo="pers0n4/blog" issue="pathname" theme="github-light" />
