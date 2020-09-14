@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
+import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
 import { ArticleListProps } from "../graphql";
@@ -31,15 +32,18 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
     .map((edge) => <ArticleCard key={edge.node.id} node={edge.node} />);
 
   return (
-    <Layout>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link href="/tags">Tags</Link>
-        <Typography variant="body1" component="h1">
-          {tag}
-        </Typography>
-      </Breadcrumbs>
-      <section className={classes.articles}>{articles}</section>
-    </Layout>
+    <>
+      <SEO title={`Tag :: ${tag}`} />
+      <Layout>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Link href="/tags">Tags</Link>
+          <Typography variant="body1" component="h1">
+            {tag}
+          </Typography>
+        </Breadcrumbs>
+        <section className={classes.articles}>{articles}</section>
+      </Layout>
+    </>
   );
 };
 

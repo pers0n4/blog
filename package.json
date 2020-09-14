@@ -1,7 +1,7 @@
 {
   "name": "blog",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Blog",
   "license": "MIT",
   "author": {
@@ -33,6 +33,7 @@
     "clsx": "^1.1.1",
     "emotion-theming": "^10.0.27",
     "gatsby": "^2.24.53",
+    "gatsby-plugin-canonical-urls": "^2.3.10",
     "gatsby-plugin-catch-links": "^2.3.11",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-google-analytics": "^2.3.13",

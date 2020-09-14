@@ -116,7 +116,9 @@ module.exports = {
         theme_color: `#5f4b8b`,
         background_color: `#fff`,
         display: `standalone`,
-        icon: `./static/favicon.ico`,
+        description: `B와 D 사이의 C를 담는 기술 블로그`,
+        lang: `ko-KR`,
+        icon: `static/icons/icon.png`,
       },
     },
     {
@@ -126,6 +128,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://pers0n4.io`,
+        stripQueryString: true,
+      },
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
