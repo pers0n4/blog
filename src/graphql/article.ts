@@ -4,7 +4,7 @@ export interface MDXNode {
   id: string;
   body?: string;
   excerpt: string;
-  fields?: {
+  fields: {
     slug: string;
   };
   frontmatter: {
@@ -43,15 +43,15 @@ export const query = graphql`
     }
   }
 
-  fragment Article on Mdx {
-    ...ArticleBase
-    body
-  }
-
   fragment ArticleList on Mdx {
     ...ArticleBase
     fields {
       slug
     }
+  }
+
+  fragment Article on Mdx {
+    ...ArticleList
+    body
   }
 `;

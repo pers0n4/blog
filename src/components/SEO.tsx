@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 interface Props {
   title?: string;
   description?: string;
+  pathname?: string;
   type?: string;
   children?: React.ReactNode;
 }
@@ -12,6 +13,7 @@ interface Props {
 const SEO: React.FC<Props> = ({
   title,
   description,
+  pathname,
   type,
   children,
 }: Props) => {
@@ -33,9 +35,7 @@ const SEO: React.FC<Props> = ({
 
   const pageTitle = title || meta.title;
   const pageDescription = description || meta.description;
-  const pageUrl = `${meta.siteUrl}${
-    typeof window !== "undefined" ? window.location.pathname : ""
-  }`;
+  const pageUrl = `${meta.siteUrl}${pathname}`;
 
   return (
     <Helmet titleTemplate={`%s | ${meta.title}`} defaultTitle={meta.title}>
@@ -116,6 +116,7 @@ const SEO: React.FC<Props> = ({
 SEO.defaultProps = {
   title: undefined,
   description: undefined,
+  pathname: "",
   type: "website",
   children: undefined,
 };

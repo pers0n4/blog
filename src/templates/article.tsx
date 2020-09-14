@@ -10,13 +10,19 @@ import { ArticleProps } from "../graphql";
 const ArticlePage: React.FC<ArticleProps> = ({ data }: ArticleProps) => {
   const { title, date, tags } = data.mdx.frontmatter;
   const description = data.mdx.excerpt;
+  const { slug } = data.mdx.fields;
 
   return (
     <>
-      <SEO title={title} description={description} type="article">
+      <SEO
+        title={title}
+        description={description}
+        pathname={slug}
+        type="article"
+      >
         <meta property="article:published_time" content={date} />
         {tags?.map((tag) => (
-          <meta property="article:tag" content={tag} />
+          <meta property="article:tag" content={tag} key={tag} />
         ))}
       </SEO>
       <Layout>
