@@ -46,7 +46,7 @@ const Tags: React.FC<GroupProps> = ({
 
   return (
     <>
-      <SEO title="Tags" />
+      <SEO title="Tags" pathname="/tags" />
       <Layout>
         <Card>
           <CardContent>

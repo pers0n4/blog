@@ -37,7 +37,7 @@ const Categories: React.FC<GroupProps> = ({
 
   return (
     <>
-      <SEO title="Categories" />
+      <SEO title="Categories" pathname="/categories" />
       <Layout>
         <Card>
           <CardContent>

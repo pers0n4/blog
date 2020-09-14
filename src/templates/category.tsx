@@ -33,7 +33,10 @@ const Category: React.FC<Props> = ({ pageContext, data }: Props) => {
 
   return (
     <>
-      <SEO title={`Category :: ${category}`} />
+      <SEO
+        title={`Category :: ${category}`}
+        pathname={`/categories/${category}`}
+      />
       <Layout>
         <Breadcrumbs aria-label="breadcrumb">
           <Link href="/categories">Categories</Link>
