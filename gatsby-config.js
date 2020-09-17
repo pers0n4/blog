@@ -20,16 +20,29 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        plugins: [
+          `gatsby-remark-images`,
+          {
+            resolve: `gatsby-remark-images-medium-zoom`,
+            options: {
+              margin: 50,
+              background: `#212121`,
+              zIndex: 1299,
+            },
+          },
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 960,
+              linkImagesToOriginal: false,
               showCaptions: true,
               wrapperStyle: `margin: 1rem auto;`,
               quality: 80,
             },
           },
+          `gatsby-remark-images-medium-zoom`,
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,

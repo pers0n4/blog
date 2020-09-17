@@ -49,6 +49,7 @@
     "gatsby-remark-abbr": "^2.0.0",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-images": "^3.3.29",
+    "gatsby-remark-images-medium-zoom": "^1.7.0",
     "gatsby-remark-prismjs": "^3.5.12",
     "gatsby-remark-sub-sup": "^1.0.0",
     "gatsby-source-filesystem": "^2.3.29",
