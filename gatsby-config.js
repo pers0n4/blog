@@ -132,6 +132,18 @@ module.exports = {
         description: `B와 D 사이의 C를 담는 기술 블로그`,
         lang: `ko-KR`,
         icon: `static/icons/icon.png`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
+        cache_busting_mode: `none`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: [`**/icons/*`],
+        },
       },
     },
     {
