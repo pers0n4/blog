@@ -62,7 +62,6 @@
     "gatsby-theme-material-ui-top-layout": "^1.0.3",
     "gatsby-transformer-sharp": "^2.5.14",
     "lodash": "^4.17.20",
-    "moment-timezone": "^0.5.31",
     "prism-themes": "^1.4.0",
     "prismjs": "^1.21.0",
     "prop-types": "^15.7.2",
