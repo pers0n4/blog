@@ -1,7 +1,6 @@
 import * as React from "react";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import { kebabCase } from "lodash";
-import * as moment from "moment-timezone";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -14,6 +13,7 @@ import LabelIcon from "@material-ui/icons/Label";
 import Typography from "@material-ui/core/Typography";
 
 import { MDXNode } from "../graphql";
+import datetime from "../utils/datetime";
 
 interface Props {
   node: MDXNode;
@@ -66,7 +66,7 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
         <CardContent>
           <Breadcrumbs aria-label="breadcrumb">
             <Typography variant="subtitle2" component="p" color="textSecondary">
-              {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+              {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
             </Typography>
             {category && (
               <Typography

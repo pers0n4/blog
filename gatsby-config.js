@@ -20,16 +20,29 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        plugins: [
+          `gatsby-remark-images`,
+          {
+            resolve: `gatsby-remark-images-medium-zoom`,
+            options: {
+              margin: 50,
+              background: `#212121`,
+              zIndex: 1299,
+            },
+          },
+        ],
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 960,
+              linkImagesToOriginal: false,
               showCaptions: true,
               wrapperStyle: `margin: 1rem auto;`,
               quality: 80,
             },
           },
+          `gatsby-remark-images-medium-zoom`,
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,
@@ -119,6 +132,18 @@ module.exports = {
         description: `B와 D 사이의 C를 담는 기술 블로그`,
         lang: `ko-KR`,
         icon: `static/icons/icon.png`,
+        icon_options: {
+          purpose: `any maskable`,
+        },
+        cache_busting_mode: `none`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: [`**/icons/*`],
+        },
       },
     },
     {
@@ -129,10 +154,72 @@ module.exports = {
     },
     `gatsby-plugin-robots-txt`,
     {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map((edge) => {
+                return {
+                  title: edge.node.frontmatter.title,
+                  description: edge.node.excerpt,
+                  date: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                };
+              });
+            },
+            query: `
+              {
+                allMdx(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      fields {
+                        slug
+                      }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: `/rss.xml`,
+            title: `Blog`,
+            match: `^((?!draft).)*$`,
+          },
+        ],
+      },
+    },
+    {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
         siteUrl: `https://pers0n4.io`,
         stripQueryString: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: `GTM-KTC2NPD`,
+        includeInDevelopment: false,
       },
     },
     {
@@ -144,5 +231,6 @@ module.exports = {
         respectDNT: true,
       },
     },
+    `gatsby-plugin-netlify`,
   ],
 };

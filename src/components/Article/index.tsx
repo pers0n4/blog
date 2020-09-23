@@ -3,7 +3,6 @@ import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { kebabCase } from "lodash";
-import * as moment from "moment-timezone";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -15,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 
 import components from "./components";
 import { ArticleProps } from "../../graphql";
+import datetime from "../../utils/datetime";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,7 +59,7 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
     <header>
       <Breadcrumbs aria-label="breadcrumb">
         <Typography variant="subtitle2" component="p" color="textSecondary">
-          {moment.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+          {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
         </Typography>
         {category && (
           <Typography variant="subtitle2" component="p" color="textSecondary">
