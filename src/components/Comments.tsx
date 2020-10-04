@@ -1,5 +1,5 @@
 import * as React from "react";
-import { createRef, useLayoutEffect } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 import { makeStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
@@ -21,23 +21,36 @@ const useStyles = makeStyles({
 });
 
 const Comments: React.FC<Props> = ({ repo, issue, theme }: Props) => {
-  const container = createRef<HTMLElement>();
+  const containerRef = useRef<HTMLElement>();
   const classes = useStyles();
 
   useLayoutEffect(() => {
+    const container = containerRef.current;
     const utterances = document.createElement("script");
 
-    utterances.src = "https://utteranc.es/client.js";
-    utterances.crossOrigin = "anonymous";
-    utterances.async = true;
-    utterances.setAttribute("repo", repo);
-    utterances.setAttribute("issue-term", issue);
-    utterances.setAttribute("theme", theme);
+    const config = {
+      src: "https://utteranc.es/client.js",
+      repo,
+      "issue-term": issue,
+      theme,
+      crossorigin: "anonymous",
+      aync: "true",
+    };
 
-    container?.current?.appendChild(utterances);
-  }, [repo, issue, theme, container]);
+    Object.entries(config).forEach(([key, value]) => {
+      utterances.setAttribute(key, value);
+    });
 
-  return <Paper component="section" ref={container} className={classes.root} />;
+    container?.appendChild(utterances);
+
+    return () => {
+      if (container?.firstChild) container?.removeChild(container.firstChild);
+    };
+  }, [repo, issue, theme]);
+
+  return (
+    <Paper component="section" ref={containerRef} className={classes.root} />
+  );
 };
 
 export default React.memo(Comments);
