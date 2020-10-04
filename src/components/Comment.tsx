@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Comments: React.FC<Props> = ({ repo, issue, theme }: Props) => {
+const Comment: React.FC<Props> = ({ repo, issue, theme }: Props) => {
   const containerRef = useRef<HTMLElement>();
   const classes = useStyles();
 
@@ -53,4 +53,4 @@ const Comments: React.FC<Props> = ({ repo, issue, theme }: Props) => {
   );
 };
 
-export default React.memo(Comments);
+export default React.memo(Comment);
