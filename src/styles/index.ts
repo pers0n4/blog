@@ -35,6 +35,11 @@ const styles = (theme: Theme): SerializedStyles => css`
     top: -0.5em;
   }
 
+  article img:not([class]) {
+    width: 100%;
+    margin: 1rem auto;
+  }
+
   .contains-task-list {
     margin-left: 0;
     list-style-type: none;
