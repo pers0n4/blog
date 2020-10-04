@@ -3,7 +3,7 @@ import { Theme } from "@material-ui/core";
 
 const config = {
   margin: {
-    y: "1rem",
+    y: "1.5rem",
   },
   padding: {
     x: "1em",

@@ -38,7 +38,7 @@ module.exports = {
               maxWidth: 960,
               linkImagesToOriginal: false,
               showCaptions: true,
-              wrapperStyle: `margin: 1rem auto;`,
+              wrapperStyle: `margin: 1.5rem auto;`,
               quality: 80,
             },
           },

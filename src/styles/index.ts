@@ -12,9 +12,7 @@ const styles = (theme: Theme): SerializedStyles => css`
 
   blockquote {
     border-left: 0.25rem solid ${theme.palette.divider};
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    margin-left: 0;
+    margin: 1.5rem 0;
     padding-left: 1.5rem;
     color: ${theme.palette.text.secondary};
   }
@@ -37,7 +35,7 @@ const styles = (theme: Theme): SerializedStyles => css`
 
   article img:not([class]) {
     width: 100%;
-    margin: 1rem auto;
+    margin: 1.5rem auto;
   }
 
   .contains-task-list {
