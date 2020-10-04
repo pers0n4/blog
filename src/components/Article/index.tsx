@@ -21,8 +21,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem",
   },
   divider: {
-    marginTop: "1rem",
-    marginBottom: "1rem",
+    margin: "1.5rem auto",
   },
   tags: {
     display: "flex",

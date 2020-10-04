@@ -52,8 +52,7 @@ const styles: CSSObject = {
     marginTop: "0.5em",
   },
   item: {
-    marginTop: "1rem",
-    marginBottom: "1rem",
+    margin: "1.5rem auto",
   },
 };
 

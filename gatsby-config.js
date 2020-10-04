@@ -38,11 +38,12 @@ module.exports = {
               maxWidth: 960,
               linkImagesToOriginal: false,
               showCaptions: true,
-              wrapperStyle: `margin: 1rem auto;`,
+              wrapperStyle: `margin: 1.5rem auto;`,
               quality: 80,
             },
           },
           `gatsby-remark-images-medium-zoom`,
+          `gatsby-remark-copy-linked-files`,
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,
