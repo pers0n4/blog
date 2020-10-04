@@ -53,6 +53,7 @@
     "gatsby-remark-a11y-emoji": "^1.1.0",
     "gatsby-remark-abbr": "^2.0.0",
     "gatsby-remark-code-titles": "^1.1.0",
+    "gatsby-remark-copy-linked-files": "^2.3.18",
     "gatsby-remark-images": "^3.3.30",
     "gatsby-remark-images-medium-zoom": "^1.7.0",
     "gatsby-remark-prismjs": "^3.5.13",

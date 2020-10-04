@@ -43,6 +43,7 @@ module.exports = {
             },
           },
           `gatsby-remark-images-medium-zoom`,
+          `gatsby-remark-copy-linked-files`,
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,
