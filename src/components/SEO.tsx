@@ -38,7 +38,11 @@ const SEO: React.FC<Props> = ({
   const pageUrl = `${meta.siteUrl}${pathname}`;
 
   return (
-    <Helmet titleTemplate={`%s | ${meta.title}`} defaultTitle={meta.title}>
+    <Helmet
+      titleTemplate={`%s | ${meta.title}`}
+      defaultTitle={meta.title}
+      defer={false}
+    >
       <html lang="ko" prefix="og: https://ogp.me/ns#" />
 
       <title>{title}</title>
@@ -114,8 +118,8 @@ const SEO: React.FC<Props> = ({
 };
 
 SEO.defaultProps = {
-  title: undefined,
-  description: undefined,
+  title: "",
+  description: "",
   pathname: "",
   type: "website",
   children: undefined,
