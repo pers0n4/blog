@@ -6,7 +6,6 @@ import { Theme } from "@material-ui/core";
 
 import styles from "../../styles";
 import prism from "../../styles/prism";
-import SEO from "../../components/SEO";
 
 interface Props {
   children: React.ReactElement;
@@ -15,16 +14,13 @@ interface Props {
 
 const TopLayout: React.FC<Props> = ({ children, theme }: Props) => {
   return (
-    <>
-      <SEO />
-      <ThemeTopLayout theme={theme}>
-        <ThemeProvider theme={theme}>
-          <Global styles={styles} />
-          <Global styles={prism} />
-          {children}
-        </ThemeProvider>
-      </ThemeTopLayout>
-    </>
+    <ThemeTopLayout theme={theme}>
+      <ThemeProvider theme={theme}>
+        <Global styles={styles} />
+        <Global styles={prism} />
+        {children}
+      </ThemeProvider>
+    </ThemeTopLayout>
   );
 };
 
