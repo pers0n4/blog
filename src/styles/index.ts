@@ -34,6 +34,7 @@ const styles = (theme: Theme): SerializedStyles => css`
   }
 
   article img:not([class]) {
+    display: block;
     width: 100%;
     margin: 1.5rem auto;
   }

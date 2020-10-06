@@ -42,8 +42,8 @@ module.exports = {
               quality: 80,
             },
           },
-          `gatsby-remark-images-medium-zoom`,
           `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-images-medium-zoom`,
           `gatsby-remark-code-titles`,
           {
             resolve: `gatsby-remark-prismjs`,
@@ -150,7 +150,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        exclude: [`**/.draft`, `**/draft`],
+        exclude: [`/categories/*`, `/tags/*`, `**/.draft`, `**/draft`],
       },
     },
     `gatsby-plugin-robots-txt`,
@@ -204,7 +204,6 @@ module.exports = {
             `,
             output: `/rss.xml`,
             title: `Blog`,
-            match: `^((?!draft).)*$`,
           },
         ],
       },

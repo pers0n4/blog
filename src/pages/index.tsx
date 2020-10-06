@@ -1,6 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 
+import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
 import { ArticleListProps } from "../graphql";
@@ -12,9 +13,12 @@ const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {
     .map((edge) => <ArticleCard key={edge.node.id} node={edge.node} />);
 
   return (
-    <Layout>
-      <section>{articles}</section>
-    </Layout>
+    <>
+      <SEO />
+      <Layout>
+        <section>{articles}</section>
+      </Layout>
+    </>
   );
 };
 
