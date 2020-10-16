@@ -26,10 +26,7 @@ export default Index;
 
 export const query = graphql`
   query {
-    allMdx(
-      filter: { frontmatter: { draft: { ne: true } } }
-      sort: { order: DESC, fields: [frontmatter___date] }
-    ) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
           ...ArticleList
