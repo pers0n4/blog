@@ -56,7 +56,7 @@ export default Categories;
 
 export const query = graphql`
   query($field: MdxFieldsEnum = frontmatter___category) {
-    allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
+    allMdx {
       ...Group
     }
   }

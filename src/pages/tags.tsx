@@ -65,7 +65,7 @@ export default Tags;
 
 export const query = graphql`
   query($field: MdxFieldsEnum = frontmatter___tags) {
-    allMdx(filter: { frontmatter: { draft: { ne: true } } }) {
+    allMdx {
       ...Group
     }
   }

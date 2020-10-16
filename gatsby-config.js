@@ -150,7 +150,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        exclude: [`/categories/*`, `/tags/*`, `**/.draft`, `**/draft`],
+        exclude: [`/categories/*`, `/tags/*`],
       },
     },
     `gatsby-plugin-robots-txt`,
