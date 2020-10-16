@@ -3,4 +3,4 @@
   command = "gatsby build"
 [build.environment]
   NODE_VERSION = "12"
-  YARN_VERSION = "1.22"
+  YARN_VERSION = "1.22.5"
