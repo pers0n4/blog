@@ -1,16 +1,13 @@
 import * as React from "react";
-import {
-  createMuiTheme,
-  responsiveFontSizes,
-  Theme,
-} from "@material-ui/core/styles";
+import { createMuiTheme, Theme } from "@material-ui/core/styles";
 import { PaletteOptions } from "@material-ui/core/styles/createPalette";
+import { PaletteType, responsiveFontSizes } from "@material-ui/core";
 
+type ThemeOptions = (mode: PaletteType) => void;
 interface ThemeDispatch {
   type: "CHANGE_THEME";
-  palette: PaletteOptions;
+  mode: PaletteType;
 }
-type ThemeOptions = (options: PaletteOptions) => void;
 type ThemeReducer = (
   state: PaletteOptions,
   action: ThemeDispatch
@@ -22,12 +19,11 @@ export const DispatchContext = React.createContext<
   throw new Error("Forgot to wrap component in `ThemeProvider`");
 });
 
-export const themeReducer: ThemeReducer = (state, action) => {
+export const themeReducer: ThemeReducer = (_, action) => {
   switch (action.type) {
     case "CHANGE_THEME":
       return {
-        ...state,
-        ...action.palette,
+        ...basePalette(action.mode),
       };
     default:
       throw new Error(`Unrecognized type ${action.type}`);
@@ -36,54 +32,45 @@ export const themeReducer: ThemeReducer = (state, action) => {
 
 export const useChangeTheme = (): ThemeOptions => {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback(
-    (options) => dispatch({ type: "CHANGE_THEME", palette: options }),
-    [dispatch]
-  );
+  return React.useCallback((mode) => dispatch({ type: "CHANGE_THEME", mode }), [
+    dispatch,
+  ]);
 };
 
-export const basePalette: PaletteOptions = {
+export const basePalette: (palette: PaletteType) => PaletteOptions = (
+  palette
+) => ({
   primary: {
-    main: "#5f4b8b",
-    dark: "#00abc0",
+    main: palette === "light" ? "#5f4b8b" : "#00abc0",
   },
   secondary: {
-    main: "#373151",
+    main: palette === "light" ? "#0f4c81" : "#f0eee9",
   },
-};
+  type: palette,
+});
 
 // Default Theme: https://material-ui.com/customization/default-theme/
-export const baseTheme: Theme = responsiveFontSizes(
-  createMuiTheme({
-    palette: {
-      primary: {
-        main: "#5f4b8b",
-      },
-      secondary: {
-        main: "#373151",
-      },
+export const baseTheme: Theme = createMuiTheme({
+  typography: {
+    // htmlFontSize: 16,
+    fontFamily: [
+      "Roboto",
+      "Noto Sans KR",
+      "Noto Color Emoji",
+      "Noto Emoji",
+      "sans-serif",
+    ].join(", "),
+    // fontSize: 14,
+    h1: {
+      fontSize: "4rem",
     },
-    typography: {
-      // htmlFontSize: 16,
-      fontFamily: [
-        "Roboto",
-        "Noto Sans KR",
-        "Noto Color Emoji",
-        "Noto Emoji",
-        "sans-serif",
-      ].join(", "),
-      // fontSize: 14,
-      h1: {
-        fontSize: "4rem",
-      },
-      h2: {
-        fontSize: "3.25rem",
-      },
-      h3: {
-        fontSize: "2.75rem",
-      },
+    h2: {
+      fontSize: "3.25rem",
     },
-  })
-);
+    h3: {
+      fontSize: "2.75rem",
+    },
+  },
+});
 
-export default baseTheme;
+export default responsiveFontSizes(baseTheme);

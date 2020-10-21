@@ -125,7 +125,7 @@ const Header: React.FC<Props> = ({ title }: Props) => {
   const handleToggleTheme = () => {
     const mode = theme.palette.type === "light" ? "dark" : "light";
 
-    changeTheme({ type: mode });
+    changeTheme(mode);
   };
 
   return (

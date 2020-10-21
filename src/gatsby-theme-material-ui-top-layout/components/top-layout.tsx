@@ -23,7 +23,10 @@ interface Props {
 }
 
 const TopLayout: React.FC<Props> = ({ children }: Props) => {
-  const [palette, dispatch] = React.useReducer(themeReducer, basePalette);
+  const [palette, dispatch] = React.useReducer(
+    themeReducer,
+    basePalette("light")
+  );
 
   const theme: Theme = React.useMemo(
     () =>
