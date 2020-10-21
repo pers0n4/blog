@@ -47,7 +47,7 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
       </SEO>
       <Layout>
         <Article data={data} />
-        <Comment repo="pers0n4/blog" issue="pathname" theme="github-light" />
+        <Comment />
       </Layout>
     </>
   );
