@@ -2,8 +2,10 @@ import * as React from "react";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import clsx from "clsx";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import BrightnessDarkIcon from "@material-ui/icons/Brightness4";
+import BrightnessLightIcon from "@material-ui/icons/Brightness7";
 import CategoryIcon from "@material-ui/icons/Category";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Divider from "@material-ui/core/Divider";
@@ -18,6 +20,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+
+import { useChangeTheme } from "../gatsby-theme-material-ui-top-layout/theme";
 
 interface Props {
   title: string;
@@ -105,6 +109,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header: React.FC<Props> = ({ title }: Props) => {
+  const theme = useTheme();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -114,6 +119,13 @@ const Header: React.FC<Props> = ({ title }: Props) => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const changeTheme = useChangeTheme();
+  const handleToggleTheme = () => {
+    const mode = theme.palette.type === "light" ? "dark" : "light";
+
+    changeTheme({ type: mode });
   };
 
   return (
@@ -138,6 +150,13 @@ const Header: React.FC<Props> = ({ title }: Props) => {
           <Typography variant="h6" component="span" className={classes.title}>
             {title}
           </Typography>
+          <IconButton color="inherit" onClick={handleToggleTheme}>
+            {theme.palette.type === "light" ? (
+              <BrightnessDarkIcon />
+            ) : (
+              <BrightnessLightIcon />
+            )}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
