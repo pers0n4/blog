@@ -1,8 +1,8 @@
 import * as React from "react";
-import ThemeTopLayout from "gatsby-theme-material-ui-top-layout/src/components/top-layout";
+import { MuiThemeProvider, Theme } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
 import { Global } from "@emotion/core";
-import { ThemeProvider } from "emotion-theming";
-import { Theme } from "@material-ui/core";
+import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
 
 import styles from "../../styles";
 import prism from "../../styles/prism";
@@ -14,13 +14,14 @@ interface Props {
 
 const TopLayout: React.FC<Props> = ({ children, theme }: Props) => {
   return (
-    <ThemeTopLayout theme={theme}>
-      <ThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <EmotionThemeProvider theme={theme}>
         <Global styles={styles} />
         <Global styles={prism} />
         {children}
-      </ThemeProvider>
-    </ThemeTopLayout>
+      </EmotionThemeProvider>
+    </MuiThemeProvider>
   );
 };
 
