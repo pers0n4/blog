@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import { kebabCase } from "lodash";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -14,17 +14,19 @@ import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import { GroupProps } from "../graphql";
 
-const useStyles = makeStyles((theme) => ({
-  chips: {
-    display: "flex",
-    flexWrap: "wrap",
-    paddingTop: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-    "& > *": {
-      margin: theme.spacing(0.5),
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    chips: {
+      display: "flex",
+      flexWrap: "wrap",
+      paddingTop: theme.spacing(1),
+      paddingBottom: theme.spacing(1),
+      "& > *": {
+        margin: theme.spacing(0.5),
+      },
     },
-  },
-}));
+  })
+);
 
 const Tags: React.FC<GroupProps> = ({
   data: {

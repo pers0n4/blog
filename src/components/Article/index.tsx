@@ -4,7 +4,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { kebabCase } from "lodash";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Chip from "@material-ui/core/Chip";
 import Divider from "@material-ui/core/Divider";
@@ -16,23 +16,25 @@ import components from "./components";
 import { ArticleProps } from "../../graphql";
 import datetime from "../../utils/datetime";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: "1rem",
-  },
-  divider: {
-    margin: "1.5rem auto",
-  },
-  tags: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    marginTop: "1rem",
-    "& > *": {
-      margin: theme.spacing(0.5),
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+      padding: "1rem",
     },
-  },
-}));
+    divider: {
+      margin: "1.5rem auto",
+    },
+    tags: {
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      marginTop: "1rem",
+      "& > *": {
+        margin: theme.spacing(0.5),
+      },
+    },
+  })
+);
 
 const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();

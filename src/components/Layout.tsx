@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 
@@ -11,16 +11,18 @@ interface Props {
   children: React.ReactElement | React.ReactElement[];
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-  },
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
-}));
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      display: "flex",
+    },
+    content: {
+      flexGrow: 1,
+      height: "100vh",
+      overflow: "auto",
+    },
+  })
+);
 
 const Layout: React.FC<Props> = ({ children }: Props) => {
   const classes = useStyles();

@@ -1,18 +1,20 @@
 import * as React from "react";
 import { useLayoutEffect, useRef } from "react";
 
-import { makeStyles, useTheme } from "@material-ui/core";
+import { createStyles, makeStyles, useTheme } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
-const useStyles = makeStyles({
-  root: {
-    marginTop: "1.5rem",
-    padding: "1rem",
-    "& .utterances": {
-      maxWidth: "none",
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      marginTop: "1.5rem",
+      padding: "1rem",
+      "& .utterances": {
+        maxWidth: "none",
+      },
     },
-  },
-});
+  })
+);
 
 const Comment: React.FC = () => {
   const containerRef = useRef<HTMLElement>();

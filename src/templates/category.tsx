@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { Link } from "gatsby-theme-material-ui";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
@@ -17,11 +17,13 @@ interface Props extends ArticleListProps {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  articles: {
-    marginTop: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    articles: {
+      marginTop: theme.spacing(2),
+    },
+  })
+);
 
 const Category: React.FC<Props> = ({ pageContext, data }: Props) => {
   const classes = useStyles();
