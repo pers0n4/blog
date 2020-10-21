@@ -1,28 +1,25 @@
 import * as React from "react";
 import { useLayoutEffect, useRef } from "react";
 
-import { makeStyles } from "@material-ui/core";
+import { createStyles, makeStyles, useTheme } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
-interface Props {
-  repo: string;
-  issue: string;
-  theme: string;
-}
-
-const useStyles = makeStyles({
-  root: {
-    marginTop: "1.5rem",
-    padding: "1rem",
-    "& .utterances": {
-      maxWidth: "none",
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      marginTop: "1.5rem",
+      padding: "1rem",
+      "& .utterances": {
+        maxWidth: "none",
+      },
     },
-  },
-});
+  })
+);
 
-const Comment: React.FC<Props> = ({ repo, issue, theme }: Props) => {
+const Comment: React.FC = () => {
   const containerRef = useRef<HTMLElement>();
   const classes = useStyles();
+  const theme = useTheme().palette.type;
 
   useLayoutEffect(() => {
     const container = containerRef.current;
@@ -30,9 +27,9 @@ const Comment: React.FC<Props> = ({ repo, issue, theme }: Props) => {
 
     const config = {
       src: "https://utteranc.es/client.js",
-      repo,
-      "issue-term": issue,
-      theme,
+      repo: "pers0n4/blog",
+      "issue-term": "pathname",
+      theme: theme === "light" ? "github-light" : "github-dark",
       crossorigin: "anonymous",
       aync: "true",
     };
@@ -46,7 +43,7 @@ const Comment: React.FC<Props> = ({ repo, issue, theme }: Props) => {
     return () => {
       if (container?.firstChild) container?.removeChild(container.firstChild);
     };
-  }, [repo, issue, theme]);
+  }, [theme]);
 
   return (
     <Paper component="section" ref={containerRef} className={classes.root} />

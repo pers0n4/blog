@@ -2,7 +2,7 @@ import * as React from "react";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import { kebabCase } from "lodash";
 
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -19,24 +19,26 @@ interface Props {
   node: MDXNode;
 }
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    "& + &": {
-      marginTop: "1.5rem",
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    card: {
+      "& + &": {
+        marginTop: "1.5rem",
+      },
     },
-  },
-  date: {
-    fontSize: "0.875rem",
-  },
-  tags: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignItems: "center",
-    "& > *": {
-      margin: theme.spacing(0.5),
+    date: {
+      fontSize: "0.875rem",
     },
-  },
-}));
+    tags: {
+      display: "flex",
+      flexWrap: "wrap",
+      alignItems: "center",
+      "& > *": {
+        margin: theme.spacing(0.5),
+      },
+    },
+  })
+);
 
 const ArticleCard: React.FC<Props> = (props: Props) => {
   const {

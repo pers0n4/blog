@@ -153,7 +153,18 @@ module.exports = {
         exclude: [`/categories/*`, `/tags/*`],
       },
     },
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        policy: [
+          {
+            userAgent: `*`,
+            allow: `/`,
+            disallow: [`/categories/*`, `/tags/*`],
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {

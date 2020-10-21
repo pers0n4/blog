@@ -44,6 +44,10 @@ const SEO: React.FC<Props> = ({
       defer={false}
     >
       <html lang="ko" prefix="og: https://ogp.me/ns#" />
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+      />
 
       <title>{title}</title>
       <meta name="description" content={pageDescription} />
