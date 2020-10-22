@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GatsbyLink } from "gatsby-theme-material-ui";
-import { kebabCase } from "lodash";
+import { toLower } from "lodash";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -57,7 +57,7 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
         label={tag}
         clickable
         component={GatsbyLink}
-        to={`/tags/${kebabCase(tag)}`}
+        to={`/tags/${toLower(tag)}`}
         key={tag}
       />
     ));

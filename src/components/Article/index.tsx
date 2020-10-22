@@ -2,7 +2,7 @@ import * as React from "react";
 import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { kebabCase } from "lodash";
+import { kebabCase, toLower } from "lodash";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -49,7 +49,7 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           label={tag}
           clickable
           component={GatsbyLink}
-          to={`/tags/${kebabCase(tag)}`}
+          to={`/tags/${toLower(tag)}`}
           key={tag}
         />
       ))}
