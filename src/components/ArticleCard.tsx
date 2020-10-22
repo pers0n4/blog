@@ -1,6 +1,6 @@
 import * as React from "react";
-import { GatsbyLink, Link } from "gatsby-theme-material-ui";
-import { kebabCase, toLower } from "lodash";
+import { GatsbyLink } from "gatsby-theme-material-ui";
+import { toLower } from "lodash";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
@@ -76,9 +76,7 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
                 component="p"
                 color="textSecondary"
               >
-                <Link href={`/categories/${kebabCase(category)}/`}>
-                  {category}
-                </Link>
+                {category}
               </Typography>
             )}
           </Breadcrumbs>
