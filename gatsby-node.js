@@ -51,7 +51,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   _.each(result.data.allMdx.categories, (category) => {
     createPage({
-      path: `/categories/${_.lowerCase(category.fieldValue)}`,
+      path: `/categories/${_.kebabCase(category.fieldValue)}`,
       component: require.resolve(`./src/templates/category.tsx`),
       context: {
         category: category.fieldValue,
@@ -61,7 +61,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   _.each(result.data.allMdx.tags, (tag) => {
     createPage({
-      path: `/tags/${_.lowerCase(tag.fieldValue)}`,
+      path: `/tags/${_.toLower(tag.fieldValue)}`,
       component: require.resolve(`./src/templates/tag.tsx`),
       context: {
         tag: tag.fieldValue,
