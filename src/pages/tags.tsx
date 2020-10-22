@@ -1,7 +1,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyLink } from "gatsby-theme-material-ui";
-import { kebabCase } from "lodash";
+import { toLower } from "lodash";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -41,7 +41,7 @@ const Tags: React.FC<GroupProps> = ({
       label={tag.fieldValue}
       clickable
       component={GatsbyLink}
-      to={`/tags/${kebabCase(tag.fieldValue)}`}
+      to={`/tags/${toLower(tag.fieldValue)}/`}
       key={tag.fieldValue}
     />
   ));

@@ -3,8 +3,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const _ = require("lodash");
 /* eslint-enable */
 
-const normalizePath = (path) => path.replace(/\/$/, ``);
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -38,20 +36,19 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   _.each(result.data.allMdx.edges, ({ node }) => {
-    const slug = normalizePath(node.fields.slug);
+    const { slug } = node.fields;
     createPage({
       path: slug,
       component: require.resolve(`./src/templates/article.tsx`),
       context: {
         id: node.id,
-        slug,
       },
     });
   });
 
   _.each(result.data.allMdx.categories, (category) => {
     createPage({
-      path: `/categories/${_.lowerCase(category.fieldValue)}`,
+      path: `/categories/${_.kebabCase(category.fieldValue)}`,
       component: require.resolve(`./src/templates/category.tsx`),
       context: {
         category: category.fieldValue,
@@ -61,7 +58,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   _.each(result.data.allMdx.tags, (tag) => {
     createPage({
-      path: `/tags/${_.lowerCase(tag.fieldValue)}`,
+      path: `/tags/${_.toLower(tag.fieldValue)}`,
       component: require.resolve(`./src/templates/tag.tsx`),
       context: {
         tag: tag.fieldValue,
@@ -72,9 +69,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
-
   if (node.internal.type === `Mdx`) {
-    const path = normalizePath(createFilePath({ node, getNode }));
+    const path = createFilePath({ node, getNode });
     createNodeField({
       node,
       name: `slug`,

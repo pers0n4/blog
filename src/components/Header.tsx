@@ -35,13 +35,13 @@ const HeaderItems = (
       </ListItemIcon>
       <ListItemText primary="Home" />
     </ListItem>
-    <ListItem button component={GatsbyLink} to="/categories">
+    <ListItem button component={GatsbyLink} to="/categories/">
       <ListItemIcon>
         <CategoryIcon />
       </ListItemIcon>
       <ListItemText primary="Categories" />
     </ListItem>
-    <ListItem button component={GatsbyLink} to="/tags">
+    <ListItem button component={GatsbyLink} to="/tags/">
       <ListItemIcon>
         <LabelIcon />
       </ListItemIcon>
