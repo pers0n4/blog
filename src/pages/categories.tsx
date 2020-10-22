@@ -25,7 +25,7 @@ const Categories: React.FC<GroupProps> = ({
     <ListItem
       button
       component={GatsbyLink}
-      to={`/categories/${kebabCase(category.fieldValue)}`}
+      to={`/categories/${kebabCase(category.fieldValue)}/`}
       key={category.fieldValue}
     >
       <ListItemText primary={category.fieldValue} />

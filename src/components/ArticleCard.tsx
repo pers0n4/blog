@@ -57,7 +57,7 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
         label={tag}
         clickable
         component={GatsbyLink}
-        to={`/tags/${toLower(tag)}`}
+        to={`/tags/${toLower(tag)}/`}
         key={tag}
       />
     ));
@@ -76,7 +76,7 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
                 component="p"
                 color="textSecondary"
               >
-                <Link href={`/categories/${kebabCase(category)}`}>
+                <Link href={`/categories/${kebabCase(category)}/`}>
                   {category}
                 </Link>
               </Typography>

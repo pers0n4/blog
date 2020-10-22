@@ -13,7 +13,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-typescript`,
     `gatsby-plugin-catch-links`,
-    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {

@@ -41,7 +41,7 @@ const Tags: React.FC<GroupProps> = ({
       label={tag.fieldValue}
       clickable
       component={GatsbyLink}
-      to={`/tags/${toLower(tag.fieldValue)}`}
+      to={`/tags/${toLower(tag.fieldValue)}/`}
       key={tag.fieldValue}
     />
   ));

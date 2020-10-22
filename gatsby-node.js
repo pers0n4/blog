@@ -3,8 +3,6 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 const _ = require("lodash");
 /* eslint-enable */
 
-const normalizePath = (path) => path.replace(/\/$/, ``);
-
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
@@ -38,7 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   _.each(result.data.allMdx.edges, ({ node }) => {
-    const slug = normalizePath(node.fields.slug);
+    const { slug } = node.fields;
     createPage({
       path: slug,
       component: require.resolve(`./src/templates/article.tsx`),
@@ -72,7 +70,7 @@ exports.createPages = async ({ graphql, actions }) => {
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `Mdx`) {
-    const path = normalizePath(createFilePath({ node, getNode }));
+    const path = createFilePath({ node, getNode });
     createNodeField({
       node,
       name: `slug`,
