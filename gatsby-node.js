@@ -44,7 +44,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve(`./src/templates/article.tsx`),
       context: {
         id: node.id,
-        slug,
       },
     });
   });
@@ -72,7 +71,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
-
   if (node.internal.type === `Mdx`) {
     const path = normalizePath(createFilePath({ node, getNode }));
     createNodeField({
