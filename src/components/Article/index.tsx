@@ -68,7 +68,9 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           </Typography>
         )}
       </Breadcrumbs>
-      <Typography variant="h1">{title}</Typography>
+      <Typography variant="h2" component="h1">
+        {title}
+      </Typography>
       <Divider className={classes.divider} />
     </header>
   );
