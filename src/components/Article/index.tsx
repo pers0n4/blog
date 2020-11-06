@@ -5,10 +5,10 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
-import components from "./components";
 import { ArticleProps } from "../../graphql";
 import ArticleHeader from "./ArticleHeader";
 import ArticleFooter from "./ArticleFooter";
+import MDXComponents from "./MDXComponents";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

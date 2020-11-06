@@ -58,7 +58,7 @@ const styles: CSSObject = {
 
 // ANCHOR components
 
-const components: MDXProviderComponents = {
+const MDXComponents: MDXProviderComponents = {
   p: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="body1"
@@ -189,4 +189,4 @@ const components: MDXProviderComponents = {
   },
 };
 
-export default components;
+export default MDXComponents;
