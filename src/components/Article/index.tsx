@@ -34,13 +34,17 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
 
+  const ArticleContent = () => (
+    <div>
+      <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
+    </div>
+  );
+
   return (
-    <MDXProvider components={components}>
+    <MDXProvider components={MDXComponents}>
       <Paper component="article" className={classes.root}>
         <ArticleHeader title={title} date={date} category={category} />
-        <div>
-          <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
-        </div>
+        <ArticleContent />
         {tags && <ArticleFooter tags={tags} />}
       </Paper>
     </MDXProvider>
