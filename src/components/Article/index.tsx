@@ -1,36 +1,31 @@
 import * as React from "react";
-import { GatsbyLink, Link } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { kebabCase, toLower } from "lodash";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Chip from "@material-ui/core/Chip";
-import Divider from "@material-ui/core/Divider";
-import LabelIcon from "@material-ui/icons/Label";
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 
-import components from "./components";
 import { ArticleProps } from "../../graphql";
-import datetime from "../../utils/datetime";
+import ArticleHeader from "./ArticleHeader";
+import ArticleFooter from "./ArticleFooter";
+import ArticleComments from "./ArticleComments";
+import MDXComponents from "./MDXComponents";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    article: {
       padding: "1rem",
     },
-    divider: {
-      margin: "1.5rem auto",
-    },
-    tags: {
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
-      marginTop: "1rem",
-      "& > *": {
-        margin: theme.spacing(0.5),
+    comments: {
+      marginTop: "1.5rem",
+      padding: "1rem",
+      "& .utterances": {
+        maxWidth: "none",
       },
     },
   })
@@ -40,48 +35,40 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
 
-  const Footer = tags ? (
-    <footer className={classes.tags}>
-      <LabelIcon color="action" />
-      {tags.map((tag) => (
-        <Chip
-          size="small"
-          label={tag}
-          clickable
-          component={GatsbyLink}
-          to={`/tags/${toLower(tag)}/`}
-          key={tag}
-        />
-      ))}
-    </footer>
-  ) : null;
-
-  const Header = (
-    <header>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Typography variant="subtitle2" component="p" color="textSecondary">
-          {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
-        </Typography>
-        {category && (
-          <Typography variant="subtitle2" component="p" color="textSecondary">
-            <Link href={`/categories/${kebabCase(category)}/`}>{category}</Link>
-          </Typography>
-        )}
-      </Breadcrumbs>
-      <Typography variant="h1">{title}</Typography>
-      <Divider className={classes.divider} />
-    </header>
+  const ArticleContent = () => (
+    <div>
+      <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
+    </div>
   );
 
   return (
-    <MDXProvider components={components}>
-      <Paper component="article" className={classes.root}>
-        {Header}
-        <div>
-          <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
-        </div>
-        {Footer}
-      </Paper>
+    <MDXProvider components={MDXComponents}>
+      <ThemeProvider
+        theme={(theme: Theme) => ({
+          ...theme,
+          overrides: {
+            MuiDivider: {
+              root: {
+                margin: "1.5rem auto",
+              },
+            },
+            MuiTableContainer: {
+              root: {
+                margin: "1.5rem auto",
+              },
+            },
+          },
+        })}
+      >
+        <Paper component="article" className={classes.article}>
+          <ArticleHeader title={title} date={date} category={category} />
+          <ArticleContent />
+          {tags && <ArticleFooter tags={tags} />}
+        </Paper>
+        <Paper component="section" className={classes.comments}>
+          <ArticleComments />
+        </Paper>
+      </ThemeProvider>
     </MDXProvider>
   );
 };

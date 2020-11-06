@@ -21,7 +21,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import { useChangeTheme } from "../gatsby-theme-material-ui-top-layout/theme";
+import { useChangeTheme } from "../../gatsby-theme-material-ui-top-layout/theme";
 
 interface Props {
   title: string;
@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const Header: React.FC<Props> = ({ title }: Props) => {
+const LayoutHeader: React.FC<Props> = ({ title }: Props) => {
   const theme = useTheme();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -180,4 +180,4 @@ const Header: React.FC<Props> = ({ title }: Props) => {
   );
 };
 
-export default Header;
+export default LayoutHeader;

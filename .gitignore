@@ -56,7 +56,6 @@ typings/
 
 # gatsby files
 .cache/
-.draft/
 public
 
 # Mac files
@@ -71,3 +70,5 @@ yarn-error.log
 
 # Workspace settings
 .vscode/
+.history/
+.draft/

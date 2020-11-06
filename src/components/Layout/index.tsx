@@ -5,7 +5,7 @@ import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import Header from "./Header";
+import LayoutHeader from "./LayoutHeader";
 
 interface Props {
   children: React.ReactElement | React.ReactElement[];
@@ -40,7 +40,7 @@ const Layout: React.FC<Props> = ({ children }: Props) => {
 
   return (
     <div className={classes.root}>
-      <Header title={data.site.siteMetadata.title} />
+      <LayoutHeader title={data.site.siteMetadata.title} />
       <div className={classes.content}>
         <Toolbar />
         <Container

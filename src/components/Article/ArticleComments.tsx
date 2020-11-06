@@ -1,24 +1,10 @@
 import * as React from "react";
 import { useLayoutEffect, useRef } from "react";
 
-import { createStyles, makeStyles, useTheme } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
+import { useTheme } from "@material-ui/core";
 
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      marginTop: "1.5rem",
-      padding: "1rem",
-      "& .utterances": {
-        maxWidth: "none",
-      },
-    },
-  })
-);
-
-const Comment: React.FC = () => {
-  const containerRef = useRef<HTMLElement>();
-  const classes = useStyles();
+const ArticleComments: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const theme = useTheme().palette.type;
 
   useLayoutEffect(() => {
@@ -45,9 +31,7 @@ const Comment: React.FC = () => {
     };
   }, [theme]);
 
-  return (
-    <Paper component="section" ref={containerRef} className={classes.root} />
-  );
+  return <div ref={containerRef} />;
 };
 
-export default React.memo(Comment);
+export default React.memo(ArticleComments);
