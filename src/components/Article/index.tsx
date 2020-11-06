@@ -13,12 +13,20 @@ import Paper from "@material-ui/core/Paper";
 import { ArticleProps } from "../../graphql";
 import ArticleHeader from "./ArticleHeader";
 import ArticleFooter from "./ArticleFooter";
+import ArticleComments from "./ArticleComments";
 import MDXComponents from "./MDXComponents";
 
 const useStyles = makeStyles(() =>
   createStyles({
-    root: {
+    article: {
       padding: "1rem",
+    },
+    comments: {
+      marginTop: "1.5rem",
+      padding: "1rem",
+      "& .utterances": {
+        maxWidth: "none",
+      },
     },
   })
 );
@@ -52,10 +60,13 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           },
         })}
       >
-        <Paper component="article" className={classes.root}>
+        <Paper component="article" className={classes.article}>
           <ArticleHeader title={title} date={date} category={category} />
           <ArticleContent />
           {tags && <ArticleFooter tags={tags} />}
+        </Paper>
+        <Paper component="section" className={classes.comments}>
+          <ArticleComments />
         </Paper>
       </ThemeProvider>
     </MDXProvider>
