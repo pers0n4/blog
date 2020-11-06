@@ -1,20 +1,17 @@
 import * as React from "react";
-import { GatsbyLink, Link } from "gatsby-theme-material-ui";
+import { GatsbyLink } from "gatsby-theme-material-ui";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
-import { kebabCase, toLower } from "lodash";
+import { toLower } from "lodash";
 
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Chip from "@material-ui/core/Chip";
-import Divider from "@material-ui/core/Divider";
 import LabelIcon from "@material-ui/icons/Label";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
 
 import components from "./components";
 import { ArticleProps } from "../../graphql";
-import datetime from "../../utils/datetime";
+import ArticleHeader from "./ArticleHeader";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -56,29 +53,10 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
     </footer>
   ) : null;
 
-  const Header = (
-    <header>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Typography variant="subtitle2" component="p" color="textSecondary">
-          {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
-        </Typography>
-        {category && (
-          <Typography variant="subtitle2" component="p" color="textSecondary">
-            <Link href={`/categories/${kebabCase(category)}/`}>{category}</Link>
-          </Typography>
-        )}
-      </Breadcrumbs>
-      <Typography variant="h2" component="h1">
-        {title}
-      </Typography>
-      <Divider className={classes.divider} />
-    </header>
-  );
-
   return (
     <MDXProvider components={components}>
       <Paper component="article" className={classes.root}>
-        {Header}
+        <ArticleHeader title={title} date={date} category={category} />
         <div>
           <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
         </div>
