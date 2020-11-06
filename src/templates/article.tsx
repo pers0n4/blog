@@ -4,7 +4,6 @@ import { graphql } from "gatsby";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import Article from "../components/Article";
-import Comment from "../components/Comment";
 import { ArticleProps, SiteProps } from "../graphql";
 
 type Props = ArticleProps & SiteProps;
@@ -47,7 +46,6 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
       </SEO>
       <Layout>
         <Article data={data} />
-        <Comment />
       </Layout>
     </>
   );

@@ -51,14 +51,11 @@ const styles: CSSObject = {
   header: {
     marginTop: "0.5em",
   },
-  item: {
-    margin: "1.5rem auto",
-  },
 };
 
 // ANCHOR components
 
-const components: MDXProviderComponents = {
+const MDXComponents: MDXProviderComponents = {
   p: ({ children, className }: BaseProps): React.ReactElement => (
     <Typography
       variant="body1"
@@ -131,7 +128,7 @@ const components: MDXProviderComponents = {
     </Typography>
   ),
   table: ({ children, className }: BaseProps): React.ReactElement => (
-    <TableContainer component={Paper} className={className} css={styles.item}>
+    <TableContainer component={Paper} className={className}>
       <Table>{children}</Table>
     </TableContainer>
   ),
@@ -164,7 +161,7 @@ const components: MDXProviderComponents = {
       {children}
     </Typography>
   ),
-  hr: (): React.ReactElement => <Divider css={styles.item} />,
+  hr: (): React.ReactElement => <Divider />,
   a: ({
     children,
     className,
@@ -189,4 +186,4 @@ const components: MDXProviderComponents = {
   },
 };
 
-export default components;
+export default MDXComponents;

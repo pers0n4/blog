@@ -1,7 +1,7 @@
 import { css, SerializedStyles } from "@emotion/core";
 import { Theme } from "@material-ui/core";
 
-const styles = (theme: Theme): SerializedStyles => css`
+const globalStyles = (theme: Theme): SerializedStyles => css`
   ol,
   ul {
     margin-top: 0.5rem;
@@ -75,4 +75,4 @@ const styles = (theme: Theme): SerializedStyles => css`
   }
 `;
 
-export default styles;
+export default globalStyles;
