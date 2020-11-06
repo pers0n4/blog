@@ -2,7 +2,12 @@ import * as React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
 import { ArticleProps } from "../../graphql";
@@ -10,22 +15,10 @@ import ArticleHeader from "./ArticleHeader";
 import ArticleFooter from "./ArticleFooter";
 import MDXComponents from "./MDXComponents";
 
-const useStyles = makeStyles((theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       padding: "1rem",
-    },
-    divider: {
-      margin: "1.5rem auto",
-    },
-    tags: {
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
-      marginTop: "1rem",
-      "& > *": {
-        margin: theme.spacing(0.5),
-      },
     },
   })
 );
@@ -42,11 +35,29 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
 
   return (
     <MDXProvider components={MDXComponents}>
-      <Paper component="article" className={classes.root}>
-        <ArticleHeader title={title} date={date} category={category} />
-        <ArticleContent />
-        {tags && <ArticleFooter tags={tags} />}
-      </Paper>
+      <ThemeProvider
+        theme={(theme: Theme) => ({
+          ...theme,
+          overrides: {
+            MuiDivider: {
+              root: {
+                margin: "1.5rem auto",
+              },
+            },
+            MuiTableContainer: {
+              root: {
+                margin: "1.5rem auto",
+              },
+            },
+          },
+        })}
+      >
+        <Paper component="article" className={classes.root}>
+          <ArticleHeader title={title} date={date} category={category} />
+          <ArticleContent />
+          {tags && <ArticleFooter tags={tags} />}
+        </Paper>
+      </ThemeProvider>
     </MDXProvider>
   );
 };
