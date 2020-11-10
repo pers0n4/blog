@@ -16,8 +16,7 @@ import {
   DispatchContext,
   themeReducer,
 } from "../theme";
-import global from "../styles/global";
-import prism from "../styles/prism";
+import styles from "../styles";
 
 interface Props {
   children: React.ReactElement;
@@ -47,8 +46,7 @@ const TopLayout: React.FC<Props> = ({ children }: Props) => {
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <EmotionThemeProvider theme={theme}>
-          <Global styles={global} />
-          <Global styles={prism} />
+          <Global styles={styles} />
           {children}
         </EmotionThemeProvider>
       </MuiThemeProvider>
