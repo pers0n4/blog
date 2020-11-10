@@ -14,6 +14,7 @@ import { ArticleProps } from "../../graphql";
 import ArticleHeader from "./ArticleHeader";
 import ArticleFooter from "./ArticleFooter";
 import ArticleComments from "./ArticleComments";
+import ArticleTableOfContents from "./ArticleTableOfContents";
 import MDXComponents from "./MDXComponents";
 
 const useStyles = makeStyles(() =>
@@ -34,6 +35,7 @@ const useStyles = makeStyles(() =>
 const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
+  const toc = mdx.tableOfContents;
 
   const ArticleContent = () => (
     <div>
@@ -60,6 +62,9 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           },
         })}
       >
+        {toc && Object.keys(toc).length !== 0 && (
+          <ArticleTableOfContents toc={toc} />
+        )}
         <Paper component="article" className={classes.article}>
           <ArticleHeader title={title} date={date} category={category} />
           <ArticleContent />
@@ -73,4 +78,4 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   );
 };
 
-export default Article;
+export default React.memo(Article);

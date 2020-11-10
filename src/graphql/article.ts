@@ -1,5 +1,11 @@
 import { graphql } from "gatsby";
 
+export interface TocItem {
+  url: string;
+  title: string;
+  items: TocItem[];
+}
+
 export interface MDXNode {
   id: string;
   body?: string;
@@ -12,6 +18,9 @@ export interface MDXNode {
     date: string;
     category?: string;
     tags?: string[];
+  };
+  tableOfContents?: {
+    items: TocItem[];
   };
 }
 
@@ -53,5 +62,6 @@ export const query = graphql`
   fragment Article on Mdx {
     ...ArticleList
     body
+    tableOfContents
   }
 `;
