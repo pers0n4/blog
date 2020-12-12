@@ -13,6 +13,18 @@ type ThemeReducer = (
   action: ThemeDispatch
 ) => PaletteOptions;
 
+export const basePalette: (palette: PaletteType) => PaletteOptions = (
+  palette
+) => ({
+  primary: {
+    main: palette === "light" ? "#5f4b8b" : "#00abc0",
+  },
+  secondary: {
+    main: palette === "light" ? "#0f4c81" : "#f0eee9",
+  },
+  type: palette,
+});
+
 export const DispatchContext = React.createContext<
   React.Dispatch<ThemeDispatch>
 >(() => {
@@ -36,18 +48,6 @@ export const useChangeTheme = (): ThemeOptions => {
     dispatch,
   ]);
 };
-
-export const basePalette: (palette: PaletteType) => PaletteOptions = (
-  palette
-) => ({
-  primary: {
-    main: palette === "light" ? "#5f4b8b" : "#00abc0",
-  },
-  secondary: {
-    main: palette === "light" ? "#0f4c81" : "#f0eee9",
-  },
-  type: palette,
-});
 
 // Default Theme: https://material-ui.com/customization/default-theme/
 export const baseTheme: Theme = createMuiTheme({
