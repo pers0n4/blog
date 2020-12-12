@@ -5,16 +5,17 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import {
   createStyles,
   makeStyles,
-  Theme,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import type { Theme } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
-import { ArticleProps } from "../../graphql";
+import MDXComponents from "./MDXComponents";
 import ArticleHeader from "./ArticleHeader";
 import ArticleFooter from "./ArticleFooter";
 import ArticleComments from "./ArticleComments";
-import MDXComponents from "./MDXComponents";
+import ArticleTableOfContents from "./ArticleTableOfContents";
+import type { ArticleProps } from "../../graphql";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -34,6 +35,7 @@ const useStyles = makeStyles(() =>
 const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
+  const toc = mdx.tableOfContents;
 
   const ArticleContent = () => (
     <div>
@@ -60,6 +62,9 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           },
         })}
       >
+        {toc && Object.keys(toc).length !== 0 && (
+          <ArticleTableOfContents toc={toc} />
+        )}
         <Paper component="article" className={classes.article}>
           <ArticleHeader title={title} date={date} category={category} />
           <ArticleContent />
@@ -73,4 +78,4 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   );
 };
 
-export default Article;
+export default React.memo(Article);

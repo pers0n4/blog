@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
-import { ArticleListProps } from "../graphql";
+import type { ArticleListProps } from "../graphql";
 
 const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {
   const { edges } = data.allMdx;

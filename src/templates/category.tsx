@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
-import { ArticleListProps } from "../graphql";
+import type { ArticleListProps } from "../graphql";
 
 interface Props extends ArticleListProps {
   pageContext: {

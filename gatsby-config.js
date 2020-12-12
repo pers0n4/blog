@@ -80,12 +80,10 @@ module.exports = {
           `gatsby-remark-abbr`,
           `gatsby-remark-sub-sup`,
         ],
-        /* eslint-disable global-require */
         remarkPlugins: [
           require("remark-emoji"),
           require("remark-unwrap-images"),
         ],
-        /* eslint-enable */
       },
     },
     {

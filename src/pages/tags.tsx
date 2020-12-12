@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
-import { GroupProps } from "../graphql";
+import type { GroupProps } from "../graphql";
 
 const useStyles = makeStyles((theme) =>
   createStyles({

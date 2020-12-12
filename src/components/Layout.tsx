@@ -1,4 +1,5 @@
 import * as React from "react";
+import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import clsx from "clsx";
 
@@ -8,6 +9,7 @@ import BrightnessDarkIcon from "@material-ui/icons/Brightness4";
 import BrightnessLightIcon from "@material-ui/icons/Brightness7";
 import CategoryIcon from "@material-ui/icons/Category";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import HomeIcon from "@material-ui/icons/Home";
@@ -21,47 +23,21 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 
-import { useChangeTheme } from "../../gatsby-theme-material-ui-top-layout/theme";
+import { useChangeTheme } from "../gatsby-theme-material-ui-top-layout/theme";
 
 interface Props {
-  title: string;
+  children: React.ReactElement | React.ReactElement[];
 }
 
-const HeaderItems = (
-  <>
-    <ListItem button component={GatsbyLink} to="/">
-      <ListItemIcon>
-        <HomeIcon />
-      </ListItemIcon>
-      <ListItemText primary="Home" />
-    </ListItem>
-    <ListItem button component={GatsbyLink} to="/categories/">
-      <ListItemIcon>
-        <CategoryIcon />
-      </ListItemIcon>
-      <ListItemText primary="Categories" />
-    </ListItem>
-    <ListItem button component={GatsbyLink} to="/tags/">
-      <ListItemIcon>
-        <LabelIcon />
-      </ListItemIcon>
-      <ListItemText primary="Tags" />
-    </ListItem>
-  </>
-);
-
 const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) =>
   createStyles({
-    toolbar: {
-      paddingRight: 24, // keep right padding when drawer closed
-    },
-    toolbarIcon: {
+    root: {
       display: "flex",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      padding: "0 8px",
-      ...theme.mixins.toolbar,
+    },
+    title: {
+      flexGrow: 1,
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -81,38 +57,68 @@ const useStyles = makeStyles((theme) =>
     menuButton: {
       marginRight: 36,
     },
-    menuButtonHidden: {
+    hide: {
       display: "none",
     },
-    title: {
-      flexGrow: 1,
-    },
-    drawerPaper: {
-      position: "relative",
+    drawer: {
+      width: drawerWidth,
+      flexShrink: 0,
       whiteSpace: "nowrap",
+    },
+    drawerOpen: {
       width: drawerWidth,
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
-    drawerPaperClose: {
-      overflowX: "hidden",
+    drawerClose: {
       transition: theme.transitions.create("width", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+      overflowX: "hidden",
+      // width: theme.spacing(7) + 1,
+      // [theme.breakpoints.up("sm")]: {
+      //   width: theme.spacing(9) + 1,
+      // },
+      // ListItem (theme.mixins.)gutters + SvgIcon font-size
       width: `calc(32px + ${theme.typography.pxToRem(24)})`,
       [theme.breakpoints.down("sm")]: {
         width: 0,
       },
     },
+    toolbar: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-end",
+      padding: theme.spacing(0, 1),
+      // necessary for content to be below app bar
+      ...theme.mixins.toolbar,
+    },
+    content: {
+      flexGrow: 1,
+      // padding: theme.spacing(3),
+    },
   })
 );
 
-const LayoutHeader: React.FC<Props> = ({ title }: Props) => {
-  const theme = useTheme();
+const Layout: React.FC<Props> = ({ children }: Props) => {
   const classes = useStyles();
+  const theme = useTheme();
+
+  const data = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  );
+
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -131,26 +137,32 @@ const LayoutHeader: React.FC<Props> = ({ title }: Props) => {
   };
 
   return (
-    <>
+    <div className={classes.root}>
       <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
       >
-        <Toolbar className={classes.toolbar}>
+        <Toolbar>
           <IconButton
-            edge="start"
             color="inherit"
             aria-label="open drawer"
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
             onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="span" className={classes.title}>
-            {title}
+          <Typography
+            variant="h6"
+            component="span"
+            className={classes.title}
+            noWrap
+          >
+            {data.site.siteMetadata.title}
           </Typography>
           <IconButton color="inherit" onClick={handleToggleTheme}>
             {theme.palette.type === "light" ? (
@@ -161,23 +173,59 @@ const LayoutHeader: React.FC<Props> = ({ title }: Props) => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{HeaderItems}</List>
-      </Drawer>
-    </>
+      <nav>
+        <Drawer
+          variant="permanent"
+          className={clsx(classes.drawer, {
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          })}
+          classes={{
+            paper: clsx({
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            }),
+          }}
+        >
+          <div className={classes.toolbar}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List>
+            <ListItem button component={GatsbyLink} to="/">
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem button component={GatsbyLink} to="/categories/">
+              <ListItemIcon>
+                <CategoryIcon />
+              </ListItemIcon>
+              <ListItemText primary="Categories" />
+            </ListItem>
+            <ListItem button component={GatsbyLink} to="/tags/">
+              <ListItemIcon>
+                <LabelIcon />
+              </ListItemIcon>
+              <ListItemText primary="Tags" />
+            </ListItem>
+          </List>
+        </Drawer>
+      </nav>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Container
+          maxWidth="md"
+          style={{ marginTop: "32px", marginBottom: "10vh" }}
+        >
+          {children}
+        </Container>
+      </main>
+    </div>
   );
 };
 
-export default LayoutHeader;
+export default Layout;

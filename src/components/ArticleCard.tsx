@@ -12,8 +12,8 @@ import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
 import Typography from "@material-ui/core/Typography";
 
-import { MDXNode } from "../graphql";
 import datetime from "../utils/datetime";
+import type { MDXNode } from "../graphql";
 
 interface Props {
   node: MDXNode;

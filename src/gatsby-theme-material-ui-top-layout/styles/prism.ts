@@ -1,5 +1,6 @@
-import { css, SerializedStyles } from "@emotion/core";
-import { Theme } from "@material-ui/core";
+import { css } from "@emotion/core";
+import type { SerializedStyles } from "@emotion/core";
+import type { Theme } from "@material-ui/core";
 
 const config = {
   margin: {
