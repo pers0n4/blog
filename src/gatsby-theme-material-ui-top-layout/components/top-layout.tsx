@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Global } from "@emotion/core";
-import { ThemeProvider as EmotionThemeProvider } from "emotion-theming";
+import { Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 
 import {
   createMuiTheme,

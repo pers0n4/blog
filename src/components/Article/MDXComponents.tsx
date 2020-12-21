@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "gatsby-theme-material-ui";
 import { MDXProviderComponents } from "@mdx-js/react";
-import { css } from "@emotion/core";
-import type { CSSObject } from "@emotion/core";
+import { css } from "@emotion/react";
+import type { CSSObject } from "@emotion/react";
 import { replace, toLower } from "lodash";
 
 import Checkbox from "@material-ui/core/Checkbox";

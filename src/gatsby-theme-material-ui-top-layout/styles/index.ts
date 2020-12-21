@@ -1,4 +1,4 @@
-import type { SerializedStyles } from "@emotion/core";
+import type { SerializedStyles } from "@emotion/react";
 import type { Theme } from "@material-ui/core";
 
 import global from "./global";

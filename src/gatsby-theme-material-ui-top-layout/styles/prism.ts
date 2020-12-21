@@ -1,5 +1,5 @@
-import { css } from "@emotion/core";
-import type { SerializedStyles } from "@emotion/core";
+import { css } from "@emotion/react";
+import type { SerializedStyles } from "@emotion/react";
 import type { Theme } from "@material-ui/core";
 
 const config = {

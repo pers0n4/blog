@@ -1,6 +1,6 @@
 import * as React from "react";
 import { navigate } from "gatsby";
-import { css } from "@emotion/core";
+import { css } from "@emotion/react";
 
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
