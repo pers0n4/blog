@@ -41,6 +41,10 @@ const useThrottledOnScroll = (callback: ThrottleCallback, delay: number) => {
 const getItemsClient = (headings: TocItem[]) => {
   const itemsWithNode: NodeItem[] = [];
 
+  if (typeof window === "undefined" || !window.document) {
+    return undefined;
+  }
+
   headings.forEach((item) => {
     itemsWithNode.push({
       title: item.title,
