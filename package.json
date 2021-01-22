@@ -115,25 +115,5 @@
     "stylelint-prettier": "^1.1.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,html,md,mdx}": [
-      "eslint",
-      "prettier --check"
-    ],
-    "src/**/*.css": [
-      "stylelint --fix",
-      "prettier --write"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }
