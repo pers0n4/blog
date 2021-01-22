@@ -6,7 +6,8 @@ import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 
-import datetime from "../../utils/datetime";
+import { formatISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 
 interface Props {
   title: string;
@@ -19,7 +20,9 @@ const ArticleHeader: React.FC<Props> = ({ title, date, category }: Props) => {
     <header>
       <Breadcrumbs aria-label="breadcrumb">
         <Typography variant="subtitle2" component="p" color="textSecondary">
-          {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+          {formatISO(utcToZonedTime(date, "Asia/Seoul"), {
+            representation: "date",
+          })}
         </Typography>
         {category && (
           <Typography variant="subtitle2" component="p" color="textSecondary">

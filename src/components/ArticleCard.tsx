@@ -12,7 +12,8 @@ import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
 import Typography from "@material-ui/core/Typography";
 
-import datetime from "../utils/datetime";
+import { formatISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 import type { MDXNode } from "../graphql";
 
 interface Props {
@@ -68,7 +69,9 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
         <CardContent>
           <Breadcrumbs aria-label="breadcrumb">
             <Typography variant="subtitle2" component="p" color="textSecondary">
-              {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+              {formatISO(utcToZonedTime(date, "Asia/Seoul"), {
+                representation: "date",
+              })}
             </Typography>
             {category && (
               <Typography
