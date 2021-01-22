@@ -10,8 +10,7 @@
     "typescript",
     "material-ui"
   ],
-  "license": "MIT",
-  "homepage": "https://pers0n4.io",
+  "homepage": "https://pers0n4.io/",
   "bugs": {
     "url": "https://github.com/pers0n4/blog/issues",
     "email": "31337.persona@gmail.com"
@@ -20,20 +19,22 @@
     "type": "git",
     "url": "https://github.com/pers0n4/blog.git"
   },
+  "license": "MIT",
   "author": {
     "name": "Dong-Young Kim",
     "email": "31337.persona@gmail.com",
-    "url": "https://pers0n4.io"
+    "url": "https://pers0n4.io/"
   },
   "scripts": {
-    "start": "gatsby develop",
-    "develop": "gatsby develop",
     "build": "gatsby build",
-    "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx; exit 0",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "postinstall": "husky install"
+    "develop": "gatsby develop",
+    "format": "prettier --write",
+    "postinstall": "husky install",
+    "lint": "eslint src",
+    "serve": "gatsby serve",
+    "start": "gatsby develop",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
     "@emotion/react": "^11.1.4",
@@ -107,6 +108,7 @@
     "husky": "^5.0.6",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
+    "sort-package-json": "^1.48.1",
     "stylelint": "^13.9.0",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.3.0",

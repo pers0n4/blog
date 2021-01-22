@@ -1,5 +1,6 @@
 {
   "src/**/*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
   "*.css": ["stylelint --fix", "prettier --write"],
-  "*.{json,html,md,mdx}": "prettier --write"
+  "*.{json,html,md,mdx}": "prettier --write",
+  "package.json": "sort-package-json"
 }
