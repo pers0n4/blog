@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useLayoutEffect, useRef } from 'react';
-
 import { useTheme } from '@material-ui/core';
 
 const ArticleComments: React.FC = () => {
@@ -20,14 +19,18 @@ const ArticleComments: React.FC = () => {
       aync: 'true',
     };
 
-    Object.entries(config).forEach(([key, value]) => {
+    for (const [key, value] of Object.entries(config)) {
       utterances.setAttribute(key, value);
-    });
+    }
 
-    container?.appendChild(utterances);
+    if (container) {
+      container.append(utterances);
+    }
 
     return () => {
-      if (container?.firstChild) container?.removeChild(container.firstChild);
+      if (container && container.firstChild) {
+        container.firstChild.remove();
+      }
     };
   }, [theme]);
 

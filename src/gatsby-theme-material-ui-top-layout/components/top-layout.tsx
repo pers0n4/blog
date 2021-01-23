@@ -9,13 +9,13 @@ import {
 import type { Theme } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import styles from '../styles';
 import {
   baseTheme,
   basePalette,
   DispatchContext,
   themeReducer,
 } from '../theme';
-import styles from '../styles';
 
 interface Props {
   children: React.ReactElement;

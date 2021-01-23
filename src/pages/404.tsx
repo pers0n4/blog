@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { navigate } from 'gatsby';
 import { css } from '@emotion/react';
+import { navigate } from 'gatsby';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-import SEO from '../components/SEO';
 import Layout from '../components/Layout';
+import SEO from '../components/Seo';
 
 const NotFound: React.FC = () => {
   return (

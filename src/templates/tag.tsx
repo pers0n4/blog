@@ -6,9 +6,9 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 
-import SEO from '../components/SEO';
-import Layout from '../components/Layout';
 import ArticleCard from '../components/ArticleCard';
+import Layout from '../components/Layout';
+import SEO from '../components/Seo';
 import type { ArticleListProps } from '../graphql';
 
 interface Props extends ArticleListProps {

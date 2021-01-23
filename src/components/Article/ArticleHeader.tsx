@@ -1,13 +1,12 @@
 import * as React from 'react';
+import { formatISO } from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
 import { Link } from 'gatsby-theme-material-ui';
 import { kebabCase } from 'lodash';
 
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-
-import { formatISO } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
 
 interface Props {
   title: string;

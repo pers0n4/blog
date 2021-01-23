@@ -1,21 +1,20 @@
 import * as React from 'react';
+import type { Theme } from '@material-ui/core';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-
 import {
   createStyles,
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import type { Theme } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 
-import MDXComponents from './MDXComponents';
-import ArticleHeader from './ArticleHeader';
-import ArticleFooter from './ArticleFooter';
-import ArticleComments from './ArticleComments';
-import ArticleTableOfContents from './ArticleTableOfContents';
 import type { ArticleProps } from '../../graphql';
+import ArticleComments from './ArticleComments';
+import ArticleFooter from './ArticleFooter';
+import ArticleHeader from './ArticleHeader';
+import ArticleTableOfContents from './ArticleTableOfContents';
+import MDXComponents from './MdxComponents';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -36,10 +35,11 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
   const toc = mdx.tableOfContents;
+  const { body } = mdx;
 
   const ArticleContent = () => (
     <div>
-      <MDXRenderer>{mdx.body || 'Not loaded'}</MDXRenderer>
+      <MDXRenderer>{body || 'Not loaded'}</MDXRenderer>
     </div>
   );
 
@@ -62,7 +62,7 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           },
         })}
       >
-        {toc && Object.keys(toc).length !== 0 && (
+        {toc && Object.keys(toc).length > 0 && (
           <ArticleTableOfContents toc={toc} />
         )}
         <Paper component="article" className={classes.article}>

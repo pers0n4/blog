@@ -12,8 +12,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 
-import SEO from '../components/SEO';
 import Layout from '../components/Layout';
+import SEO from '../components/Seo';
 import type { GroupProps } from '../graphql';
 
 const Categories: React.FC<GroupProps> = ({

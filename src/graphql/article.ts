@@ -6,7 +6,7 @@ export interface TocItem {
   items: TocItem[];
 }
 
-export interface MDXNode {
+export interface MdxNode {
   id: string;
   body?: string;
   excerpt: string;
@@ -26,7 +26,7 @@ export interface MDXNode {
 
 export interface ArticleProps {
   data: {
-    mdx: MDXNode;
+    mdx: MdxNode;
   };
 }
 
@@ -34,7 +34,7 @@ export interface ArticleListProps {
   data: {
     allMdx: {
       edges: {
-        node: MDXNode;
+        node: MdxNode;
       }[];
     };
   };

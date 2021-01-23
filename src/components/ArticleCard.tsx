@@ -1,23 +1,23 @@
 import * as React from 'react';
+import { formatISO } from 'date-fns';
+import { utcToZonedTime } from 'date-fns-tz';
 import { GatsbyLink } from 'gatsby-theme-material-ui';
 import { toLower } from 'lodash';
-
 import { createStyles, makeStyles } from '@material-ui/core/styles';
+
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
-import LabelIcon from '@material-ui/icons/Label';
 import Typography from '@material-ui/core/Typography';
+import LabelIcon from '@material-ui/icons/Label';
 
-import { formatISO } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
-import type { MDXNode } from '../graphql';
+import type { MdxNode } from '../graphql';
 
 interface Props {
-  node: MDXNode;
+  node: MdxNode;
 }
 
 const useStyles = makeStyles((theme) =>

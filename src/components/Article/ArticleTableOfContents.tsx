@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { GatsbyLink } from 'gatsby-theme-material-ui';
-import clsx from 'clsx';
-import { throttle } from 'lodash';
-
 import { createStyles, makeStyles } from '@material-ui/core';
+import clsx from 'clsx';
+import { GatsbyLink } from 'gatsby-theme-material-ui';
+import { throttle } from 'lodash';
 import Typography from '@material-ui/core/Typography';
 
 import type { TocItem } from '../../graphql';
@@ -39,20 +38,26 @@ const useThrottledOnScroll = (callback: ThrottleCallback, delay: number) => {
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
 const getItemsClient = (headings: TocItem[]) => {
-  const itemsWithNode: NodeItem[] = [];
-
   if (typeof window === 'undefined' || !window.document) {
-    return undefined;
+    return [];
   }
 
-  headings.forEach((item) => {
-    itemsWithNode.push({
-      title: item.title,
-      hash: item.url,
-      node: document.querySelector(item.url),
-    });
-    // TODO: support nested items
-  });
+  // const itemsWithNode: NodeItem[] = [];
+
+  // for (const item of headings) {
+  //   itemsWithNode.push({
+  //     title: item.title,
+  //     hash: item.url,
+  //     node: document.querySelector(item.url),
+  //   });
+  //   // TODO: support nested items
+  // }
+
+  const itemsWithNode = headings.map((item) => ({
+    title: item.title,
+    hash: item.url,
+    node: document.querySelector(item.url),
+  }));
   return itemsWithNode;
 };
 
@@ -117,7 +122,7 @@ const ArticleToc: React.FC<Props> = ({ toc }: Props) => {
   }, [items]);
   itemsWithNodeRef.current = getItemsClient(items);
 
-  const [activeState, setActiveState] = React.useState<string | null>('');
+  const [activeState, setActiveState] = React.useState<string | undefined>('');
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef<number | NodeJS.Timeout>();
   const findActiveIndex = React.useCallback(() => {
@@ -139,10 +144,14 @@ const ArticleToc: React.FC<Props> = ({ toc }: Props) => {
       document.documentElement.scrollTop <
       itemsWithNodeRef.current[0].node.offsetTop
     ) {
-      active = { hash: null };
+      active = { hash: undefined };
     } else {
-      for (let i = itemsWithNodeRef.current.length - 1; i >= 0; i -= 1) {
-        const item = itemsWithNodeRef.current[i];
+      for (
+        let index = itemsWithNodeRef.current.length - 1;
+        index >= 0;
+        index -= 1
+      ) {
+        const item = itemsWithNodeRef.current[index];
         if (
           item.node &&
           item.node.offsetTop < document.documentElement.scrollTop
@@ -158,12 +167,8 @@ const ArticleToc: React.FC<Props> = ({ toc }: Props) => {
     }
   }, [activeState]);
 
-  React.useEffect(
-    () => () => {
-      clearTimeout(unsetClickedRef.current as number);
-    },
-    []
-  );
+  const clearClicked = () => clearTimeout(unsetClickedRef.current as number);
+  React.useEffect(() => clearClicked, []);
 
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(findActiveIndex, 166);

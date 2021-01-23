@@ -1,27 +1,27 @@
 import * as React from 'react';
+import clsx from 'clsx';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyLink } from 'gatsby-theme-material-ui';
-import clsx from 'clsx';
 
 import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import BrightnessDarkIcon from '@material-ui/icons/Brightness4';
-import BrightnessLightIcon from '@material-ui/icons/Brightness7';
-import CategoryIcon from '@material-ui/icons/Category';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import HomeIcon from '@material-ui/icons/Home';
 import IconButton from '@material-ui/core/IconButton';
-import LabelIcon from '@material-ui/icons/Label';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import BrightnessDarkIcon from '@material-ui/icons/Brightness4';
+import BrightnessLightIcon from '@material-ui/icons/Brightness7';
+import CategoryIcon from '@material-ui/icons/Category';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import HomeIcon from '@material-ui/icons/Home';
+import LabelIcon from '@material-ui/icons/Label';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { useChangeTheme } from '../gatsby-theme-material-ui-top-layout/theme';
 

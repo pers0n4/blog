@@ -10,8 +10,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
-import SEO from '../components/SEO';
 import Layout from '../components/Layout';
+import SEO from '../components/Seo';
 import type { GroupProps } from '../graphql';
 
 const useStyles = makeStyles((theme) =>

@@ -11,19 +11,134 @@
   },
   "extends": [
     "eslint:recommended",
-    "airbnb-typescript",
-    // "airbnb",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:unicorn/recommended",
+    "airbnb",
     "airbnb/hooks",
-    // "airbnb/whitespace",
+    "airbnb/whitespace",
     "plugin:@typescript-eslint/recommended",
     // "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:prettier/recommended",
     "prettier/react",
+    "prettier/unicorn",
     "prettier/@typescript-eslint"
   ],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "jsx-a11y",
+    "prettier",
+    "react",
+    "react-hooks",
+    "unicorn"
+  ],
+  "rules": {
+    "no-restricted-syntax": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "import/extensions": [
+      "warn",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "@material-ui/core/styles",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@material-ui/core/*",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@material-ui/icons/*",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [],
+        "newlines-between": "ignore",
+        "alphabetize": { "order": "asc", "caseInsensitive": false }
+      }
+    ],
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "kebabCase": true,
+          "camelCase": true,
+          "snakeCase": false,
+          "pascalCase": true
+        }
+      }
+    ],
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "replacements": {
+          "props": {
+            "properties": false
+          },
+          "ref": {
+            "reference": false
+          }
+        }
+      }
+    ]
+  },
   "env": {
     "browser": true,
-    "es6": true,
-    "node": true
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts", ".tsx", ".d.ts", ".js", ".jsx"]
+      }
+    },
+    "import/extensions": [".ts", ".tsx", ".d.ts", ".js", ".jsx"],
+    "react": {
+      "version": "detect"
+    }
   }
 }
