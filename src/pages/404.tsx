@@ -1,14 +1,14 @@
-import * as React from "react";
-import { navigate } from "gatsby";
-import { css } from "@emotion/react";
+import * as React from 'react';
+import { navigate } from 'gatsby';
+import { css } from '@emotion/react';
 
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
-import SEO from "../components/SEO";
-import Layout from "../components/Layout";
+import SEO from '../components/SEO';
+import Layout from '../components/Layout';
 
 const NotFound: React.FC = () => {
   return (
@@ -37,7 +37,7 @@ const NotFound: React.FC = () => {
               </Typography>
             </Grid>
             <Grid item>
-              <Button variant="outlined" onClick={() => navigate("/")}>
+              <Button variant="outlined" onClick={() => navigate('/')}>
                 Back to Home
               </Button>
             </Grid>

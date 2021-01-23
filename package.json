@@ -29,7 +29,7 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "format": "prettier --write",
+    "format": "prettier --write src",
     "postinstall": "husky install",
     "lint": "eslint src",
     "serve": "gatsby serve",

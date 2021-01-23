@@ -1,6 +1,6 @@
-import { css } from "@emotion/react";
-import type { SerializedStyles } from "@emotion/react";
-import type { Theme } from "@material-ui/core";
+import { css } from '@emotion/react';
+import type { SerializedStyles } from '@emotion/react';
+import type { Theme } from '@material-ui/core';
 
 const globalStyles = (theme: Theme): SerializedStyles => css`
   ol,

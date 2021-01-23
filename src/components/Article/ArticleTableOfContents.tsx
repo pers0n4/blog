@@ -1,12 +1,12 @@
-import * as React from "react";
-import { GatsbyLink } from "gatsby-theme-material-ui";
-import clsx from "clsx";
-import { throttle } from "lodash";
+import * as React from 'react';
+import { GatsbyLink } from 'gatsby-theme-material-ui';
+import clsx from 'clsx';
+import { throttle } from 'lodash';
 
-import { createStyles, makeStyles } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
+import { createStyles, makeStyles } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
-import type { TocItem } from "../../graphql";
+import type { TocItem } from '../../graphql';
 
 type ThrottleCallback = () => void;
 
@@ -29,9 +29,9 @@ const useThrottledOnScroll = (callback: ThrottleCallback, delay: number) => {
   ]);
 
   React.useEffect(() => {
-    window.addEventListener("scroll", throttledCallback);
+    window.addEventListener('scroll', throttledCallback);
     return () => {
-      window.removeEventListener("scroll", throttledCallback);
+      window.removeEventListener('scroll', throttledCallback);
       throttledCallback.cancel();
     };
   }, [throttledCallback]);
@@ -41,7 +41,7 @@ const useThrottledOnScroll = (callback: ThrottleCallback, delay: number) => {
 const getItemsClient = (headings: TocItem[]) => {
   const itemsWithNode: NodeItem[] = [];
 
-  if (typeof window === "undefined" || !window.document) {
+  if (typeof window === 'undefined' || !window.document) {
     return undefined;
   }
 
@@ -59,44 +59,44 @@ const getItemsClient = (headings: TocItem[]) => {
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      display: "none",
-      position: "relative",
-      [theme.breakpoints.up("lg")]: {
-        display: "block",
+      display: 'none',
+      position: 'relative',
+      [theme.breakpoints.up('lg')]: {
+        display: 'block',
       },
     },
     wrapper: {
-      position: "absolute",
-      left: "100%",
+      position: 'absolute',
+      left: '100%',
       marginLeft: theme.spacing(4),
     },
     list: {
-      position: "fixed",
+      position: 'fixed',
       margin: 0,
       padding: 0,
-      listStyle: "none",
+      listStyle: 'none',
     },
     item: {
-      padding: theme.spacing(0.5, 0, 0.5, "8px"),
-      borderLeft: "3px solid transparent",
+      padding: theme.spacing(0.5, 0, 0.5, '8px'),
+      borderLeft: '3px solid transparent',
       borderLeftColor:
-        theme.palette.type === "light"
+        theme.palette.type === 'light'
           ? theme.palette.grey[200]
           : theme.palette.grey[900],
       color: theme.palette.text.secondary,
-      fontSize: "0.875rem",
-      "&:link": {
-        textDecoration: "none",
+      fontSize: '0.875rem',
+      '&:link': {
+        textDecoration: 'none',
       },
-      "&:hover": {
+      '&:hover': {
         borderLeftColor:
-          theme.palette.type === "light"
+          theme.palette.type === 'light'
             ? theme.palette.grey[300]
             : theme.palette.grey[800],
       },
-      "&$active,&:active": {
+      '&$active,&:active': {
         borderLeftColor:
-          theme.palette.type === "light"
+          theme.palette.type === 'light'
             ? theme.palette.grey[300]
             : theme.palette.grey[800],
       },
@@ -117,7 +117,7 @@ const ArticleToc: React.FC<Props> = ({ toc }: Props) => {
   }, [items]);
   itemsWithNodeRef.current = getItemsClient(items);
 
-  const [activeState, setActiveState] = React.useState<string | null>("");
+  const [activeState, setActiveState] = React.useState<string | null>('');
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef<number | NodeJS.Timeout>();
   const findActiveIndex = React.useCallback(() => {

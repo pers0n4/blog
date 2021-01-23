@@ -1,20 +1,20 @@
-import * as React from "react";
-import { Link } from "gatsby-theme-material-ui";
-import { MDXProviderComponents } from "@mdx-js/react";
-import { css } from "@emotion/react";
-import type { CSSObject } from "@emotion/react";
-import { replace, toLower } from "lodash";
+import * as React from 'react';
+import { Link } from 'gatsby-theme-material-ui';
+import { MDXProviderComponents } from '@mdx-js/react';
+import { css } from '@emotion/react';
+import type { CSSObject } from '@emotion/react';
+import { replace, toLower } from 'lodash';
 
-import Checkbox from "@material-ui/core/Checkbox";
-import Divider from "@material-ui/core/Divider";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
+import Checkbox from '@material-ui/core/Checkbox';
+import Divider from '@material-ui/core/Divider';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
 
 // ANCHOR interfaces
 
@@ -29,7 +29,7 @@ interface ListItemProps extends BaseProps {
 }
 
 interface TableCellProps extends BaseProps {
-  align?: "left" | "center" | "right";
+  align?: 'left' | 'center' | 'right';
 }
 
 interface LinkProps extends BaseProps {
@@ -51,19 +51,19 @@ const styles: CSSObject = {
     lineHeight: 1.8,
   },
   header: {
-    marginTop: "0.5em",
+    marginTop: '0.5em',
   },
   anchor: {
-    position: "absolute",
+    position: 'absolute',
     // theme.mixins.toolbar height + heading margin
-    marginTop: "calc((64px + 0.5em) * -1)",
+    marginTop: 'calc((64px + 0.5em) * -1)',
   },
 };
 
 // ANCHOR components
 
 type HeadingProps = {
-  level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  level: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   children: string;
   className?: string;
 };
@@ -75,13 +75,13 @@ const Heading = ({ level, children, className }: HeadingProps) => (
     className={className}
     css={styles.header}
   >
-    <span id={replace(toLower(children), " ", "-")} css={styles.anchor} />
+    <span id={replace(toLower(children), ' ', '-')} css={styles.anchor} />
     {children}
   </Typography>
 );
 
 Heading.defaultProps = {
-  className: "",
+  className: '',
 };
 
 const MDXComponents: MDXProviderComponents = {
@@ -153,12 +153,12 @@ const MDXComponents: MDXProviderComponents = {
     <TableRow className={className}>{children}</TableRow>
   ),
   th: ({ children, className, align }: TableCellProps): React.ReactElement => (
-    <TableCell align={align || "left"} className={className}>
+    <TableCell align={align || 'left'} className={className}>
       {children}
     </TableCell>
   ),
   td: ({ children, className, align }: TableCellProps): React.ReactElement => (
-    <TableCell align={align || "left"} className={className}>
+    <TableCell align={align || 'left'} className={className}>
       {children}
     </TableCell>
   ),

@@ -1,32 +1,32 @@
-import * as React from "react";
-import { MDXProvider } from "@mdx-js/react";
-import { MDXRenderer } from "gatsby-plugin-mdx";
+import * as React from 'react';
+import { MDXProvider } from '@mdx-js/react';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 import {
   createStyles,
   makeStyles,
   ThemeProvider,
-} from "@material-ui/core/styles";
-import type { Theme } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
+} from '@material-ui/core/styles';
+import type { Theme } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 
-import MDXComponents from "./MDXComponents";
-import ArticleHeader from "./ArticleHeader";
-import ArticleFooter from "./ArticleFooter";
-import ArticleComments from "./ArticleComments";
-import ArticleTableOfContents from "./ArticleTableOfContents";
-import type { ArticleProps } from "../../graphql";
+import MDXComponents from './MDXComponents';
+import ArticleHeader from './ArticleHeader';
+import ArticleFooter from './ArticleFooter';
+import ArticleComments from './ArticleComments';
+import ArticleTableOfContents from './ArticleTableOfContents';
+import type { ArticleProps } from '../../graphql';
 
 const useStyles = makeStyles(() =>
   createStyles({
     article: {
-      padding: "1rem",
+      padding: '1rem',
     },
     comments: {
-      marginTop: "1.5rem",
-      padding: "1rem",
-      "& .utterances": {
-        maxWidth: "none",
+      marginTop: '1.5rem',
+      padding: '1rem',
+      '& .utterances': {
+        maxWidth: 'none',
       },
     },
   })
@@ -39,7 +39,7 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
 
   const ArticleContent = () => (
     <div>
-      <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
+      <MDXRenderer>{mdx.body || 'Not loaded'}</MDXRenderer>
     </div>
   );
 
@@ -51,12 +51,12 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           overrides: {
             MuiDivider: {
               root: {
-                margin: "1.5rem auto",
+                margin: '1.5rem auto',
               },
             },
             MuiTableContainer: {
               root: {
-                margin: "1.5rem auto",
+                margin: '1.5rem auto',
               },
             },
           },

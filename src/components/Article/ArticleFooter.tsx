@@ -1,19 +1,19 @@
-import * as React from "react";
-import { GatsbyLink } from "gatsby-theme-material-ui";
-import { toLower } from "lodash";
+import * as React from 'react';
+import { GatsbyLink } from 'gatsby-theme-material-ui';
+import { toLower } from 'lodash';
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import Chip from "@material-ui/core/Chip";
-import LabelIcon from "@material-ui/icons/Label";
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Chip from '@material-ui/core/Chip';
+import LabelIcon from '@material-ui/icons/Label';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
-      marginTop: "1rem",
-      "& > *": {
+      display: 'flex',
+      flexWrap: 'wrap',
+      alignItems: 'center',
+      marginTop: '1rem',
+      '& > *': {
         margin: theme.spacing(0.5),
       },
     },

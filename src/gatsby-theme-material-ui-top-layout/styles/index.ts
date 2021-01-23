@@ -1,8 +1,8 @@
-import type { SerializedStyles } from "@emotion/react";
-import type { Theme } from "@material-ui/core";
+import type { SerializedStyles } from '@emotion/react';
+import type { Theme } from '@material-ui/core';
 
-import global from "./global";
-import prism from "./prism";
+import global from './global';
+import prism from './prism';
 
 const styles = (theme: Theme): SerializedStyles | SerializedStyles[] => [
   global(theme),

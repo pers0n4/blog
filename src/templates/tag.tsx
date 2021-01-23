@@ -1,15 +1,15 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { Link } from "gatsby-theme-material-ui";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { Link } from 'gatsby-theme-material-ui';
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Typography from "@material-ui/core/Typography";
+import { createStyles, makeStyles } from '@material-ui/core/styles';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import Typography from '@material-ui/core/Typography';
 
-import SEO from "../components/SEO";
-import Layout from "../components/Layout";
-import ArticleCard from "../components/ArticleCard";
-import type { ArticleListProps } from "../graphql";
+import SEO from '../components/SEO';
+import Layout from '../components/Layout';
+import ArticleCard from '../components/ArticleCard';
+import type { ArticleListProps } from '../graphql';
 
 interface Props extends ArticleListProps {
   pageContext: {

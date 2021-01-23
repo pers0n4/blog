@@ -1,10 +1,10 @@
-import * as React from "react";
-import { graphql } from "gatsby";
+import * as React from 'react';
+import { graphql } from 'gatsby';
 
-import SEO from "../components/SEO";
-import Layout from "../components/Layout";
-import ArticleCard from "../components/ArticleCard";
-import type { ArticleListProps } from "../graphql";
+import SEO from '../components/SEO';
+import Layout from '../components/Layout';
+import ArticleCard from '../components/ArticleCard';
+import type { ArticleListProps } from '../graphql';
 
 const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {
   const { edges } = data.allMdx;
