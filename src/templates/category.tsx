@@ -1,8 +1,9 @@
 import * as React from 'react';
+
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { graphql } from 'gatsby';
 import { Link } from 'gatsby-theme-material-ui';
 
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 

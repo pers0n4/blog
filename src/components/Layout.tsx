@@ -1,9 +1,10 @@
 import * as React from 'react';
+
+import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyLink } from 'gatsby-theme-material-ui';
 
-import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';

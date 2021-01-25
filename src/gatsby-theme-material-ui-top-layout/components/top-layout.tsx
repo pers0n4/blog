@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 
+import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import {
   createMuiTheme,
   responsiveFontSizes,
   MuiThemeProvider,
 } from '@material-ui/core';
 import type { Theme } from '@material-ui/core';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import styles from '../styles';

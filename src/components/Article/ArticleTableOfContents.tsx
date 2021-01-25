@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { createStyles, makeStyles } from '@material-ui/core';
 import clsx from 'clsx';
 import { GatsbyLink } from 'gatsby-theme-material-ui';
 import { throttle } from 'lodash';
+
 import Typography from '@material-ui/core/Typography';
 
 import type { TocItem } from '../../graphql';

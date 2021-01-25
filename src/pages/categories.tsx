@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { graphql } from 'gatsby';
 import { GatsbyLink } from 'gatsby-theme-material-ui';
 import { kebabCase } from 'lodash';

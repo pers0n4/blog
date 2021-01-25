@@ -1,9 +1,10 @@
 import * as React from 'react';
+
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { graphql } from 'gatsby';
 import { GatsbyLink } from 'gatsby-theme-material-ui';
 import { toLower } from 'lodash';
 
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';

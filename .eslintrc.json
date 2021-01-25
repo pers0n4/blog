@@ -38,6 +38,12 @@
     "unicorn"
   ],
   "rules": {
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        "prefer": "type-imports"
+      }
+    ],
     "no-restricted-syntax": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
@@ -61,32 +67,35 @@
           "internal",
           "parent",
           "sibling",
-          "index"
+          "index",
+          ["object", "unknown"]
         ],
         "pathGroups": [
           {
             "pattern": "react",
-            "group": "builtin",
+            "group": "external",
             "position": "before"
           },
           {
+            "pattern": "@material-ui/core",
+            "group": "external"
+          },
+          {
             "pattern": "@material-ui/core/styles",
-            "group": "external",
-            "position": "after"
+            "group": "external"
           },
           {
-            "pattern": "@material-ui/core/*",
-            "group": "external",
-            "position": "after"
+            "pattern": "@material-ui/core/styles/**",
+            "group": "external"
           },
           {
-            "pattern": "@material-ui/icons/*",
+            "pattern": "@material-ui/**",
             "group": "external",
             "position": "after"
           }
         ],
         "pathGroupsExcludedImportTypes": [],
-        "newlines-between": "ignore",
+        "newlines-between": "always",
         "alphabetize": { "order": "asc", "caseInsensitive": false }
       }
     ],
@@ -111,6 +120,9 @@
       "error",
       {
         "replacements": {
+          "args": {
+            "arguments": false
+          },
           "props": {
             "properties": false
           },

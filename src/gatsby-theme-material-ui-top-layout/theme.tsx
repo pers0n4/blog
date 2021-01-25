@@ -1,7 +1,8 @@
 import * as React from 'react';
+
 import type { PaletteType, Theme } from '@material-ui/core';
-import type { PaletteOptions } from '@material-ui/core/styles/createPalette';
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import type { PaletteOptions } from '@material-ui/core/styles/createPalette';
 
 type ThemeOptions = (mode: PaletteType) => void;
 interface ThemeDispatch {
