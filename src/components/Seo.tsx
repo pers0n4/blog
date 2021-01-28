@@ -57,7 +57,7 @@ const SEO: React.FC<Props> = ({
       <meta content={pageDescription} property="og:description" />
       <meta content={type} property="og:type" />
       <meta content={pageUrl} property="og:url" />
-      <meta content={`${meta.siteUrl}/image.png`} property="og:image" />
+      <meta content={`${meta.siteUrl}/og.png`} property="og:image" />
       <meta content="image/png" property="og:image:type" />
       <meta content="1280" property="og:image:width" />
       <meta content="640" property="og:image:height" />
@@ -66,7 +66,7 @@ const SEO: React.FC<Props> = ({
       <meta content="summary" name="twitter:card" />
       <meta content={pageTitle} name="twitter:title" />
       <meta content={pageDescription} name="twitter:description" />
-      <meta content={`${meta.siteUrl}/image.png`} name="twitter:image" />
+      <meta content={`${meta.siteUrl}/og.png`} name="twitter:image" />
 
       <link
         href="/icons/icon@48.png"
