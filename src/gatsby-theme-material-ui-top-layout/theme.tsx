@@ -45,7 +45,7 @@ export const themeReducer: ThemeReducer = (_, action) => {
 
 export const useChangeTheme = (): ThemeOptions => {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback((mode) => dispatch({ type: 'CHANGE_THEME', mode }), [
+  return React.useCallback((mode) => dispatch({ mode, type: 'CHANGE_THEME' }), [
     dispatch,
   ]);
 };

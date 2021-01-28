@@ -18,13 +18,13 @@ import type { GroupProps } from '../graphql';
 const useStyles = makeStyles((theme) =>
   createStyles({
     chips: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      paddingTop: theme.spacing(1),
-      paddingBottom: theme.spacing(1),
       '& > *': {
         margin: theme.spacing(0.5),
       },
+      display: 'flex',
+      flexWrap: 'wrap',
+      paddingBottom: theme.spacing(1),
+      paddingTop: theme.spacing(1),
     },
   })
 );
@@ -38,22 +38,22 @@ const Tags: React.FC<GroupProps> = ({
 
   const tags = group.map((tag) => (
     <Chip
+      key={tag.fieldValue}
       avatar={<Avatar>{tag.totalCount}</Avatar>}
-      label={tag.fieldValue}
       clickable
       component={GatsbyLink}
+      label={tag.fieldValue}
       to={`/tags/${toLower(tag.fieldValue)}/`}
-      key={tag.fieldValue}
     />
   ));
 
   return (
     <>
-      <SEO title="Tags" pathname="/tags" />
+      <SEO pathname="/tags" title="Tags" />
       <Layout>
         <Card>
           <CardContent>
-            <Typography variant="h2" component="h1" gutterBottom>
+            <Typography component="h1" gutterBottom variant="h2">
               Tags
             </Typography>
             <div className={classes.chips}>{tags}</div>

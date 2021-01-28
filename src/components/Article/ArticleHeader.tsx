@@ -19,18 +19,18 @@ const ArticleHeader: React.FC<Props> = ({ title, date, category }: Props) => {
   return (
     <header>
       <Breadcrumbs aria-label="breadcrumb">
-        <Typography variant="subtitle2" component="p" color="textSecondary">
+        <Typography color="textSecondary" component="p" variant="subtitle2">
           {formatISO(utcToZonedTime(date, 'Asia/Seoul'), {
             representation: 'date',
           })}
         </Typography>
         {category && (
-          <Typography variant="subtitle2" component="p" color="textSecondary">
+          <Typography color="textSecondary" component="p" variant="subtitle2">
             <Link href={`/categories/${kebabCase(category)}/`}>{category}</Link>
           </Typography>
         )}
       </Breadcrumbs>
-      <Typography variant="h2" component="h1">
+      <Typography component="h1" variant="h2">
         {title}
       </Typography>
       <Divider />

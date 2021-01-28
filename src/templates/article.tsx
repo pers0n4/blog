@@ -18,14 +18,14 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
   return (
     <>
       <SEO
-        title={title}
         description={description}
         pathname={slug}
+        title={title}
         type="article"
       >
-        <meta property="article:published_time" content={date} />
+        <meta content={date} property="article:published_time" />
         {tags?.map((tag) => (
-          <meta property="article:tag" content={tag} key={tag} />
+          <meta key={tag} content={tag} property="article:tag" />
         ))}
 
         <script type="application/ld+json">{`

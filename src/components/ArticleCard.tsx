@@ -32,12 +32,12 @@ const useStyles = makeStyles((theme) =>
       fontSize: '0.875rem',
     },
     tags: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'center',
       '& > *': {
         margin: theme.spacing(0.5),
       },
+      alignItems: 'center',
+      display: 'flex',
+      flexWrap: 'wrap',
     },
   })
 );
@@ -55,12 +55,12 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
     tags &&
     tags.map((tag) => (
       <Chip
-        size="small"
-        label={tag}
+        key={tag}
         clickable
         component={GatsbyLink}
+        label={tag}
+        size="small"
         to={`/tags/${toLower(tag)}/`}
-        key={tag}
       />
     ));
 
@@ -69,25 +69,25 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
       <CardActionArea component={GatsbyLink} to={slug}>
         <CardContent>
           <Breadcrumbs aria-label="breadcrumb">
-            <Typography variant="subtitle2" component="p" color="textSecondary">
+            <Typography color="textSecondary" component="p" variant="subtitle2">
               {formatISO(utcToZonedTime(date, 'Asia/Seoul'), {
                 representation: 'date',
               })}
             </Typography>
             {category && (
               <Typography
-                variant="subtitle2"
-                component="p"
                 color="textSecondary"
+                component="p"
+                variant="subtitle2"
               >
                 {category}
               </Typography>
             )}
           </Breadcrumbs>
-          <Typography variant="h3" component="h2" gutterBottom>
+          <Typography component="h2" gutterBottom variant="h3">
             {title}
           </Typography>
-          <Typography variant="body2" gutterBottom>
+          <Typography gutterBottom variant="body2">
             {excerpt}
           </Typography>
         </CardContent>

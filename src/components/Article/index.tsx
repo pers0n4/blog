@@ -25,11 +25,11 @@ const useStyles = makeStyles(() =>
       padding: '1rem',
     },
     comments: {
-      marginTop: '1.5rem',
-      padding: '1rem',
       '& .utterances': {
         maxWidth: 'none',
       },
+      marginTop: '1.5rem',
+      padding: '1rem',
     },
   })
 );
@@ -68,12 +68,12 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
         {toc && Object.keys(toc).length > 0 && (
           <ArticleTableOfContents toc={toc} />
         )}
-        <Paper component="article" className={classes.article}>
-          <ArticleHeader title={title} date={date} category={category} />
+        <Paper className={classes.article} component="article">
+          <ArticleHeader category={category} date={date} title={title} />
           <ArticleContent />
           {tags && <ArticleFooter tags={tags} />}
         </Paper>
-        <Paper component="section" className={classes.comments}>
+        <Paper className={classes.comments} component="section">
           <ArticleComments />
         </Paper>
       </ThemeProvider>

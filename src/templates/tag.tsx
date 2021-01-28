@@ -36,11 +36,11 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
 
   return (
     <>
-      <SEO title={`Tag :: ${tag}`} pathname={`/tags/${tag}`} />
+      <SEO pathname={`/tags/${tag}`} title={`Tag :: ${tag}`} />
       <Layout>
         <Breadcrumbs aria-label="breadcrumb">
           <Link href="/tags/">Tags</Link>
-          <Typography variant="body1" component="h1">
+          <Typography component="h1" variant="body1">
             {tag}
           </Typography>
         </Breadcrumbs>

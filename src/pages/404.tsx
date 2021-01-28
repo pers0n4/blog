@@ -18,20 +18,20 @@ const NotFound: React.FC = () => {
       <Layout>
         <Paper variant="outlined">
           <Grid
-            container
-            direction="column"
-            justify="center"
             alignItems="center"
-            spacing={3}
+            container
             css={css`
               padding-top: 3rem;
               padding-bottom: 3rem;
             `}
+            direction="column"
+            justify="center"
+            spacing={3}
           >
             <Grid item>
               <Typography variant="h1">
                 4
-                <span role="img" aria-label="0">
+                <span aria-label="0" role="img">
                   😦
                 </span>
                 4 Not Found

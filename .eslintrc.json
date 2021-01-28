@@ -35,6 +35,7 @@
     "prettier",
     "react",
     "react-hooks",
+    "sort-keys-fix",
     "unicorn"
   ],
   "rules": {
@@ -43,6 +44,11 @@
       {
         "prefer": "type-imports"
       }
+    ],
+    "sort-keys-fix/sort-keys-fix": [
+      "warn",
+      "asc",
+      { "caseSensitive": true, "natural": true }
     ],
     "no-restricted-syntax": "off",
     "no-shadow": "off",
@@ -103,6 +109,14 @@
       "error",
       {
         "extensions": [".jsx", ".tsx"]
+      }
+    ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
       }
     ],
     "unicorn/filename-case": [

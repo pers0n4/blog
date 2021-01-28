@@ -24,10 +24,10 @@ const Categories: React.FC<GroupProps> = ({
 }: GroupProps) => {
   const categories = group.map((category) => (
     <ListItem
+      key={category.fieldValue}
       button
       component={GatsbyLink}
       to={`/categories/${kebabCase(category.fieldValue)}/`}
-      key={category.fieldValue}
     >
       <ListItemText primary={category.fieldValue} />
       <ListItemSecondaryAction>
@@ -38,11 +38,11 @@ const Categories: React.FC<GroupProps> = ({
 
   return (
     <>
-      <SEO title="Categories" pathname="/categories" />
+      <SEO pathname="/categories" title="Categories" />
       <Layout>
         <Card>
           <CardContent>
-            <Typography variant="h2" component="h1" gutterBottom>
+            <Typography component="h1" gutterBottom variant="h2">
               Categories
             </Typography>
             <List>{categories}</List>

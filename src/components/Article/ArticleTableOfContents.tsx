@@ -56,15 +56,49 @@ const getItemsClient = (headings: TocItem[]) => {
   // }
 
   const itemsWithNode = headings.map((item) => ({
-    title: item.title,
     hash: item.url,
     node: document.querySelector(item.url),
+    title: item.title,
   }));
   return itemsWithNode;
 };
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    active: {
+      color: theme.palette.primary.main,
+    },
+    item: {
+      '&$active,&:active': {
+        borderLeftColor:
+          theme.palette.type === 'light'
+            ? theme.palette.grey[300]
+            : theme.palette.grey[800],
+      },
+      '&:hover': {
+        borderLeftColor:
+          theme.palette.type === 'light'
+            ? theme.palette.grey[300]
+            : theme.palette.grey[800],
+      },
+      '&:link': {
+        textDecoration: 'none',
+      },
+      borderLeft: '3px solid transparent',
+      borderLeftColor:
+        theme.palette.type === 'light'
+          ? theme.palette.grey[200]
+          : theme.palette.grey[900],
+      color: theme.palette.text.secondary,
+      fontSize: '0.875rem',
+      padding: theme.spacing(0.5, 0, 0.5, '8px'),
+    },
+    list: {
+      listStyle: 'none',
+      margin: 0,
+      padding: 0,
+      position: 'fixed',
+    },
     root: {
       display: 'none',
       position: 'relative',
@@ -73,43 +107,9 @@ const useStyles = makeStyles((theme) =>
       },
     },
     wrapper: {
-      position: 'absolute',
       left: '100%',
       marginLeft: theme.spacing(4),
-    },
-    list: {
-      position: 'fixed',
-      margin: 0,
-      padding: 0,
-      listStyle: 'none',
-    },
-    item: {
-      padding: theme.spacing(0.5, 0, 0.5, '8px'),
-      borderLeft: '3px solid transparent',
-      borderLeftColor:
-        theme.palette.type === 'light'
-          ? theme.palette.grey[200]
-          : theme.palette.grey[900],
-      color: theme.palette.text.secondary,
-      fontSize: '0.875rem',
-      '&:link': {
-        textDecoration: 'none',
-      },
-      '&:hover': {
-        borderLeftColor:
-          theme.palette.type === 'light'
-            ? theme.palette.grey[300]
-            : theme.palette.grey[800],
-      },
-      '&$active,&:active': {
-        borderLeftColor:
-          theme.palette.type === 'light'
-            ? theme.palette.grey[300]
-            : theme.palette.grey[800],
-      },
-    },
-    active: {
-      color: theme.palette.primary.main,
+      position: 'absolute',
     },
   })
 );
@@ -202,16 +202,16 @@ const ArticleToc: React.FC<Props> = ({ toc }: Props) => {
   return (
     <nav className={classes.root}>
       <div className={classes.wrapper}>
-        <Typography component="ul" className={classes.list}>
+        <Typography className={classes.list} component="ul">
           {items.map((item) => (
             <li key={item.title}>
               <GatsbyLink
-                to={item.url}
-                onClick={handleClick(item.url)}
                 className={clsx(
                   classes.item,
                   activeState === item.url ? classes.active : undefined
                 )}
+                to={item.url}
+                onClick={handleClick(item.url)}
               >
                 {item.title}
               </GatsbyLink>

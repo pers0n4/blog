@@ -12,12 +12,12 @@ const ArticleComments: React.FC = () => {
     const utterances = document.createElement('script');
 
     const config = {
-      src: 'https://utteranc.es/client.js',
-      repo: 'pers0n4/blog',
-      'issue-term': 'pathname',
-      theme: theme === 'light' ? 'github-light' : 'github-dark',
-      crossorigin: 'anonymous',
       aync: 'true',
+      crossorigin: 'anonymous',
+      'issue-term': 'pathname',
+      repo: 'pers0n4/blog',
+      src: 'https://utteranc.es/client.js',
+      theme: theme === 'light' ? 'github-light' : 'github-dark',
     };
 
     for (const [key, value] of Object.entries(config)) {
