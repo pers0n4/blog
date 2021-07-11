@@ -1,21 +1,22 @@
 import * as React from "react";
-import { Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 
+import { ThemeProvider as EmotionThemeProvider, Global } from "@emotion/react";
 import {
+  MuiThemeProvider,
   createMuiTheme,
   responsiveFontSizes,
-  MuiThemeProvider,
 } from "@material-ui/core";
 import type { Theme } from "@material-ui/core";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+import styles from "../styles";
 import {
-  baseTheme,
-  basePalette,
   DispatchContext,
+  basePalette,
+  baseTheme,
   themeReducer,
 } from "../theme";
-import styles from "../styles";
 
 interface Props {
   children: React.ReactElement;

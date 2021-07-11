@@ -1,14 +1,16 @@
 import * as React from "react";
+
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { graphql } from "gatsby";
 import { Link } from "gatsby-theme-material-ui";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
-import SEO from "../components/SEO";
-import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+
 import type { ArticleListProps } from "../graphql";
 
 interface Props extends ArticleListProps {
@@ -35,11 +37,11 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
 
   return (
     <>
-      <SEO title={`Tag :: ${tag}`} pathname={`/tags/${tag}`} />
+      <SEO pathname={`/tags/${tag}`} title={`Tag :: ${tag}`} />
       <Layout>
         <Breadcrumbs aria-label="breadcrumb">
           <Link href="/tags/">Tags</Link>
-          <Typography variant="body1" component="h1">
+          <Typography component="h1" variant="body1">
             {tag}
           </Typography>
         </Breadcrumbs>
@@ -52,7 +54,7 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
 export default Tag;
 
 export const query = graphql`
-  query($tag: String) {
+  query ($tag: String) {
     allMdx(
       filter: { frontmatter: { tags: { in: [$tag] } } }
       limit: 1000

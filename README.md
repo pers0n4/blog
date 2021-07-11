@@ -64,6 +64,13 @@ yarn start
 
 [Conventional Commits](https://conventionalcommits.org/)및 [Angular Commit Message Format](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format)을 따릅니다.
 
+### Versioning
+
+```bash
+yarn release
+yarn release -r <major|minor|patch>
+```
+
 ## License
 
 [![License](https://img.shields.io/github/license/pers0n4/blog?style=for-the-badge)](https://opensource.org/licenses/MIT)

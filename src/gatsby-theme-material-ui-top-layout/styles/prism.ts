@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
-import type { SerializedStyles } from "@emotion/react";
 import type { Theme } from "@material-ui/core";
+
+import type { SerializedStyles } from "@emotion/react";
 
 const config = {
   margin: {

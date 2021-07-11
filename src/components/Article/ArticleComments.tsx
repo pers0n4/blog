@@ -12,22 +12,26 @@ const ArticleComments: React.FC = () => {
     const utterances = document.createElement("script");
 
     const config = {
-      src: "https://utteranc.es/client.js",
-      repo: "pers0n4/blog",
-      "issue-term": "pathname",
-      theme: theme === "light" ? "github-light" : "github-dark",
-      crossorigin: "anonymous",
       aync: "true",
+      crossorigin: "anonymous",
+      "issue-term": "pathname",
+      repo: "pers0n4/blog",
+      src: "https://utteranc.es/client.js",
+      theme: theme === "light" ? "github-light" : "github-dark",
     };
 
-    Object.entries(config).forEach(([key, value]) => {
-      utterances.setAttribute(key, value);
-    });
+    Object.entries(config).map(([key, value]) =>
+      utterances.setAttribute(key, value)
+    );
 
-    container?.appendChild(utterances);
+    if (container) {
+      container.append(utterances);
+    }
 
     return () => {
-      if (container?.firstChild) container?.removeChild(container.firstChild);
+      if (container && container.firstChild) {
+        container.firstChild.remove();
+      }
     };
   }, [theme]);
 

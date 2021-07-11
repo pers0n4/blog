@@ -1,21 +1,22 @@
 import * as React from "react";
+
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import { toLower } from "lodash";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 import LabelIcon from "@material-ui/icons/Label";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
-      marginTop: "1rem",
       "& > *": {
         margin: theme.spacing(0.5),
       },
+      alignItems: "center",
+      display: "flex",
+      flexWrap: "wrap",
+      marginTop: "1rem",
     },
   })
 );
@@ -32,12 +33,12 @@ const ArticleFooter: React.FC<Props> = ({ tags }: Props) => {
       <LabelIcon color="action" />
       {tags.map((tag) => (
         <Chip
-          size="small"
-          label={tag}
+          key={tag}
           clickable
           component={GatsbyLink}
+          label={tag}
+          size="small"
           to={`/tags/${toLower(tag)}/`}
-          key={tag}
         />
       ))}
     </footer>

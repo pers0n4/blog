@@ -1,7 +1,8 @@
-.cache
-.vscode
-node_modules
-package.json
+.cache/
+public/
+node_modules/
 package-lock.json
-public
+yarn.lock
+
 gatsby-*.js
+html.jsx
