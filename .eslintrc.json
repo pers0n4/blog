@@ -11,22 +11,16 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
+    "plugin:import/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:unicorn/recommended",
-    "airbnb",
-    "airbnb/hooks",
-    "airbnb/whitespace",
+    "airbnb-typescript",
     "plugin:@typescript-eslint/recommended",
     // "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended",
-    "prettier/react",
-    "prettier/unicorn",
-    "prettier/@typescript-eslint"
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "@typescript-eslint",
@@ -45,16 +39,17 @@
         "prefer": "type-imports"
       }
     ],
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
     "sort-keys-fix/sort-keys-fix": [
       "warn",
       "asc",
       { "caseSensitive": true, "natural": true }
     ],
-    "no-restricted-syntax": "off",
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": ["error"],
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"],
     "import/extensions": [
       "warn",
       "ignorePackages",
@@ -74,7 +69,9 @@
           "parent",
           "sibling",
           "index",
-          ["object", "unknown"]
+          "type",
+          "object",
+          "unknown"
         ],
         "pathGroups": [
           {
@@ -149,20 +146,20 @@
   },
   "env": {
     "browser": true,
-    "node": true,
     "commonjs": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "settings": {
+    "import/extensions": [".js", ".ts"],
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
       "node": {
-        "extensions": [".ts", ".tsx", ".d.ts", ".js", ".jsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     },
-    "import/extensions": [".ts", ".tsx", ".d.ts", ".js", ".jsx"],
     "react": {
       "version": "detect"
     }
