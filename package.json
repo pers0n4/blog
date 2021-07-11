@@ -35,6 +35,7 @@
     "format": "prettier --write src",
     "lint": "eslint src",
     "release": "standard-version --sign",
+    "typecheck": "tsc --project tsconfig.json --noEmit",
     "prepare": "husky install"
   },
   "dependencies": {
