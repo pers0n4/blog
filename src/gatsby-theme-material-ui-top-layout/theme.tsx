@@ -1,6 +1,7 @@
 import * as React from "react";
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+
 import type { PaletteType, Theme } from "@material-ui/core";
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import type { PaletteOptions } from "@material-ui/core/styles/createPalette";
 
 type ThemeOptions = (mode: PaletteType) => void;
@@ -44,9 +45,10 @@ export const themeReducer: ThemeReducer = (_, action) => {
 
 export const useChangeTheme = (): ThemeOptions => {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback((mode) => dispatch({ type: "CHANGE_THEME", mode }), [
-    dispatch,
-  ]);
+  return React.useCallback(
+    (mode) => dispatch({ mode, type: "CHANGE_THEME" }),
+    [dispatch]
+  );
 };
 
 // Default Theme: https://material-ui.com/customization/default-theme/

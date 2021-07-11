@@ -6,79 +6,99 @@
 
 module.exports = {
   siteMetadata: {
-    title: `Hack IT`,
-    siteUrl: `https://pers0n4.io`,
-    description: `B와 D 사이의 C를 담는 기술 블로그`,
+    title: "Hack IT",
+    siteUrl: "https://pers0n4.io",
+    description: "B와 D 사이의 C를 담는 기술 블로그",
+  },
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    PARALLEL_SOURCING: true,
+    LMDB_STORE: false,
   },
   plugins: [
-    `gatsby-plugin-typescript`,
-    `gatsby-plugin-catch-links`,
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     {
-      resolve: `gatsby-plugin-mdx`,
+      resolve: "gatsby-plugin-typescript",
+      // options: {
+      //   isTSX: true,
+      //   jsxPragma: "jsx",
+      //   allExtentions: true,
+      // },
+    },
+    "gatsby-plugin-catch-links",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
       options: {
-        extensions: [`.md`, `.mdx`],
+        name: "blog",
+        path: `${__dirname}/content/blog/`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        extensions: [".mdx", ".md"],
         plugins: [
-          `gatsby-remark-images`,
+          "gatsby-remark-images",
           {
-            resolve: `gatsby-remark-images-medium-zoom`,
+            resolve: "gatsby-remark-images-medium-zoom",
             options: {
               margin: 50,
-              background: `#212121`,
+              background: "#212121",
               zIndex: 1299,
             },
           },
         ],
         gatsbyRemarkPlugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: "gatsby-remark-images",
             options: {
               maxWidth: 960,
               linkImagesToOriginal: false,
               showCaptions: true,
-              wrapperStyle: `margin: 1.5rem auto;`,
+              wrapperStyle: "margin: 1.5rem auto;",
               quality: 80,
             },
           },
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-images-medium-zoom`,
-          `gatsby-remark-code-titles`,
+          "gatsby-remark-copy-linked-files",
+          "gatsby-remark-images-medium-zoom",
+          "gatsby-remark-code-titles",
           {
-            resolve: `gatsby-remark-prismjs`,
+            resolve: "gatsby-remark-prismjs",
             options: {
-              inlineCodeMarker: `> `,
+              inlineCodeMarker: "> ",
               aliases: {
-                n: `none`,
-                txt: `text`,
+                n: "none",
+                txt: "text",
               },
               showLineNumbers: false,
               noInlineHighlight: false,
               languageExtensions: [
                 {
-                  language: `text`,
+                  language: "text",
                   definition: {
                     text_types: /(text)/,
                   },
                 },
                 {
-                  language: `mdx`,
-                  extend: `markdown`,
+                  language: "mdx",
+                  extend: "markdown",
                   definition: {
                     text_types: /(mdx)/,
                   },
                 },
               ],
               prompt: {
-                user: `root`,
-                host: `localhost`,
+                user: "root",
+                host: "localhost",
                 global: false,
               },
             },
           },
-          `gatsby-remark-a11y-emoji`,
-          `gatsby-remark-abbr`,
-          `gatsby-remark-sub-sup`,
+          "gatsby-remark-a11y-emoji",
+          "gatsby-remark-abbr",
+          "gatsby-remark-sub-sup",
         ],
         remarkPlugins: [
           require("remark-emoji"),
@@ -86,84 +106,77 @@ module.exports = {
         ],
       },
     },
+    "gatsby-plugin-emotion",
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `blog`,
-        path: `${__dirname}/content/blog`,
-      },
-    },
-    `gatsby-plugin-emotion`,
-    {
-      resolve: `gatsby-theme-material-ui`,
+      resolve: "gatsby-theme-material-ui",
       options: {
         webFontsConfig: {
           fonts: {
             google: [
               {
-                family: `Roboto`,
-                variants: [`300`, `400`, `500`, `700`],
+                family: "Roboto",
+                variants: ["300", "400", "500", "700"],
               },
               {
-                family: `Noto Sans KR`,
-                variants: [`300`, `400`, `500`, `700`],
+                family: "Noto Sans KR",
+                variants: ["300", "400", "500", "700"],
               },
               {
-                family: `Fira Code`,
-                variants: [`400`],
+                family: "Fira Code",
+                variants: ["400"],
               },
             ],
           },
         },
       },
     },
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-react-helmet",
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `Hack IT`,
-        short_name: `Hack IT`,
-        start_url: `/`,
-        theme_color: `#5f4b8b`,
-        background_color: `#fff`,
-        display: `standalone`,
-        description: `B와 D 사이의 C를 담는 기술 블로그`,
-        lang: `ko-KR`,
-        icon: `static/icons/icon.png`,
+        name: "Hack IT",
+        short_name: "Hack IT",
+        start_url: "/",
+        theme_color: "#5f4b8b",
+        background_color: "#fafafa",
+        display: "standalone",
+        description: "B와 D 사이의 C를 담는 기술 블로그",
+        lang: "ko-KR",
+        icon: "static/icons/icon.png",
         icon_options: {
-          purpose: `any maskable`,
+          purpose: "any maskable",
         },
-        cache_busting_mode: `none`,
+        cache_busting_mode: "none",
       },
     },
     {
-      resolve: `gatsby-plugin-offline`,
+      resolve: "gatsby-plugin-offline",
       options: {
         workboxConfig: {
-          globPatterns: [`**/icons/*`],
+          globPatterns: ["**/icons/*"],
         },
       },
     },
     {
-      resolve: `gatsby-plugin-sitemap`,
+      resolve: "gatsby-plugin-sitemap",
       options: {
-        exclude: [`/categories/*`, `/tags/*`],
+        exclude: ["/categories/*", "/tags/*"],
       },
     },
     {
-      resolve: `gatsby-plugin-robots-txt`,
+      resolve: "gatsby-plugin-robots-txt",
       options: {
         policy: [
           {
-            userAgent: `*`,
-            allow: `/`,
-            disallow: [`/categories/*`, `/tags/*`],
+            userAgent: "*",
+            allow: "/",
+            disallow: ["/categories/*", "/tags/*"],
           },
         ],
       },
     },
     {
-      resolve: `gatsby-plugin-feed`,
+      resolve: "gatsby-plugin-feed",
       options: {
         query: `
           {
@@ -210,26 +223,29 @@ module.exports = {
                 }
               }
             `,
-            output: `/rss.xml`,
-            title: `Blog`,
+            output: "/rss.xml",
+            title: "Blog",
+            // match: "^/blog/",
           },
         ],
       },
     },
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: "gatsby-plugin-canonical-urls",
       options: {
-        siteUrl: `https://pers0n4.io`,
+        siteUrl: "https://pers0n4.io",
         stripQueryString: true,
       },
     },
     {
-      resolve: `gatsby-plugin-google-tagmanager`,
+      resolve: "gatsby-plugin-google-tagmanager",
       options: {
-        id: `GTM-KTC2NPD`,
+        id: "GTM-KTC2NPD",
         includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+        enableWebVitalsTracking: true,
       },
     },
-    `gatsby-plugin-netlify`,
+    "gatsby-plugin-netlify",
   ],
 };

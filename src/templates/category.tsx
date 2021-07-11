@@ -1,14 +1,16 @@
 import * as React from "react";
+
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 import { graphql } from "gatsby";
 import { Link } from "gatsby-theme-material-ui";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Typography from "@material-ui/core/Typography";
 
-import SEO from "../components/SEO";
-import Layout from "../components/Layout";
 import ArticleCard from "../components/ArticleCard";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+
 import type { ArticleListProps } from "../graphql";
 
 interface Props extends ArticleListProps {
@@ -36,13 +38,13 @@ const Category: React.FC<Props> = ({ pageContext, data }: Props) => {
   return (
     <>
       <SEO
-        title={`Category :: ${category}`}
         pathname={`/categories/${category}`}
+        title={`Category :: ${category}`}
       />
       <Layout>
         <Breadcrumbs aria-label="breadcrumb">
           <Link href="/categories/">Categories</Link>
-          <Typography variant="body1" component="h1">
+          <Typography component="h1" variant="body1">
             {category}
           </Typography>
         </Breadcrumbs>
@@ -55,7 +57,7 @@ const Category: React.FC<Props> = ({ pageContext, data }: Props) => {
 export default Category;
 
 export const query = graphql`
-  query($category: String) {
+  query ($category: String) {
     allMdx(
       filter: { frontmatter: { category: { eq: $category } } }
       limit: 1000
