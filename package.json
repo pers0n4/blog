@@ -26,15 +26,15 @@
     "url": "https://pers0n4.io/"
   },
   "scripts": {
-    "build": "gatsby build",
-    "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "format": "prettier --write src",
-    "postinstall": "husky install",
-    "lint": "eslint src",
-    "serve": "gatsby serve",
     "start": "gatsby develop",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "format": "prettier --write src",
+    "lint": "eslint src",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
