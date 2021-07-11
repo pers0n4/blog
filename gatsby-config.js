@@ -10,11 +10,31 @@ module.exports = {
     siteUrl: "https://pers0n4.io",
     description: "B와 D 사이의 C를 담는 기술 블로그",
   },
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    PARALLEL_SOURCING: true,
+    LMDB_STORE: false,
+  },
   plugins: [
-    "gatsby-plugin-typescript",
+    {
+      resolve: "gatsby-plugin-typescript",
+      // options: {
+      //   isTSX: true,
+      //   jsxPragma: "jsx",
+      //   allExtentions: true,
+      // },
+    },
     "gatsby-plugin-catch-links",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "blog",
+        path: `${__dirname}/content/blog/`,
+      },
+    },
     {
       resolve: "gatsby-plugin-mdx",
       options: {
@@ -86,13 +106,6 @@ module.exports = {
         ],
       },
     },
-    {
-      resolve: "gatsby-source-filesystem",
-      options: {
-        name: "blog",
-        path: `${__dirname}/content/blog`,
-      },
-    },
     "gatsby-plugin-emotion",
     {
       resolve: "gatsby-theme-material-ui",
@@ -125,7 +138,7 @@ module.exports = {
         short_name: "Hack IT",
         start_url: "/",
         theme_color: "#5f4b8b",
-        background_color: "#fff",
+        background_color: "#fafafa",
         display: "standalone",
         description: "B와 D 사이의 C를 담는 기술 블로그",
         lang: "ko-KR",
@@ -212,6 +225,7 @@ module.exports = {
             `,
             output: "/rss.xml",
             title: "Blog",
+            // match: "^/blog/",
           },
         ],
       },
@@ -228,6 +242,8 @@ module.exports = {
       options: {
         id: "GTM-KTC2NPD",
         includeInDevelopment: false,
+        defaultDataLayer: { platform: "gatsby" },
+        enableWebVitalsTracking: true,
       },
     },
     "gatsby-plugin-netlify",
