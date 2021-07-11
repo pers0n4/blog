@@ -20,6 +20,7 @@
 - [Workflow](#workflow)
   - [Branches](#branches)
   - [Commit Convention](#commit-convention)
+  - [Versioning](#versioning)
 - [License](#license)
 
 </details>
@@ -63,6 +64,13 @@ yarn start
 ### Commit Convention
 
 [Conventional Commits](https://conventionalcommits.org/)및 [Angular Commit Message Format](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-format)을 따릅니다.
+
+### Versioning
+
+```bash
+yarn release
+yarn release -r <major|minor|patch>
+```
 
 ## License
 

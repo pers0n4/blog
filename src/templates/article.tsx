@@ -1,9 +1,11 @@
 import * as React from "react";
+
 import { graphql } from "gatsby";
 
-import SEO from "../components/SEO";
-import Layout from "../components/Layout";
 import Article from "../components/Article";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+
 import type { ArticleProps, SiteProps } from "../graphql";
 
 type Props = ArticleProps & SiteProps;
@@ -17,14 +19,14 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
   return (
     <>
       <SEO
-        title={title}
         description={description}
         pathname={slug}
+        title={title}
         type="article"
       >
-        <meta property="article:published_time" content={date} />
+        <meta content={date} property="article:published_time" />
         {tags?.map((tag) => (
-          <meta property="article:tag" content={tag} key={tag} />
+          <meta key={tag} content={tag} property="article:tag" />
         ))}
 
         <script type="application/ld+json">{`
@@ -54,7 +56,7 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 export default ArticlePage;
 
 export const query = graphql`
-  query($id: String) {
+  query ($id: String) {
     mdx(id: { eq: $id }) {
       ...Article
     }

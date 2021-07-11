@@ -1,20 +1,22 @@
 import * as React from "react";
+
+import type { Theme } from "@material-ui/core";
+import {
+  ThemeProvider,
+  createStyles,
+  makeStyles,
+} from "@material-ui/core/styles";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
-import {
-  createStyles,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
-import type { Theme } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 
-import MDXComponents from "./MDXComponents";
-import ArticleHeader from "./ArticleHeader";
-import ArticleFooter from "./ArticleFooter";
 import ArticleComments from "./ArticleComments";
+import ArticleFooter from "./ArticleFooter";
+import ArticleHeader from "./ArticleHeader";
 import ArticleTableOfContents from "./ArticleTableOfContents";
+import MDXComponents from "./MdxComponents";
+
 import type { ArticleProps } from "../../graphql";
 
 const useStyles = makeStyles(() =>
@@ -23,11 +25,11 @@ const useStyles = makeStyles(() =>
       padding: "1rem",
     },
     comments: {
-      marginTop: "1.5rem",
-      padding: "1rem",
       "& .utterances": {
         maxWidth: "none",
       },
+      marginTop: "1.5rem",
+      padding: "1rem",
     },
   })
 );
@@ -36,10 +38,11 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
   const classes = useStyles();
   const { title, date, category, tags } = mdx.frontmatter;
   const toc = mdx.tableOfContents;
+  const { body } = mdx;
 
   const ArticleContent = () => (
     <div>
-      <MDXRenderer>{mdx.body || "Not loaded"}</MDXRenderer>
+      <MDXRenderer>{body || "Not loaded"}</MDXRenderer>
     </div>
   );
 
@@ -62,15 +65,15 @@ const Article: React.FC<ArticleProps> = ({ data: { mdx } }: ArticleProps) => {
           },
         })}
       >
-        {toc && Object.keys(toc).length !== 0 && (
+        {toc && Object.keys(toc).length > 0 && (
           <ArticleTableOfContents toc={toc} />
         )}
-        <Paper component="article" className={classes.article}>
-          <ArticleHeader title={title} date={date} category={category} />
+        <Paper className={classes.article} component="article">
+          <ArticleHeader category={category} date={date} title={title} />
           <ArticleContent />
           {tags && <ArticleFooter tags={tags} />}
         </Paper>
-        <Paper component="section" className={classes.comments}>
+        <Paper className={classes.comments} component="section">
           <ArticleComments />
         </Paper>
       </ThemeProvider>

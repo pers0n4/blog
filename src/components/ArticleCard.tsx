@@ -1,22 +1,24 @@
 import * as React from "react";
+
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { formatISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
 import { GatsbyLink } from "gatsby-theme-material-ui";
 import { toLower } from "lodash";
 
-import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Chip from "@material-ui/core/Chip";
-import LabelIcon from "@material-ui/icons/Label";
 import Typography from "@material-ui/core/Typography";
+import LabelIcon from "@material-ui/icons/Label";
 
-import datetime from "../utils/datetime";
-import type { MDXNode } from "../graphql";
+import type { MdxNode } from "../graphql";
 
 interface Props {
-  node: MDXNode;
+  node: MdxNode;
 }
 
 const useStyles = makeStyles((theme) =>
@@ -30,12 +32,12 @@ const useStyles = makeStyles((theme) =>
       fontSize: "0.875rem",
     },
     tags: {
-      display: "flex",
-      flexWrap: "wrap",
-      alignItems: "center",
       "& > *": {
         margin: theme.spacing(0.5),
       },
+      alignItems: "center",
+      display: "flex",
+      flexWrap: "wrap",
     },
   })
 );
@@ -53,12 +55,12 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
     tags &&
     tags.map((tag) => (
       <Chip
-        size="small"
-        label={tag}
+        key={tag}
         clickable
         component={GatsbyLink}
+        label={tag}
+        size="small"
         to={`/tags/${toLower(tag)}/`}
-        key={tag}
       />
     ));
 
@@ -67,23 +69,25 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
       <CardActionArea component={GatsbyLink} to={slug}>
         <CardContent>
           <Breadcrumbs aria-label="breadcrumb">
-            <Typography variant="subtitle2" component="p" color="textSecondary">
-              {datetime.tz(date, "Asia/Seoul").format("YYYY-MM-DD")}
+            <Typography color="textSecondary" component="p" variant="subtitle2">
+              {formatISO(utcToZonedTime(date, "Asia/Seoul"), {
+                representation: "date",
+              })}
             </Typography>
             {category && (
               <Typography
-                variant="subtitle2"
-                component="p"
                 color="textSecondary"
+                component="p"
+                variant="subtitle2"
               >
                 {category}
               </Typography>
             )}
           </Breadcrumbs>
-          <Typography variant="h3" component="h2" gutterBottom>
+          <Typography component="h2" gutterBottom variant="h3">
             {title}
           </Typography>
-          <Typography variant="body2" gutterBottom>
+          <Typography gutterBottom variant="body2">
             {excerpt}
           </Typography>
         </CardContent>

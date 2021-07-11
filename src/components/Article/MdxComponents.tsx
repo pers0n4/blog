@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Link } from "gatsby-theme-material-ui";
-import { MDXProviderComponents } from "@mdx-js/react";
+
 import { css } from "@emotion/react";
-import type { CSSObject } from "@emotion/react";
+import { Link } from "gatsby-theme-material-ui";
 import { replace, toLower } from "lodash";
 
 import Checkbox from "@material-ui/core/Checkbox";
@@ -15,6 +14,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
+
+import type { CSSObject } from "@emotion/react";
+import type { MDXProviderComponents } from "@mdx-js/react";
 
 // ANCHOR interfaces
 
@@ -47,16 +49,17 @@ interface CheckboxProps {
 // ANCHOR styles
 
 const styles: CSSObject = {
-  text: {
-    lineHeight: 1.8,
+  anchor: {
+    // theme.mixins.toolbar height + heading margin
+    marginTop: "calc((64px + 0.5em) * -1)",
+
+    position: "absolute",
   },
   header: {
     marginTop: "0.5em",
   },
-  anchor: {
-    position: "absolute",
-    // theme.mixins.toolbar height + heading margin
-    marginTop: "calc((64px + 0.5em) * -1)",
+  text: {
+    lineHeight: 1.8,
   },
 };
 
@@ -70,12 +73,12 @@ type HeadingProps = {
 
 const Heading = ({ level, children, className }: HeadingProps) => (
   <Typography
-    variant={level}
-    gutterBottom
     className={className}
     css={styles.header}
+    gutterBottom
+    variant={level}
   >
-    <span id={replace(toLower(children), " ", "-")} css={styles.anchor} />
+    <span css={styles.anchor} id={replace(toLower(children), " ", "-")} />
     {children}
   </Typography>
 );
@@ -85,94 +88,6 @@ Heading.defaultProps = {
 };
 
 const MDXComponents: MDXProviderComponents = {
-  p: ({ children, className }: BaseProps): React.ReactElement => (
-    <Typography
-      variant="body1"
-      gutterBottom
-      className={className}
-      css={styles.text}
-    >
-      {children}
-    </Typography>
-  ),
-  h1: ({ children, className }: BaseProps): React.ReactElement => {
-    return (
-      <Heading level="h2" className={className}>
-        {children as string}
-      </Heading>
-    );
-  },
-  h2: ({ children, className }: BaseProps): React.ReactElement => (
-    <Heading level="h2" className={className}>
-      {children as string}
-    </Heading>
-  ),
-  h3: ({ children, className }: BaseProps): React.ReactElement => (
-    <Heading level="h3" className={className}>
-      {children as string}
-    </Heading>
-  ),
-  h4: ({ children, className }: BaseProps): React.ReactElement => (
-    <Heading level="h4" className={className}>
-      {children as string}
-    </Heading>
-  ),
-  h5: ({ children, className }: BaseProps): React.ReactElement => (
-    <Heading level="h5" className={className}>
-      {children as string}
-    </Heading>
-  ),
-  h6: ({ children, className }: BaseProps): React.ReactElement => (
-    <Heading level="h6" className={className}>
-      {children as string}
-    </Heading>
-  ),
-  li: ({ children, className, id }: ListItemProps): React.ReactElement => (
-    <Typography
-      variant="body1"
-      component="li"
-      id={id}
-      className={className}
-      css={styles.text}
-    >
-      {children}
-    </Typography>
-  ),
-  table: ({ children, className }: BaseProps): React.ReactElement => (
-    <TableContainer component={Paper} className={className}>
-      <Table>{children}</Table>
-    </TableContainer>
-  ),
-  thead: ({ children, className }: BaseProps): React.ReactElement => (
-    <TableHead className={className}>{children}</TableHead>
-  ),
-  tbody: ({ children, className }: BaseProps): React.ReactElement => (
-    <TableBody className={className}>{children}</TableBody>
-  ),
-  tr: ({ children, className }: BaseProps): React.ReactElement => (
-    <TableRow className={className}>{children}</TableRow>
-  ),
-  th: ({ children, className, align }: TableCellProps): React.ReactElement => (
-    <TableCell align={align || "left"} className={className}>
-      {children}
-    </TableCell>
-  ),
-  td: ({ children, className, align }: TableCellProps): React.ReactElement => (
-    <TableCell align={align || "left"} className={className}>
-      {children}
-    </TableCell>
-  ),
-  pre: ({ children, className }: BaseProps): React.ReactElement => (
-    <Typography
-      variant="body1"
-      component="pre"
-      gutterBottom
-      className={className}
-    >
-      {children}
-    </Typography>
-  ),
-  hr: (): React.ReactElement => <Divider />,
   a: ({
     children,
     className,
@@ -182,19 +97,107 @@ const MDXComponents: MDXProviderComponents = {
     style,
   }: LinkProps): React.ReactElement => (
     <Link
-      to={href}
       className={className}
-      rel={rel}
-      target={target}
-      style={style}
       css={css({ fontWeight: 700 })}
+      rel={rel}
+      style={style}
+      target={target}
+      to={href}
     >
       {children}
     </Link>
   ),
-  input: ({ checked }: CheckboxProps): React.ReactElement => {
-    return <Checkbox disabled checked={checked} />;
+  h1: ({ children, className }: BaseProps): React.ReactElement => {
+    return (
+      <Heading className={className} level="h2">
+        {children as string}
+      </Heading>
+    );
   },
+  h2: ({ children, className }: BaseProps): React.ReactElement => (
+    <Heading className={className} level="h2">
+      {children as string}
+    </Heading>
+  ),
+  h3: ({ children, className }: BaseProps): React.ReactElement => (
+    <Heading className={className} level="h3">
+      {children as string}
+    </Heading>
+  ),
+  h4: ({ children, className }: BaseProps): React.ReactElement => (
+    <Heading className={className} level="h4">
+      {children as string}
+    </Heading>
+  ),
+  h5: ({ children, className }: BaseProps): React.ReactElement => (
+    <Heading className={className} level="h5">
+      {children as string}
+    </Heading>
+  ),
+  h6: ({ children, className }: BaseProps): React.ReactElement => (
+    <Heading className={className} level="h6">
+      {children as string}
+    </Heading>
+  ),
+  hr: (): React.ReactElement => <Divider />,
+  input: ({ checked }: CheckboxProps): React.ReactElement => {
+    return <Checkbox checked={checked} disabled />;
+  },
+  li: ({ children, className, id }: ListItemProps): React.ReactElement => (
+    <Typography
+      className={className}
+      component="li"
+      css={styles.text}
+      id={id}
+      variant="body1"
+    >
+      {children}
+    </Typography>
+  ),
+  p: ({ children, className }: BaseProps): React.ReactElement => (
+    <Typography
+      className={className}
+      css={styles.text}
+      gutterBottom
+      variant="body1"
+    >
+      {children}
+    </Typography>
+  ),
+  pre: ({ children, className }: BaseProps): React.ReactElement => (
+    <Typography
+      className={className}
+      component="pre"
+      gutterBottom
+      variant="body1"
+    >
+      {children}
+    </Typography>
+  ),
+  table: ({ children, className }: BaseProps): React.ReactElement => (
+    <TableContainer className={className} component={Paper}>
+      <Table>{children}</Table>
+    </TableContainer>
+  ),
+  tbody: ({ children, className }: BaseProps): React.ReactElement => (
+    <TableBody className={className}>{children}</TableBody>
+  ),
+  td: ({ children, className, align }: TableCellProps): React.ReactElement => (
+    <TableCell align={align || "left"} className={className}>
+      {children}
+    </TableCell>
+  ),
+  th: ({ children, className, align }: TableCellProps): React.ReactElement => (
+    <TableCell align={align || "left"} className={className}>
+      {children}
+    </TableCell>
+  ),
+  thead: ({ children, className }: BaseProps): React.ReactElement => (
+    <TableHead className={className}>{children}</TableHead>
+  ),
+  tr: ({ children, className }: BaseProps): React.ReactElement => (
+    <TableRow className={className}>{children}</TableRow>
+  ),
 };
 
 export default MDXComponents;
