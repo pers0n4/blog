@@ -1,11 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { graphql } from 'gatsby';
+import { graphql } from "gatsby";
 
-import Article from '../components/Article';
-import Layout from '../components/Layout';
-import SEO from '../components/Seo';
-import type { ArticleProps, SiteProps } from '../graphql';
+import Article from "../components/Article";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import type { ArticleProps, SiteProps } from "../graphql";
 
 type Props = ArticleProps & SiteProps;
 
@@ -55,7 +55,7 @@ const ArticlePage: React.FC<Props> = ({ data }: Props) => {
 export default ArticlePage;
 
 export const query = graphql`
-  query($id: String) {
+  query ($id: String) {
     mdx(id: { eq: $id }) {
       ...Article
     }

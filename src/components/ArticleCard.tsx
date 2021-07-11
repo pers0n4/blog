@@ -1,21 +1,21 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { formatISO } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
-import { GatsbyLink } from 'gatsby-theme-material-ui';
-import { toLower } from 'lodash';
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { formatISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
+import { GatsbyLink } from "gatsby-theme-material-ui";
+import { toLower } from "lodash";
 
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
-import LabelIcon from '@material-ui/icons/Label';
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Chip from "@material-ui/core/Chip";
+import Typography from "@material-ui/core/Typography";
+import LabelIcon from "@material-ui/icons/Label";
 
-import type { MdxNode } from '../graphql';
+import type { MdxNode } from "../graphql";
 
 interface Props {
   node: MdxNode;
@@ -24,20 +24,20 @@ interface Props {
 const useStyles = makeStyles((theme) =>
   createStyles({
     card: {
-      '& + &': {
-        marginTop: '1.5rem',
+      "& + &": {
+        marginTop: "1.5rem",
       },
     },
     date: {
-      fontSize: '0.875rem',
+      fontSize: "0.875rem",
     },
     tags: {
-      '& > *': {
+      "& > *": {
         margin: theme.spacing(0.5),
       },
-      alignItems: 'center',
-      display: 'flex',
-      flexWrap: 'wrap',
+      alignItems: "center",
+      display: "flex",
+      flexWrap: "wrap",
     },
   })
 );
@@ -70,8 +70,8 @@ const ArticleCard: React.FC<Props> = (props: Props) => {
         <CardContent>
           <Breadcrumbs aria-label="breadcrumb">
             <Typography color="textSecondary" component="p" variant="subtitle2">
-              {formatISO(utcToZonedTime(date, 'Asia/Seoul'), {
-                representation: 'date',
+              {formatISO(utcToZonedTime(date, "Asia/Seoul"), {
+                representation: "date",
               })}
             </Typography>
             {category && (

@@ -1,21 +1,21 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { graphql } from 'gatsby';
-import { GatsbyLink } from 'gatsby-theme-material-ui';
-import { kebabCase } from 'lodash';
+import { graphql } from "gatsby";
+import { GatsbyLink } from "gatsby-theme-material-ui";
+import { kebabCase } from "lodash";
 
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Chip from '@material-ui/core/Chip';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Chip from "@material-ui/core/Chip";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import Typography from "@material-ui/core/Typography";
 
-import Layout from '../components/Layout';
-import SEO from '../components/Seo';
-import type { GroupProps } from '../graphql';
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import type { GroupProps } from "../graphql";
 
 const Categories: React.FC<GroupProps> = ({
   data: {
@@ -56,7 +56,7 @@ const Categories: React.FC<GroupProps> = ({
 export default Categories;
 
 export const query = graphql`
-  query($field: MdxFieldsEnum = frontmatter___category) {
+  query ($field: MdxFieldsEnum = frontmatter___category) {
     allMdx {
       ...Group
     }

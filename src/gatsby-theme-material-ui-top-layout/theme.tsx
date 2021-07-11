@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-import type { PaletteType, Theme } from '@material-ui/core';
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import type { PaletteOptions } from '@material-ui/core/styles/createPalette';
+import type { PaletteType, Theme } from "@material-ui/core";
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
+import type { PaletteOptions } from "@material-ui/core/styles/createPalette";
 
 type ThemeOptions = (mode: PaletteType) => void;
 interface ThemeDispatch {
-  type: 'CHANGE_THEME';
+  type: "CHANGE_THEME";
   mode: PaletteType;
 }
 type ThemeReducer = (
@@ -18,10 +18,10 @@ export const basePalette: (palette: PaletteType) => PaletteOptions = (
   palette
 ) => ({
   primary: {
-    main: palette === 'light' ? '#5f4b8b' : '#00abc0',
+    main: palette === "light" ? "#5f4b8b" : "#00abc0",
   },
   secondary: {
-    main: palette === 'light' ? '#0f4c81' : '#f0eee9',
+    main: palette === "light" ? "#0f4c81" : "#f0eee9",
   },
   type: palette,
 });
@@ -29,12 +29,12 @@ export const basePalette: (palette: PaletteType) => PaletteOptions = (
 export const DispatchContext = React.createContext<
   React.Dispatch<ThemeDispatch>
 >(() => {
-  throw new Error('Forgot to wrap component in `ThemeProvider`');
+  throw new Error("Forgot to wrap component in `ThemeProvider`");
 });
 
 export const themeReducer: ThemeReducer = (_, action) => {
   switch (action.type) {
-    case 'CHANGE_THEME':
+    case "CHANGE_THEME":
       return {
         ...basePalette(action.mode),
       };
@@ -45,9 +45,10 @@ export const themeReducer: ThemeReducer = (_, action) => {
 
 export const useChangeTheme = (): ThemeOptions => {
   const dispatch = React.useContext(DispatchContext);
-  return React.useCallback((mode) => dispatch({ mode, type: 'CHANGE_THEME' }), [
-    dispatch,
-  ]);
+  return React.useCallback(
+    (mode) => dispatch({ mode, type: "CHANGE_THEME" }),
+    [dispatch]
+  );
 };
 
 // Default Theme: https://material-ui.com/customization/default-theme/
@@ -55,21 +56,21 @@ export const baseTheme: Theme = createMuiTheme({
   typography: {
     // htmlFontSize: 16,
     fontFamily: [
-      'Roboto',
-      'Noto Sans KR',
-      'Noto Color Emoji',
-      'Noto Emoji',
-      'sans-serif',
-    ].join(', '),
+      "Roboto",
+      "Noto Sans KR",
+      "Noto Color Emoji",
+      "Noto Emoji",
+      "sans-serif",
+    ].join(", "),
     // fontSize: 14,
     h1: {
-      fontSize: '4rem',
+      fontSize: "4rem",
     },
     h2: {
-      fontSize: '3.25rem',
+      fontSize: "3.25rem",
     },
     h3: {
-      fontSize: '2.75rem',
+      fontSize: "2.75rem",
     },
   },
 });

@@ -1,22 +1,22 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
+import { Global, ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import {
   createMuiTheme,
   responsiveFontSizes,
   MuiThemeProvider,
-} from '@material-ui/core';
-import type { Theme } from '@material-ui/core';
+} from "@material-ui/core";
+import type { Theme } from "@material-ui/core";
 
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-import styles from '../styles';
+import styles from "../styles";
 import {
   baseTheme,
   basePalette,
   DispatchContext,
   themeReducer,
-} from '../theme';
+} from "../theme";
 
 interface Props {
   children: React.ReactElement;
@@ -25,7 +25,7 @@ interface Props {
 const TopLayout: React.FC<Props> = ({ children }: Props) => {
   const [palette, dispatch] = React.useReducer(
     themeReducer,
-    basePalette('light')
+    basePalette("light")
   );
 
   const theme: Theme = React.useMemo(

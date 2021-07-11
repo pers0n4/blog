@@ -1,7 +1,7 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { graphql, useStaticQuery } from 'gatsby';
-import { Helmet } from 'react-helmet';
+import { graphql, useStaticQuery } from "gatsby";
+import { Helmet } from "react-helmet";
 
 interface Props {
   title?: string;
@@ -124,10 +124,10 @@ const SEO: React.FC<Props> = ({
 
 SEO.defaultProps = {
   children: undefined,
-  description: '',
-  pathname: '',
-  title: '',
-  type: 'website',
+  description: "",
+  pathname: "",
+  title: "",
+  type: "website",
 };
 
 export default SEO;

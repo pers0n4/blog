@@ -1,4 +1,4 @@
-import { graphql } from 'gatsby';
+import { graphql } from "gatsby";
 
 type GroupItem = {
   fieldValue: string;

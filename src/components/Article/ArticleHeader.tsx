@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { formatISO } from 'date-fns';
-import { utcToZonedTime } from 'date-fns-tz';
-import { Link } from 'gatsby-theme-material-ui';
-import { kebabCase } from 'lodash';
+import { formatISO } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
+import { Link } from "gatsby-theme-material-ui";
+import { kebabCase } from "lodash";
 
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Divider from "@material-ui/core/Divider";
+import Typography from "@material-ui/core/Typography";
 
 interface Props {
   title: string;
@@ -20,8 +20,8 @@ const ArticleHeader: React.FC<Props> = ({ title, date, category }: Props) => {
     <header>
       <Breadcrumbs aria-label="breadcrumb">
         <Typography color="textSecondary" component="p" variant="subtitle2">
-          {formatISO(utcToZonedTime(date, 'Asia/Seoul'), {
-            representation: 'date',
+          {formatISO(utcToZonedTime(date, "Asia/Seoul"), {
+            representation: "date",
           })}
         </Typography>
         {category && (
@@ -39,7 +39,7 @@ const ArticleHeader: React.FC<Props> = ({ title, date, category }: Props) => {
 };
 
 ArticleHeader.defaultProps = {
-  category: '',
+  category: "",
 };
 
 export default ArticleHeader;

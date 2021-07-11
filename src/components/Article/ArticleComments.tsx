@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { useLayoutEffect, useRef } from 'react';
+import * as React from "react";
+import { useLayoutEffect, useRef } from "react";
 
-import { useTheme } from '@material-ui/core';
+import { useTheme } from "@material-ui/core";
 
 const ArticleComments: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -9,15 +9,15 @@ const ArticleComments: React.FC = () => {
 
   useLayoutEffect(() => {
     const container = containerRef.current;
-    const utterances = document.createElement('script');
+    const utterances = document.createElement("script");
 
     const config = {
-      aync: 'true',
-      crossorigin: 'anonymous',
-      'issue-term': 'pathname',
-      repo: 'pers0n4/blog',
-      src: 'https://utteranc.es/client.js',
-      theme: theme === 'light' ? 'github-light' : 'github-dark',
+      aync: "true",
+      crossorigin: "anonymous",
+      "issue-term": "pathname",
+      repo: "pers0n4/blog",
+      src: "https://utteranc.es/client.js",
+      theme: theme === "light" ? "github-light" : "github-dark",
     };
 
     for (const [key, value] of Object.entries(config)) {

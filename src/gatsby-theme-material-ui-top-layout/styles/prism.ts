@@ -1,14 +1,14 @@
-import { css } from '@emotion/react';
-import type { SerializedStyles } from '@emotion/react';
-import type { Theme } from '@material-ui/core';
+import { css } from "@emotion/react";
+import type { SerializedStyles } from "@emotion/react";
+import type { Theme } from "@material-ui/core";
 
 const config = {
   margin: {
-    y: '1.5rem',
+    y: "1.5rem",
   },
   padding: {
-    x: '1em',
-    y: '1.5rem',
+    x: "1em",
+    y: "1.5rem",
   },
 };
 
@@ -169,28 +169,28 @@ const languageHighlight = (theme: Theme): SerializedStyles => css`
     pre[class~="language-md"]::before {
       content: "md";
       background-color: #4a525a;
-      color: ${theme.palette.getContrastText('#4a525a')};
+      color: ${theme.palette.getContrastText("#4a525a")};
     }
 
     /* https://mdxjs.com/ */
     pre[class~="language-mdx"]::before {
       content: "mdx";
       background-color: #fcb42d;
-      color: ${theme.palette.getContrastText('#fcb42d')};
+      color: ${theme.palette.getContrastText("#fcb42d")};
     }
 
     /* https://www.w3.org/html/logo/ */
     pre[class~="language-html"]::before {
       content: "html";
       background: linear-gradient(to right, #e44d26, #f16529);
-      color: ${theme.palette.getContrastText('#e44d26')};
+      color: ${theme.palette.getContrastText("#e44d26")};
     }
 
     /* https://en.wikipedia.org/wiki/Cascading_Style_Sheets */
     pre[class~="language-css"]::before {
       content: "css";
       background: linear-gradient(to right, #264de4, #2965f1);
-      color: ${theme.palette.getContrastText('#264de4')};
+      color: ${theme.palette.getContrastText("#264de4")};
     }
 
     /* https://en.wikipedia.org/wiki/JavaScript */
@@ -198,7 +198,7 @@ const languageHighlight = (theme: Theme): SerializedStyles => css`
     pre[class~="language-js"]::before {
       content: "js";
       background-color: #f7e018;
-      color: ${theme.palette.getContrastText('#f7e018')};
+      color: ${theme.palette.getContrastText("#f7e018")};
     }
 
     /* https://www.typescriptlang.org/branding/ */
@@ -206,20 +206,20 @@ const languageHighlight = (theme: Theme): SerializedStyles => css`
     pre[class~="language-ts"]::before {
       content: "ts";
       background-color: #3178c6;
-      color: ${theme.palette.getContrastText('#3178c6')};
+      color: ${theme.palette.getContrastText("#3178c6")};
     }
 
     /* https://reactjs.org/ */
     pre[class~="language-jsx"]::before {
       content: "jsx";
       background-color: #61dafb;
-      color: ${theme.palette.getContrastText('#61dafb')};
+      color: ${theme.palette.getContrastText("#61dafb")};
     }
 
     pre[class~="language-tsx"]::before {
       content: "tsx";
       background-color: #3178c6;
-      color: ${theme.palette.getContrastText('#3178c6')};
+      color: ${theme.palette.getContrastText("#3178c6")};
     }
 
     /* https://www.python.org/community/logos/ */
@@ -227,7 +227,7 @@ const languageHighlight = (theme: Theme): SerializedStyles => css`
     pre[class~="language-py"]::before {
       content: "py";
       background: linear-gradient(120deg, #366a96, #3679b0, #ffc836, #ffe873);
-      color: ${theme.palette.getContrastText('#366a96')};
+      color: ${theme.palette.getContrastText("#366a96")};
     }
   }
 `;

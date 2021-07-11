@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { createStyles, makeStyles } from '@material-ui/core';
-import clsx from 'clsx';
-import { GatsbyLink } from 'gatsby-theme-material-ui';
-import { throttle } from 'lodash';
+import { createStyles, makeStyles } from "@material-ui/core";
+import clsx from "clsx";
+import { GatsbyLink } from "gatsby-theme-material-ui";
+import { throttle } from "lodash";
 
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 
-import type { TocItem } from '../../graphql';
+import type { TocItem } from "../../graphql";
 
 type ThrottleCallback = () => void;
 
@@ -24,15 +24,15 @@ type Props = {
 };
 
 const useThrottledOnScroll = (callback: ThrottleCallback, delay: number) => {
-  const throttledCallback = React.useMemo(() => throttle(callback, delay), [
-    callback,
-    delay,
-  ]);
+  const throttledCallback = React.useMemo(
+    () => throttle(callback, delay),
+    [callback, delay]
+  );
 
   React.useEffect(() => {
-    window.addEventListener('scroll', throttledCallback);
+    window.addEventListener("scroll", throttledCallback);
     return () => {
-      window.removeEventListener('scroll', throttledCallback);
+      window.removeEventListener("scroll", throttledCallback);
       throttledCallback.cancel();
     };
   }, [throttledCallback]);
@@ -40,7 +40,7 @@ const useThrottledOnScroll = (callback: ThrottleCallback, delay: number) => {
 
 // TODO: these nodes are mutable sources. Use createMutableSource once it's stable
 const getItemsClient = (headings: TocItem[]) => {
-  if (typeof window === 'undefined' || !window.document) {
+  if (typeof window === "undefined" || !window.document) {
     return [];
   }
 
@@ -69,47 +69,47 @@ const useStyles = makeStyles((theme) =>
       color: theme.palette.primary.main,
     },
     item: {
-      '&$active,&:active': {
+      "&$active,&:active": {
         borderLeftColor:
-          theme.palette.type === 'light'
+          theme.palette.type === "light"
             ? theme.palette.grey[300]
             : theme.palette.grey[800],
       },
-      '&:hover': {
+      "&:hover": {
         borderLeftColor:
-          theme.palette.type === 'light'
+          theme.palette.type === "light"
             ? theme.palette.grey[300]
             : theme.palette.grey[800],
       },
-      '&:link': {
-        textDecoration: 'none',
+      "&:link": {
+        textDecoration: "none",
       },
-      borderLeft: '3px solid transparent',
+      borderLeft: "3px solid transparent",
       borderLeftColor:
-        theme.palette.type === 'light'
+        theme.palette.type === "light"
           ? theme.palette.grey[200]
           : theme.palette.grey[900],
       color: theme.palette.text.secondary,
-      fontSize: '0.875rem',
-      padding: theme.spacing(0.5, 0, 0.5, '8px'),
+      fontSize: "0.875rem",
+      padding: theme.spacing(0.5, 0, 0.5, "8px"),
     },
     list: {
-      listStyle: 'none',
+      listStyle: "none",
       margin: 0,
       padding: 0,
-      position: 'fixed',
+      position: "fixed",
     },
     root: {
-      display: 'none',
-      position: 'relative',
-      [theme.breakpoints.up('lg')]: {
-        display: 'block',
+      display: "none",
+      position: "relative",
+      [theme.breakpoints.up("lg")]: {
+        display: "block",
       },
     },
     wrapper: {
-      left: '100%',
+      left: "100%",
       marginLeft: theme.spacing(4),
-      position: 'absolute',
+      position: "absolute",
     },
   })
 );
@@ -124,7 +124,7 @@ const ArticleToc: React.FC<Props> = ({ toc }: Props) => {
   }, [items]);
   itemsWithNodeRef.current = getItemsClient(items);
 
-  const [activeState, setActiveState] = React.useState<string | undefined>('');
+  const [activeState, setActiveState] = React.useState<string | undefined>("");
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef<number | NodeJS.Timeout>();
   const findActiveIndex = React.useCallback(() => {

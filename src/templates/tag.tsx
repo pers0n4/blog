@@ -1,16 +1,16 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { graphql } from 'gatsby';
-import { Link } from 'gatsby-theme-material-ui';
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { graphql } from "gatsby";
+import { Link } from "gatsby-theme-material-ui";
 
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Typography from '@material-ui/core/Typography';
+import Breadcrumbs from "@material-ui/core/Breadcrumbs";
+import Typography from "@material-ui/core/Typography";
 
-import ArticleCard from '../components/ArticleCard';
-import Layout from '../components/Layout';
-import SEO from '../components/Seo';
-import type { ArticleListProps } from '../graphql';
+import ArticleCard from "../components/ArticleCard";
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import type { ArticleListProps } from "../graphql";
 
 interface Props extends ArticleListProps {
   pageContext: {
@@ -53,7 +53,7 @@ const Tag: React.FC<Props> = ({ pageContext, data }: Props) => {
 export default Tag;
 
 export const query = graphql`
-  query($tag: String) {
+  query ($tag: String) {
     allMdx(
       filter: { frontmatter: { tags: { in: [$tag] } } }
       limit: 1000

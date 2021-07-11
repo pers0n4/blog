@@ -1,28 +1,28 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { graphql } from 'gatsby';
-import { GatsbyLink } from 'gatsby-theme-material-ui';
-import { toLower } from 'lodash';
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { graphql } from "gatsby";
+import { GatsbyLink } from "gatsby-theme-material-ui";
+import { toLower } from "lodash";
 
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
+import Avatar from "@material-ui/core/Avatar";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import Chip from "@material-ui/core/Chip";
+import Typography from "@material-ui/core/Typography";
 
-import Layout from '../components/Layout';
-import SEO from '../components/Seo';
-import type { GroupProps } from '../graphql';
+import Layout from "../components/Layout";
+import SEO from "../components/Seo";
+import type { GroupProps } from "../graphql";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     chips: {
-      '& > *': {
+      "& > *": {
         margin: theme.spacing(0.5),
       },
-      display: 'flex',
-      flexWrap: 'wrap',
+      display: "flex",
+      flexWrap: "wrap",
       paddingBottom: theme.spacing(1),
       paddingTop: theme.spacing(1),
     },
@@ -67,7 +67,7 @@ const Tags: React.FC<GroupProps> = ({
 export default Tags;
 
 export const query = graphql`
-  query($field: MdxFieldsEnum = frontmatter___tags) {
+  query ($field: MdxFieldsEnum = frontmatter___tags) {
     allMdx {
       ...Group
     }
