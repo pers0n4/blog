@@ -20,9 +20,9 @@ const ArticleComments: React.FC = () => {
       theme: theme === "light" ? "github-light" : "github-dark",
     };
 
-    for (const [key, value] of Object.entries(config)) {
-      utterances.setAttribute(key, value);
-    }
+    Object.entries(config).map(([key, value]) =>
+      utterances.setAttribute(key, value)
+    );
 
     if (container) {
       container.append(utterances);

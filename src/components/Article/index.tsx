@@ -2,22 +2,22 @@ import * as React from "react";
 
 import type { Theme } from "@material-ui/core";
 import {
+  ThemeProvider,
   createStyles,
   makeStyles,
-  ThemeProvider,
 } from "@material-ui/core/styles";
 import { MDXProvider } from "@mdx-js/react";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 
 import Paper from "@material-ui/core/Paper";
 
-import type { ArticleProps } from "../../graphql";
-
 import ArticleComments from "./ArticleComments";
 import ArticleFooter from "./ArticleFooter";
 import ArticleHeader from "./ArticleHeader";
 import ArticleTableOfContents from "./ArticleTableOfContents";
 import MDXComponents from "./MdxComponents";
+
+import type { ArticleProps } from "../../graphql";
 
 const useStyles = makeStyles(() =>
   createStyles({

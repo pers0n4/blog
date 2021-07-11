@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
+
 import type { GroupProps } from "../graphql";
 
 const Categories: React.FC<GroupProps> = ({

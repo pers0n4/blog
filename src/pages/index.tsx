@@ -5,6 +5,7 @@ import { graphql } from "gatsby";
 import ArticleCard from "../components/ArticleCard";
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
+
 import type { ArticleListProps } from "../graphql";
 
 const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {

@@ -5,6 +5,7 @@ import { graphql } from "gatsby";
 import Article from "../components/Article";
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
+
 import type { ArticleProps, SiteProps } from "../graphql";
 
 type Props = ArticleProps & SiteProps;

@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import ArticleCard from "../components/ArticleCard";
 import Layout from "../components/Layout";
 import SEO from "../components/Seo";
+
 import type { ArticleListProps } from "../graphql";
 
 interface Props extends ArticleListProps {

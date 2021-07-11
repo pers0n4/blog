@@ -1,8 +1,6 @@
 import * as React from "react";
 
 import { css } from "@emotion/react";
-import type { CSSObject } from "@emotion/react";
-import type { MDXProviderComponents } from "@mdx-js/react";
 import { Link } from "gatsby-theme-material-ui";
 import { replace, toLower } from "lodash";
 
@@ -16,6 +14,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
+
+import type { CSSObject } from "@emotion/react";
+import type { MDXProviderComponents } from "@mdx-js/react";
 
 // ANCHOR interfaces
 
