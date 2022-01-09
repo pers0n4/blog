@@ -29,14 +29,17 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "format": "prettier --write src",
-    "lint": "eslint src",
+    "format": "prettier --write ./",
+    "format:check": "prettier --check ./",
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
     "prepare": "husky install",
     "release": "standard-version --sign --commit-all",
     "serve": "gatsby serve",
     "start": "gatsby develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "typecheck": "tsc --project tsconfig.json --noEmit"
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "tsc --noEmit --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
