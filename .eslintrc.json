@@ -34,6 +34,7 @@
     "unicorn"
   ],
   "rules": {
+    "no-restricted-exports": "off",
     "sort-imports": [
       "error",
       {
@@ -50,6 +51,16 @@
       { "caseSensitive": true, "natural": true }
     ],
 
+    "unicorn/filename-case": [
+      "error",
+      {
+        "cases": {
+          "pascalCase": true,
+          "camelCase": true,
+          "kebabCase": true
+        }
+      }
+    ],
     "unicorn/prevent-abbreviations": [
       "error",
       {
