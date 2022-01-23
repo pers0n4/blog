@@ -1,57 +1,15 @@
 import * as React from "react";
 
-import { ThemeProvider as EmotionThemeProvider, Global } from "@emotion/react";
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  responsiveFontSizes,
-} from "@material-ui/core";
-import type { Theme } from "@material-ui/core";
+import ColorModeProvider from "./context";
+import Viewport from "./viewport";
 
-import CssBaseline from "@material-ui/core/CssBaseline";
+type Props = React.PropsWithChildren<undefined>;
 
-import styles from "../styles";
-import {
-  DispatchContext,
-  basePalette,
-  baseTheme,
-  themeReducer,
-} from "../theme";
-
-interface Props {
-  children: React.ReactElement;
-}
-
-const TopLayout: React.FC<Props> = ({ children }: Props) => {
-  const [palette, dispatch] = React.useReducer(
-    themeReducer,
-    basePalette("light")
-  );
-
-  const theme: Theme = React.useMemo(
-    () =>
-      responsiveFontSizes(
-        createMuiTheme({
-          ...baseTheme,
-          palette: {
-            ...palette,
-          },
-        })
-      ),
-    [palette]
-  );
-
+export default function TopLayout({ children }: Props) {
   return (
-    <DispatchContext.Provider value={dispatch}>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <EmotionThemeProvider theme={theme}>
-          <Global styles={styles} />
-          {children}
-        </EmotionThemeProvider>
-      </MuiThemeProvider>
-    </DispatchContext.Provider>
+    <>
+      <Viewport />
+      <ColorModeProvider>{children}</ColorModeProvider>
+    </>
   );
-};
-
-export default TopLayout;
+}
