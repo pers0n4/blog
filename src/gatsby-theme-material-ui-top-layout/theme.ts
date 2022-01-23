@@ -32,3 +32,5 @@ export const createTheme = (mode: PaletteMode) =>
       ...theme[mode],
     },
   });
+
+export default theme;
