@@ -5,7 +5,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 
-import { ColorModeContext } from "../../gatsby-theme-material-ui-top-layout/components/context";
+import { ColorModeContext } from "~/gatsby-theme-material-ui-top-layout/components/context";
 
 export default function ColorModeToggleButton() {
   const {
