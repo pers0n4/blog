@@ -10,13 +10,13 @@ import ColorModeToggleIconButton from "../ColorModeToggleIconButton";
 export default function AppBarIcons() {
   const {
     site: {
-      siteMetadata: { githubUsername },
+      siteMetadata: { github },
     },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
-          githubUsername
+          github
         }
       }
     }
@@ -24,7 +24,7 @@ export default function AppBarIcons() {
 
   return (
     <Stack direction="row" spacing={1}>
-      <IconButton color="inherit" to={`https://github.com/${githubUsername}`}>
+      <IconButton color="inherit" to={`https://github.com/${github}`}>
         <GitHubIcon />
       </IconButton>
       <ColorModeToggleIconButton />
