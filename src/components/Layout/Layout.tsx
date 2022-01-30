@@ -9,7 +9,6 @@ import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
@@ -164,17 +163,8 @@ export default function Layout({ children }: Props) {
         }}
       >
         <Toolbar />
-        <Container maxWidth="lg" sx={{ mb: 4, mt: 4 }}>
-          <Paper
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              height: 640,
-              p: 2,
-            }}
-          >
-            {children}
-          </Paper>
+        <Container maxWidth="md" sx={{ my: 4 }}>
+          {children}
         </Container>
       </Box>
     </Box>
