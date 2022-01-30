@@ -2,10 +2,11 @@ import * as React from "react";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Stack from "@mui/material/Stack";
+import Tooltip from "@mui/material/Tooltip";
 import { graphql, useStaticQuery } from "gatsby";
 import { IconButton } from "gatsby-theme-material-ui";
 
-import ColorModeToggleIconButton from "../ColorModeToggleIconButton";
+import ColorModeToggleIconButton from "~/components/ColorModeToggleIconButton";
 
 export default function AppBarIcons() {
   const {
@@ -24,9 +25,11 @@ export default function AppBarIcons() {
 
   return (
     <Stack direction="row" spacing={1}>
-      <IconButton color="inherit" to={`https://github.com/${github}`}>
-        <GitHubIcon />
-      </IconButton>
+      <Tooltip title="GitHub profile">
+        <IconButton color="inherit" to={`https://github.com/${github}`}>
+          <GitHubIcon />
+        </IconButton>
+      </Tooltip>
       <ColorModeToggleIconButton />
     </Stack>
   );
