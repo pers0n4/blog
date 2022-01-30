@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 
+import AppBarIcons from "./AppBarIcons";
 import MenuItems from "./MenuItems";
 
 import type { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
@@ -131,6 +132,7 @@ export default function Layout({ children }: Props) {
           >
             Hack IT
           </Typography>
+          <AppBarIcons />
         </Toolbar>
       </AppBar>
       <Drawer open={open} variant="permanent">
