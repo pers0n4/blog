@@ -1,65 +1,36 @@
-const { createFilePath } = require(`gatsby-source-filesystem`);
-const _ = require("lodash");
+const { createFilePath } = require("gatsby-source-filesystem");
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
-
-  const result = await graphql(`
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { data, errors } = await graphql(`
     query {
-      allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+      allMdx(sort: { fields: frontmatter___datePublished, order: DESC }) {
         edges {
           node {
-            id
             fields {
               slug
             }
-            frontmatter {
-              category
-              tags
-            }
           }
-        }
-        categories: group(field: frontmatter___category) {
-          fieldValue
-        }
-        tags: group(field: frontmatter___tags) {
-          fieldValue
         }
       }
     }
   `);
 
-  if (result.errors) {
-    throw result.errors;
+  if (errors) {
+    reporter.panicOnBuild("Error while running GraphQL query.");
+    throw errors;
   }
 
-  _.each(result.data.allMdx.edges, ({ node }) => {
-    const { slug } = node.fields;
+  const { createPage } = actions;
+
+  data.allMdx.edges.forEach(({ node }) => {
+    const {
+      fields: { slug },
+    } = node;
     createPage({
       path: slug,
       component: require.resolve(`./src/templates/article.tsx`),
       context: {
-        id: node.id,
-      },
-    });
-  });
-
-  _.each(result.data.allMdx.categories, (category) => {
-    createPage({
-      path: `/categories/${_.kebabCase(category.fieldValue)}`,
-      component: require.resolve(`./src/templates/category.tsx`),
-      context: {
-        category: category.fieldValue,
-      },
-    });
-  });
-
-  _.each(result.data.allMdx.tags, (tag) => {
-    createPage({
-      path: `/tags/${_.toLower(tag.fieldValue)}`,
-      component: require.resolve(`./src/templates/tag.tsx`),
-      context: {
-        tag: tag.fieldValue,
+        slug,
       },
     });
   });
@@ -67,12 +38,17 @@ exports.createPages = async ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
-  if (node.internal.type === `Mdx`) {
-    const path = createFilePath({ node, getNode });
+  if (node.internal.type === "Mdx") {
+    const relativeFilePath = createFilePath({
+      node,
+      getNode,
+      basePath: "blog/",
+      trailingSlash: false,
+    });
     createNodeField({
       node,
-      name: `slug`,
-      value: path,
+      name: "slug",
+      value: `/articles${relativeFilePath}`,
     });
   }
 };
