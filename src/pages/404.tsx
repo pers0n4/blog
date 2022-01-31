@@ -1,52 +1,37 @@
 import * as React from "react";
 
-import { css } from "@emotion/react";
-import { navigate } from "gatsby";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { Button } from "gatsby-theme-material-ui";
 
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import Layout from "~/components/Layout";
 
-import Layout from "../components/Layout";
-import SEO from "../components/Seo";
-
-const NotFound: React.FC = () => {
+export default function NotFoundPage() {
   return (
-    <>
-      <SEO title="404 Not Found" />
-      <Layout>
-        <Paper variant="outlined">
-          <Grid
-            alignItems="center"
-            container
-            css={css`
-              padding-top: 3rem;
-              padding-bottom: 3rem;
-            `}
-            direction="column"
-            justify="center"
-            spacing={3}
-          >
-            <Grid item>
-              <Typography variant="h1">
-                4
-                <span aria-label="0" role="img">
-                  😦
-                </span>
-                4 Not Found
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Button variant="outlined" onClick={() => navigate("/")}>
-                Back to Home
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Layout>
-    </>
+    <Layout>
+      <Grid
+        container
+        alignItems="center"
+        direction="column"
+        justifyContent="center"
+        spacing={4}
+        sx={{ mt: 24 }}
+      >
+        <Grid item>
+          <Typography component="h1" variant="h2">
+            4
+            <span aria-label="0" role="img">
+              😦
+            </span>
+            4 Not Found
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Button to="/" variant="outlined">
+            Back to Home
+          </Button>
+        </Grid>
+      </Grid>
+    </Layout>
   );
-};
-
-export default NotFound;
+}
