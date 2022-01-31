@@ -1,67 +1,56 @@
 import * as React from "react";
 
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
 import { graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
 
-import Article from "../components/Article";
-import Layout from "../components/Layout";
-import SEO from "../components/Seo";
+import Layout from "~/components/Layout";
 
-import type { ArticleProps, SiteProps } from "../graphql";
+import type { PageProps } from "gatsby";
 
-type Props = ArticleProps & SiteProps;
+interface Props extends PageProps {
+  data: {
+    mdx: {
+      id: string;
+      body: string;
+      frontmatter: {
+        title: string;
+        datePublished: string;
+      };
+    };
+  };
+}
 
-const ArticlePage: React.FC<Props> = ({ data }: Props) => {
-  const { title, date, tags } = data.mdx.frontmatter;
-  const description = data.mdx.excerpt;
-  const { slug } = data.mdx.fields;
-  const meta = data.site.siteMetadata;
+export default function ArticleTemplate({ data }: Props) {
+  const {
+    mdx: {
+      body,
+      frontmatter: { title, datePublished },
+    },
+  } = data;
 
   return (
-    <>
-      <SEO
-        description={description}
-        pathname={slug}
-        title={title}
-        type="article"
-      >
-        <meta content={date} property="article:published_time" />
-        {tags?.map((tag) => (
-          <meta key={tag} content={tag} property="article:tag" />
-        ))}
-
-        <script type="application/ld+json">{`
-          {
-            "@context": "http://schema.org",
-            "@type": "Blog",
-            "name": "${meta.title}",
-            "url": "${meta.siteUrl}",
-            "description": "${meta.description}",
-            "blogPost": {
-              "@type": "BlogPosting",
-              "headline": "${title}",
-              "datePublished": "${date}",
-              "description": "${description}",
-              "url": "https://pers0n4.io${slug}"
-            }
-          }
-        `}</script>
-      </SEO>
-      <Layout>
-        <Article data={data} />
-      </Layout>
-    </>
+    <Layout>
+      <Paper component="article" sx={{ p: 4 }}>
+        <Typography component="h1" variant="h1">
+          {title}
+        </Typography>
+        {datePublished}
+        <MDXRenderer>{body}</MDXRenderer>
+      </Paper>
+    </Layout>
   );
-};
+}
 
-export default ArticlePage;
-
-export const query = graphql`
-  query ($id: String) {
-    mdx(id: { eq: $id }) {
-      ...Article
-    }
-    site {
-      ...SiteMetadata
+export const pageQuery = graphql`
+  query ArticleQuery($slug: String!) {
+    mdx(fields: { slug: { eq: $slug } }) {
+      body
+      frontmatter {
+        title
+        datePublished(formatString: "YYYY-MM-DD")
+      }
     }
   }
 `;
