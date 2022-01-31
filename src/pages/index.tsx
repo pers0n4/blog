@@ -1,37 +1,54 @@
 import * as React from "react";
 
 import { graphql } from "gatsby";
+import { Link } from "gatsby-theme-material-ui";
 
-import ArticleCard from "../components/ArticleCard";
-import Layout from "../components/Layout";
-import SEO from "../components/Seo";
+import Layout from "~/components/Layout";
 
-import type { ArticleListProps } from "../graphql";
+import type { PageProps } from "gatsby";
 
-const Index: React.FC<ArticleListProps> = ({ data }: ArticleListProps) => {
-  const { edges } = data.allMdx;
-  const articles = edges
-    .filter((edge) => !!edge.node.frontmatter.date)
-    .map((edge) => <ArticleCard key={edge.node.id} node={edge.node} />);
+interface Props extends PageProps {
+  data: {
+    allMdx: {
+      nodes: {
+        id: string;
+        fields: {
+          slug: string;
+        };
+        frontmatter: {
+          title: string;
+          datePublished: string;
+        };
+      }[];
+    };
+  };
+}
 
+export default function IndexPage({ data }: Props) {
   return (
-    <>
-      <SEO />
-      <Layout>
-        <section>{articles}</section>
-      </Layout>
-    </>
+    <Layout>
+      <ul>
+        {data.allMdx.nodes.map((node) => (
+          <li key={node.id}>
+            <Link to={`${node.fields.slug}`}>{node.frontmatter.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </Layout>
   );
-};
+}
 
-export default Index;
-
-export const query = graphql`
+export const pageQuery = graphql`
   query {
-    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
-      edges {
-        node {
-          ...ArticleList
+    allMdx(sort: { fields: frontmatter___datePublished, order: DESC }) {
+      nodes {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          title
+          datePublished(formatString: "YYYY-MM-DD")
         }
       }
     }
