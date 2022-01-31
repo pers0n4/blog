@@ -55,6 +55,7 @@
     "gatsby-plugin-emotion": "^7.4.0",
     "gatsby-plugin-feed": "^4.4.0",
     "gatsby-plugin-google-tagmanager": "^4.4.0",
+    "gatsby-plugin-image": "^2.6.0",
     "gatsby-plugin-manifest": "^4.4.0",
     "gatsby-plugin-mdx": "^3.4.0",
     "gatsby-plugin-offline": "^5.4.0",
