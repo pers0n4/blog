@@ -3,7 +3,7 @@ title: "hello, world!"
 datePublished: 1970-01-01T00:00:00+00:00
 dateModified: 2020-03-17T23:14:14+09:00
 category: getting-started
-tags: [hello, world]
+labels: [hello, world]
 ---
 
 ## heading 2
