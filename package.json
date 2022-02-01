@@ -67,7 +67,6 @@
     "gatsby-plugin-sitemap": "^5.4.0",
     "gatsby-plugin-typescript": "^4.4.0",
     "gatsby-remark-a11y-emoji": "^1.1.1",
-    "gatsby-remark-abbr": "^2.0.0",
     "gatsby-remark-code-titles": "^1.1.0",
     "gatsby-remark-copy-linked-files": "^5.4.0",
     "gatsby-remark-images": "^6.4.0",
