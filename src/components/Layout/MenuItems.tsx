@@ -3,31 +3,32 @@ import * as React from "react";
 import CategoryIcon from "@mui/icons-material/Category";
 import HomeIcon from "@mui/icons-material/Home";
 import LabelIcon from "@mui/icons-material/Label";
-import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
 const MenuItems = (
-  <div>
-    <ListItem button>
+  <List disablePadding>
+    <ListItemButton component="li">
       <ListItemIcon>
         <HomeIcon />
       </ListItemIcon>
       <ListItemText primary="Home" />
-    </ListItem>
-    <ListItem button>
+    </ListItemButton>
+    <ListItemButton component="li">
       <ListItemIcon>
         <CategoryIcon />
       </ListItemIcon>
       <ListItemText primary="Categories" />
-    </ListItem>
-    <ListItem button>
+    </ListItemButton>
+    <ListItemButton component="li">
       <ListItemIcon>
         <LabelIcon />
       </ListItemIcon>
       <ListItemText primary="Labels" />
-    </ListItem>
-  </div>
+    </ListItemButton>
+  </List>
 );
 
 export default MenuItems;
