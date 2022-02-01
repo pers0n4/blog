@@ -1,4 +1,5 @@
 import { createTheme as createMuiTheme } from "@mui/material";
+import "pretendard/dist/web/static/pretendard-dynamic-subset.css";
 
 import type { PaletteMode, PaletteOptions } from "@mui/material";
 
@@ -30,6 +31,21 @@ export const createTheme = (mode: PaletteMode) =>
     palette: {
       mode,
       ...theme[mode],
+    },
+    typography: {
+      fontFamily: [
+        "Pretendard",
+        "-apple-system",
+        "BlinkMacSystemFont",
+        "system-ui",
+        "Roboto",
+        "'Helvetica Neue'",
+        "'Segoe UI'",
+        "'Apple SD Gothic Neo'",
+        "'Noto Sans KR'",
+        "'Malgun Gothic'",
+        "sans-serif",
+      ].join(","),
     },
   });
 
