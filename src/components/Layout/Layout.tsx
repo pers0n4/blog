@@ -134,6 +134,7 @@ export default function Layout({ children }: Props) {
           <AppBarIcons />
         </Toolbar>
       </AppBar>
+
       <Drawer open={open} variant="permanent">
         <Toolbar
           sx={{
@@ -150,6 +151,7 @@ export default function Layout({ children }: Props) {
         <Divider />
         <List disablePadding>{MenuItems}</List>
       </Drawer>
+
       <Box
         component="main"
         sx={{
