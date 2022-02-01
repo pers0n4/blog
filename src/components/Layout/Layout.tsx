@@ -149,7 +149,9 @@ export default function Layout({ children }: Props) {
           </IconButton>
         </Toolbar>
         <Divider />
-        <List disablePadding>{MenuItems}</List>
+        <List disablePadding component="nav">
+          {MenuItems}
+        </List>
       </Drawer>
 
       <Box
