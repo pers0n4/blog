@@ -1,15 +1,27 @@
 const { createFilePath } = require("gatsby-source-filesystem");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { data, errors } = await graphql(`
+  const { data, errors } = await graphql(/* graphql */ `
     query {
       allMdx(sort: { fields: frontmatter___datePublished, order: DESC }) {
-        edges {
+        articles: edges {
           node {
             fields {
               slug
             }
+            frontmatter {
+              category
+              labels
+            }
           }
+        }
+        categories: group(field: frontmatter___category) {
+          fieldValue
+          totalCount
+        }
+        labels: group(field: frontmatter___labels) {
+          fieldValue
+          totalCount
         }
       }
     }
@@ -21,16 +33,44 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const { createPage } = actions;
+  const {
+    allMdx: { articles, categories, labels },
+  } = data;
 
-  data.allMdx.edges.forEach(({ node }) => {
-    const {
-      fields: { slug },
-    } = node;
+  articles.forEach(
+    ({
+      node: {
+        fields: { slug },
+      },
+    }) => {
+      createPage({
+        path: slug,
+        component: require.resolve("./src/templates/article.tsx"),
+        context: {
+          slug,
+        },
+      });
+    },
+  );
+
+  categories.forEach(({ fieldValue }) => {
     createPage({
-      path: slug,
-      component: require.resolve(`./src/templates/article.tsx`),
+      // TODO: use slugify
+      path: `/categories/${fieldValue}`,
+      component: require.resolve("./src/templates/category.tsx"),
       context: {
-        slug,
+        category: fieldValue,
+      },
+    });
+  });
+
+  labels.forEach(({ fieldValue }) => {
+    createPage({
+      // TODO: use slugify
+      path: `/labels/${fieldValue}`,
+      component: require.resolve("./src/templates/label.tsx"),
+      context: {
+        label: fieldValue,
       },
     });
   });
