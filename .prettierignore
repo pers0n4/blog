@@ -1,6 +1,7 @@
-.cache
-.vscode
-node_modules
-package.json
-package-lock.json
-public
+.cache/
+.src/
+public/
+
+.yarn/
+
+tsconfig.json

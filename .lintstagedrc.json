@@ -1,6 +1,5 @@
 {
-  "*.{html,md,mdx,json}": "prettier --write",
-  "*.css": ["stylelint --fix", "prettier --write"],
-  "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"],
+  "*": "prettier --write --ignore-unknown",
+  "*.{js,jsx,ts,tsx}": "eslint --fix --cache",
   "package.json": "sort-package-json"
 }

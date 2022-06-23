@@ -1,8 +1,0 @@
-.cache/
-public/
-node_modules/
-package-lock.json
-yarn.lock
-
-gatsby-*.js
-html.jsx
